@@ -1,0 +1,42 @@
+﻿net;.NET
+agile;Agile
+architecture;Architecture
+asp-net;ASP.NET
+big-data;Big Data
+business-skills;Business Skills
+c;C
+c-sharp;C#
+c-plus-plus;C++
+cloud;Cloud
+concurrency;Concurrency
+continuous-delivery;Continuous Delivery
+continuous-integration;Continuous Integration
+craftsmanship;Craftsmanship
+cross-platform;Cross-Platform
+database;Database
+design;Design
+devops;Devops
+embedded;Embedded
+f;F#
+fun;Fun
+functional;Functional Programming
+iot;IoT
+javascript;JavaScript
+languages;Languages
+machine-learning;Machine Learning
+microservices;Microservices
+microsoft;Microsoft
+mobile;Mobile
+monitoring;Monitoring
+nosql;NoSQL
+people;People
+phyton;Python
+scalability;Scalability
+search;Search
+security;Security
+testing;Testing
+tools;Tools
+ui;UI
+ux;UX
+web;Web
+
