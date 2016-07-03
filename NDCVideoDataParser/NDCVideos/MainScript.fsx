@@ -18,7 +18,6 @@ let combinedLikesColumn (_,_,_,_,x,_,_) = x
 let combindedAgendaSlugsColumn (_,_,_,_,_,x,_) = x
 let combinedAgendaSpeakersColumn (_,_,_,_,_,_,x) = x
 
-
 let combinedNDCVideoData parsedVideos findByName =
     parsedVideos
     |> Seq.map (fun x -> match findByName (NDCVimeoVideoParser.nameColumn x)  with
@@ -34,7 +33,6 @@ let newNDCVideos parsedVideos findByName=
     ndcVideos.Ndc (desc= "NDCOslo2016 Videos", ndcvideos=jsonMovieData parsedVideos findByName )
 
 let path file = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"data", file)
-
 
 let writeNDCVideoJson fileReader videoList findByName=
     let parsedVideos = fileReader videoList

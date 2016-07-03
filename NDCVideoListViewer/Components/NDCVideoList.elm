@@ -77,7 +77,7 @@ decodeNDCVideoFetch : Json.Decoder (List NDCVideo.Model)
 decodeNDCVideoFetch =
   Json.at ["ndcvideos"] decodeNDCVideoList
 
--- Then decode the "data" key into a List of NDCVideo.Models
+-- Then decode the "ndcvideos" key into a List of NDCVideo.Models
 decodeNDCVideoList : Json.Decoder (List NDCVideo.Model)
 decodeNDCVideoList =
   Json.list decodeNDCVideoData
