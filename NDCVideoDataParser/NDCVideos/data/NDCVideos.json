@@ -1450,5 +1450,171 @@
       "slugs": "javascript,web",
       "speakers": "Ben Ilegbodu"
     }
+  ],
+  "ndcvideoslugs": [
+    {
+      "slug": "net",
+      "name": ".NET"
+    },
+    {
+      "slug": "asp-net",
+      "name": "ASP.NET"
+    },
+    {
+      "slug": "agile",
+      "name": "Agile"
+    },
+    {
+      "slug": "architecture",
+      "name": "Architecture"
+    },
+    {
+      "slug": "big-data",
+      "name": "Big Data"
+    },
+    {
+      "slug": "business-skills",
+      "name": "Business Skills"
+    },
+    {
+      "slug": "c",
+      "name": "C"
+    },
+    {
+      "slug": "c-sharp",
+      "name": "C#"
+    },
+    {
+      "slug": "c-plus-plus",
+      "name": "C++"
+    },
+    {
+      "slug": "cloud",
+      "name": "Cloud"
+    },
+    {
+      "slug": "concurrency",
+      "name": "Concurrency"
+    },
+    {
+      "slug": "continuous-delivery",
+      "name": "Continuous Delivery"
+    },
+    {
+      "slug": "continuous-integration",
+      "name": "Continuous Integration"
+    },
+    {
+      "slug": "craftsmanship",
+      "name": "Craftsmanship"
+    },
+    {
+      "slug": "cross-platform",
+      "name": "Cross-Platform"
+    },
+    {
+      "slug": "database",
+      "name": "Database"
+    },
+    {
+      "slug": "design",
+      "name": "Design"
+    },
+    {
+      "slug": "devops",
+      "name": "Devops"
+    },
+    {
+      "slug": "embedded",
+      "name": "Embedded"
+    },
+    {
+      "slug": "f",
+      "name": "F#"
+    },
+    {
+      "slug": "fun",
+      "name": "Fun"
+    },
+    {
+      "slug": "functional",
+      "name": "Functional Programming"
+    },
+    {
+      "slug": "iot",
+      "name": "IoT"
+    },
+    {
+      "slug": "javascript",
+      "name": "JavaScript"
+    },
+    {
+      "slug": "languages",
+      "name": "Languages"
+    },
+    {
+      "slug": "machine-learning",
+      "name": "Machine Learning"
+    },
+    {
+      "slug": "microservices",
+      "name": "Microservices"
+    },
+    {
+      "slug": "microsoft",
+      "name": "Microsoft"
+    },
+    {
+      "slug": "mobile",
+      "name": "Mobile"
+    },
+    {
+      "slug": "monitoring",
+      "name": "Monitoring"
+    },
+    {
+      "slug": "nosql",
+      "name": "NoSQL"
+    },
+    {
+      "slug": "people",
+      "name": "People"
+    },
+    {
+      "slug": "phyton",
+      "name": "Python"
+    },
+    {
+      "slug": "scalability",
+      "name": "Scalability"
+    },
+    {
+      "slug": "search",
+      "name": "Search"
+    },
+    {
+      "slug": "security",
+      "name": "Security"
+    },
+    {
+      "slug": "testing",
+      "name": "Testing"
+    },
+    {
+      "slug": "tools",
+      "name": "Tools"
+    },
+    {
+      "slug": "ui",
+      "name": "UI"
+    },
+    {
+      "slug": "ux",
+      "name": "UX"
+    },
+    {
+      "slug": "web",
+      "name": "Web"
+    }
   ]
 }

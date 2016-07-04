@@ -19,6 +19,13 @@ module NDCVideoConfig
                       "slugs": "slugs",
                       "speakers": "speakers"
                   }
+              ],
+          "ndcvideoslugs":
+              [
+                  {
+                      "slug": "test",
+                      "name": "test"
+                  }
               ]
       }
       """

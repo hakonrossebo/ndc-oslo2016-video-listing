@@ -29,16 +29,21 @@ let jsonMovieData parsedVideos findByName=
     |> Seq.map (fun x -> ndcVideos.Ndcvideo(combinedNameColumn x, combinedUriColumn x, combinedDescriptionColumn x, combinedPlaysColumn x, combinedLikesColumn x, combindedAgendaSlugsColumn x, combinedAgendaSpeakersColumn x))
     |> Seq.toArray
 
-let newNDCVideos parsedVideos findByName=
-    ndcVideos.Ndc (desc= "NDCOslo2016 Videos", ndcvideos=jsonMovieData parsedVideos findByName )
+let jsonMovieSlugData slugList =
+    slugList
+    |> Seq.map (fun x -> ndcVideos.Ndcvideoslug(fst x, snd x))
+    |> Seq.toArray
+
+let newNDCVideos parsedVideos findByName slugList=
+    ndcVideos.Ndc (desc= "NDCOslo2016 Videos", ndcvideos=jsonMovieData parsedVideos findByName, ndcvideoslugs=jsonMovieSlugData slugList )
 
 let path file = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"data", file)
 
-let writeNDCVideoJson fileReader videoList findByName=
+let writeNDCVideoJson fileReader videoList findByName slugList =
     let parsedVideos = fileReader videoList
     let fileWriter = new StreamWriter(path NDCVideoConfig.outputJsonName)
-    let combinedVideoData = newNDCVideos parsedVideos findByName
+    let combinedVideoData = newNDCVideos parsedVideos findByName slugList
     combinedVideoData.JsonValue.WriteTo(fileWriter, JsonSaveOptions.None);
     fileWriter.Close();
 
-writeNDCVideoJson NDCVimeoVideoParser.readAllFiles NDCVideoConfig.videoFiles NDCAgenda.findByName;;
+writeNDCVideoJson NDCVimeoVideoParser.readAllFiles NDCVideoConfig.videoFiles NDCAgenda.findByName NDCAgenda.slugList;;
