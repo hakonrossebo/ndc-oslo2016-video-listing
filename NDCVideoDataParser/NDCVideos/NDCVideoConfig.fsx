@@ -26,6 +26,8 @@ module NDCVideoConfig
                       "slug": "test",
                       "name": "test"
                   }
-              ]
+              ],
+          "ndcvideospeakers":
+              ["somestring1", "somestring2"]
       }
       """

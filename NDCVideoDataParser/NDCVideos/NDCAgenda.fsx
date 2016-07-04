@@ -46,6 +46,16 @@ module NDCAgenda =
         let matchName = agendaNameColumn elem
         name.StartsWith(matchName)
 
+    let split (separators:char[]) (x:string) = x.Split(separators, StringSplitOptions.RemoveEmptyEntries)
+
+    let uniqueSpeakers =
+        speakers
+        |> List.map (fun x -> Seq.toList(split [|'\r';'\n'|] x))
+        |> List.concat
+        |> List.map (fun x -> x.Trim())
+        |> List.distinct
+        |> List.sortBy (fun x -> x)
+        |> List.toArray
  
     let findByNameInList list name  =
         if name = "" then
@@ -56,6 +66,6 @@ module NDCAgenda =
     let findByName name =
         findByNameInList listAgenda name
 
-    // findByName "Sequential, Concurrent and Parallel Programming" listAgenda;;
-
+// findByName "Sequential, Concurrent and Parallel Programming" listAgenda;;
+// NDCAgenda.uniqueSpeakers;;
 // NDCAgenda.slugList;;
