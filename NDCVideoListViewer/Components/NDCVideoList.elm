@@ -9,13 +9,20 @@ import Debug
 import List
 import String
 import NDCVideo
+import NDCVideoSlug
 import Material
 import Material.Button as Button
 import Material.Table as Table
 
+type alias NDCVideoInfo =
+  { name : String
+  , videos : List NDCVideo.Model
+  , slugs : List NDCVideoSlug.Model
+  , speakers : List String
+  }
 
 type alias Model =
-  { videos: List NDCVideo.Model
+  {   videoInfo: NDCVideoInfo
     , filteredVideos: List NDCVideo.Model
     , mdl: Material.Model  }
 
@@ -27,13 +34,13 @@ type Msg
   | ClearFilters
   | SlugFilter String
   | Fetch
-  | FetchSucceed (List NDCVideo.Model)
+  | FetchSucceed (NDCVideoInfo)
   | FetchFail Http.Error
   | MDL Material.Msg 
 
 initialModel : Model
 initialModel =
-  { videos = []
+  { videoInfo = {name="", videos=[], slugs=[], speakers=[]}
   , filteredVideos = []
   , mdl = Material.model }
 
@@ -46,12 +53,12 @@ update msg model =
       (model, Cmd.none)
     Fetch ->
       (model, fetchNDCVideos)
-    FetchSucceed videoList ->
-      ({ model | videos = videoList, filteredVideos = videoList}, Cmd.none)
+    FetchSucceed fetchedInfo ->
+      ({ model | videoInfo = fetchedInfo, filteredVideos = fetchedInfo.videos}, Cmd.none)
     ClearFilters ->
-      ({ model | filteredVideos = model.videos}, Cmd.none)
+      ({ model | filteredVideos = model.videoInfo.videos}, Cmd.none)
     SlugFilter slugfilter ->
-      let flt = List.filter (\vid -> String.contains vid.slugs slugfilter) model.videos
+      let flt = List.filter (\vid -> String.contains vid.slugs slugfilter) model.videoInfo.videos
       in
       ({ model | filteredVideos = flt}, Cmd.none)
     FetchFail error ->
@@ -73,15 +80,36 @@ fetchNDCVideos =
     Task.perform FetchFail FetchSucceed (Http.get decodeNDCVideoFetch url)
 
 -- Fetch the videos out of the "ndcvideos" key
-decodeNDCVideoFetch : Json.Decoder (List NDCVideo.Model)
+decodeNDCVideoFetch : Json.Decoder (NDCVideoInfo)
 decodeNDCVideoFetch =
-  Json.at ["ndcvideos"] decodeNDCVideoList
+      Json.object4 NDCVideoInfo
+          ("desc" := Json.string)
+          ("ndcvideos" := decodeNDCVideoList)
+          ("ndcvideoslugs" := decodeNDCVideoSlugs)
+          ("ndcvideospeakers" := decodeNDCVideoSpeakers)
 
 -- Then decode the "ndcvideos" key into a List of NDCVideo.Models
 decodeNDCVideoList : Json.Decoder (List NDCVideo.Model)
 decodeNDCVideoList =
   Json.list decodeNDCVideoData
 
+-- Then decode the "slugs" key into a List of NDCVideoSlug.Models
+decodeNDCVideoSlugs : Json.Decoder (List NDCVideoSlug.Model)
+decodeNDCVideoSlugs =
+  Json.list decodeNDCVideoSlugData
+
+-- Then decode the "speakers" key into a List of Strings
+decodeNDCVideoSpeakers : Json.Decoder (List String)
+decodeNDCVideoSpeakers =
+  Json.list Json.string
+
+
+-- Then decode the "slugs" key into a List of NDCVideoSlug.Model
+decodeNDCVideoSlugData : Json.Decoder NDCVideoSlug.Model
+decodeNDCVideoSlugData =
+  Json.object2 NDCVideoSlug.Model
+    ("slug" := Json.string)
+    ("name" := Json.string)
 
 -- Finally, build the decoder for each individual NDCVideo.Model
 decodeNDCVideoData : Json.Decoder NDCVideo.Model
@@ -119,17 +147,20 @@ renderNDCVideos model =
       |> List.map (\item -> NDCVideo.view item ))
   ]
   
-slugs : List (String, String)  
-slugs = 
-  [("net",".NET"),("agile","Agile"),("architecture","Architecture"),("asp-net","ASP.NET"),("big-data","Big Data"),("business-skills","Business Skills"),("c","C"),("c-sharp","C#"),("c-plus-plus","C++"),("cloud","Cloud"),("concurrency","Concurrency"),("continuous-delivery","Continuous Delivery"),("continuous-integration","Continuous Integration"),("craftsmanship","Craftsmanship"),("cross-platform","Cross-Platform"),("database","Database"),("design","Design"),("devops","Devops"),("embedded","Embedded"),("f","F#"),("fun","Fun"),("functional","Functional Programming"),("iot","IoT"),("javascript","JavaScript"),("languages","Languages"),("machine-learning","Machine Learning"),("microservices","Microservices"),("microsoft","Microsoft"),("mobile","Mobile"),("monitoring","Monitoring"),("nosql","NoSQL"),("people","People"),("phyton","Python"),("scalability","Scalability"),("search","Search"),("security","Security"),("testing","Testing"),("tools","Tools"),("ui","UI"),("ux","UX"),("web","Web")]
-
 renderSlugButtons : Model -> Html Msg
 renderSlugButtons model =
   div []
       (List.map (\slug -> 
         -- a [onClick (SlugFilter (fst slug))][ text (snd slug)]
-        Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (SlugFilter (fst slug))] [ text (snd slug) ]    
-          ) slugs )
+        Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
+          ) model.videoInfo.slugs )
+
+renderSpeakers : Model -> Html Msg
+renderSpeakers model =
+  div []
+      (List.map (\speaker -> 
+        a [][ text (speaker)]
+          ) model.videoInfo.speakers )
 
 view : Model -> Html Msg
 view model =
@@ -137,5 +168,7 @@ view model =
     [ Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ]
     , h4 [][text "Filter by:"]
     , (renderSlugButtons model)
+    , (renderSpeakers model)
+    , div [][ text model.videoInfo.name]
     , div [] [ renderNDCVideos model]
     ]
