@@ -2,6 +2,7 @@ module Components.NDCVideoList exposing (..)
 
 import Html exposing (Html, text, ul, li, div, h2, h3, h4, a, button)
 import Html.Attributes exposing (href)
+import Html.Events exposing (..)
 import Http
 import Task
 import Json.Decode as Json exposing ((:=))
@@ -33,6 +34,7 @@ type Msg
   = NoOp
   | ClearFilters
   | SlugFilter String
+  | SpeakerFilter String
   | Fetch
   | FetchSucceed (NDCVideoInfo)
   | FetchFail Http.Error
@@ -43,6 +45,13 @@ initialModel =
   { videoInfo = {name="", videos=[], slugs=[], speakers=[]}
   , filteredVideos = []
   , mdl = Material.model }
+
+
+stringHasItem : String -> String -> Bool
+stringHasItem stringWithItems filter =
+  stringWithItems
+  |> String.split ","
+  |> List.member filter
 
 
 --ACTION
@@ -58,7 +67,11 @@ update msg model =
     ClearFilters ->
       ({ model | filteredVideos = model.videoInfo.videos}, Cmd.none)
     SlugFilter slugfilter ->
-      let flt = List.filter (\vid -> String.contains vid.slugs slugfilter) model.videoInfo.videos
+      let flt = List.filter (\vid -> stringHasItem vid.slugs slugfilter) model.videoInfo.videos
+      in
+      ({ model | filteredVideos = flt}, Cmd.none)
+    SpeakerFilter speakerfilter ->
+      let flt = List.filter (\vid -> stringHasItem vid.speakers speakerfilter) model.videoInfo.videos
       in
       ({ model | filteredVideos = flt}, Cmd.none)
     FetchFail error ->
@@ -151,24 +164,32 @@ renderSlugButtons : Model -> Html Msg
 renderSlugButtons model =
   div []
       (List.map (\slug -> 
-        -- a [onClick (SlugFilter (fst slug))][ text (snd slug)]
-        Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
+        Html.span[]
+        [
+          a [href "#", onClick (SlugFilter (slug.slug))][ text (slug.name)],
+          Html.span [][ text " - "]
+        ]
+        -- Button.render MDL [0] model.mdl  [Button.minifab, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
           ) model.videoInfo.slugs )
 
 renderSpeakers : Model -> Html Msg
 renderSpeakers model =
   div []
       (List.map (\speaker -> 
-        a [][ text (speaker)]
+        Html.span[]
+        [
+          a [href "#", onClick (SpeakerFilter (speaker))][ text (speaker)],
+          Html.span [][ text " - "]
+        ]
           ) model.videoInfo.speakers )
 
 view : Model -> Html Msg
 view model =
   div [ ]
-    [ Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ]
-    , h4 [][text "Filter by:"]
+    [ Html.h5 [][text "Filter by topic:"]
     , (renderSlugButtons model)
+    , Html.h5 [][text "Filter by speaker:"]
     , (renderSpeakers model)
-    , div [][ text model.videoInfo.name]
+    , Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ]
     , div [] [ renderNDCVideos model]
     ]
