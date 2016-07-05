@@ -14,6 +14,10 @@ import NDCVideoSlug
 import Material
 import Material.Button as Button
 import Material.Table as Table
+import Material.Toggles as Toggles
+import Material.Options as Options exposing (css, when)
+import Material.Scheme as Scheme
+
 
 type alias NDCVideoInfo =
   { name : String
@@ -25,6 +29,10 @@ type alias NDCVideoInfo =
 type alias Model =
   {   videoInfo: NDCVideoInfo
     , filteredVideos: List NDCVideo.Model
+    , currentFilterInfo : String 
+    , currentFilterType : String
+    , toggleSlugsFilter : Bool
+    , toggleSpeakersFilter : Bool 
     , mdl: Material.Model  }
 
 type alias Mdl = 
@@ -35,6 +43,8 @@ type Msg
   | ClearFilters
   | SlugFilter String
   | SpeakerFilter String
+  | ToggleSpeakers Int
+  | ToggleSlugs Int
   | Fetch
   | FetchSucceed (NDCVideoInfo)
   | FetchFail Http.Error
@@ -44,6 +54,10 @@ initialModel : Model
 initialModel =
   { videoInfo = {name="", videos=[], slugs=[], speakers=[]}
   , filteredVideos = []
+  , currentFilterInfo = "Showing all videos"
+  , currentFilterType = "None"
+  , toggleSlugsFilter = False
+  , toggleSpeakersFilter = False
   , mdl = Material.model }
 
 
@@ -65,15 +79,19 @@ update msg model =
     FetchSucceed fetchedInfo ->
       ({ model | videoInfo = fetchedInfo, filteredVideos = fetchedInfo.videos}, Cmd.none)
     ClearFilters ->
-      ({ model | filteredVideos = model.videoInfo.videos}, Cmd.none)
+      ({ model | filteredVideos = model.videoInfo.videos, currentFilterInfo = "", currentFilterType = "None"}, Cmd.none)
     SlugFilter slugfilter ->
       let flt = List.filter (\vid -> stringHasItem vid.slugs slugfilter) model.videoInfo.videos
       in
-      ({ model | filteredVideos = flt}, Cmd.none)
+      ({ model | filteredVideos = flt,currentFilterInfo = "Filtered by topic: " ++ slugfilter, currentFilterType = "Topic"}, Cmd.none)
     SpeakerFilter speakerfilter ->
       let flt = List.filter (\vid -> stringHasItem vid.speakers speakerfilter) model.videoInfo.videos
       in
-      ({ model | filteredVideos = flt}, Cmd.none)
+      ({ model | filteredVideos = flt,currentFilterInfo = "Filtered by speaker: " ++ speakerfilter, currentFilterType = "Speaker"}, Cmd.none)
+    ToggleSpeakers val ->
+      ({model | toggleSpeakersFilter = not model.toggleSpeakersFilter }, Cmd.none)
+    ToggleSlugs val ->
+      ({model | toggleSlugsFilter = not model.toggleSlugsFilter }, Cmd.none)
     FetchFail error ->
       case error of
         Http.UnexpectedPayload errorMessage ->
@@ -183,13 +201,31 @@ renderSpeakers model =
         ]
           ) model.videoInfo.speakers )
 
+renderSlugsToggle : Model -> Html Msg
+renderSlugsToggle model =
+  Toggles.switch MDL [0] model.mdl
+    [ Toggles.onClick (ToggleSlugs 0), Toggles.value model.toggleSlugsFilter
+    ]
+    [ text "Show topic filters" ]  
+
+renderSpeakersToggle : Model -> Html Msg
+renderSpeakersToggle model =
+  Toggles.switch MDL [0] model.mdl
+    [ Toggles.onClick (ToggleSpeakers 0), Toggles.value model.toggleSpeakersFilter
+    ]
+    [ text "Show speaker filters" ]  
+
+
 view : Model -> Html Msg
 view model =
   div [ ]
-    [ Html.h5 [][text "Filter by topic:"]
-    , (renderSlugButtons model)
-    , Html.h5 [][text "Filter by speaker:"]
-    , (renderSpeakers model)
-    , Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ]
+    [ (renderSlugsToggle model)
+    , (renderSpeakersToggle model)
+    , if model.toggleSlugsFilter then Html.h5 [][text "Filter by topic:"] else Html.span [][]
+    , if model.toggleSlugsFilter then (renderSlugButtons model) else Html.span [][]
+    , if model.toggleSpeakersFilter then Html.h5 [][text "Filter by speaker:"] else Html.span [][]
+    , if model.toggleSpeakersFilter then (renderSpeakers model) else Html.span [][]
+    , if model.currentFilterType /= "None" then Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ] else Html.span [][]
+    , Html.h5 [][text model.currentFilterInfo]
     , div [] [ renderNDCVideos model]
     ]
