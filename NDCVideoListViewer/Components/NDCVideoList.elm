@@ -1,6 +1,6 @@
 module Components.NDCVideoList exposing (..)
 
-import Html exposing (Html, text, ul, li, div, h2, h3, h4, a, button)
+import Html exposing (Html, text, ul, li, div, span, h3, h4, a, button)
 import Html.Attributes exposing (href)
 import Html.Events exposing (..)
 import Http
@@ -15,8 +15,6 @@ import Material
 import Material.Button as Button
 import Material.Table as Table
 import Material.Toggles as Toggles
-import Material.Options as Options exposing (css, when)
-import Material.Scheme as Scheme
 
 
 type alias NDCVideoInfo =
@@ -178,28 +176,42 @@ renderNDCVideos model =
       |> List.map (\item -> NDCVideo.view item ))
   ]
   
-renderSlugButtons : Model -> Html Msg
-renderSlugButtons model =
-  div []
-      (List.map (\slug -> 
-        Html.span[]
-        [
-          a [href "#", onClick (SlugFilter (slug.slug))][ text (slug.name)],
-          Html.span [][ text " - "]
-        ]
-        -- Button.render MDL [0] model.mdl  [Button.minifab, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
-          ) model.videoInfo.slugs )
+renderSlugFilters : Model -> Html Msg
+renderSlugFilters model =
+  if model.toggleSlugsFilter then 
+    div []
+    [
+      Html.h5 [][text "Filter by topic:"]
+      , div []
+          (List.map (\slug -> 
+            span[]
+            [
+              a [href "#", onClick (SlugFilter (slug.slug))][ text (slug.name)],
+              Html.span [][ text " - "]
+            ]
+            -- Button.render MDL [0] model.mdl  [Button.minifab, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
+              ) model.videoInfo.slugs )
+    ]
+  else
+    span [][]
 
-renderSpeakers : Model -> Html Msg
-renderSpeakers model =
-  div []
-      (List.map (\speaker -> 
-        Html.span[]
-        [
-          a [href "#", onClick (SpeakerFilter (speaker))][ text (speaker)],
-          Html.span [][ text " - "]
-        ]
-          ) model.videoInfo.speakers )
+renderSpeakerFilters : Model -> Html Msg
+renderSpeakerFilters model =
+  if model.toggleSpeakersFilter then 
+    div []
+    [
+      Html.h5 [][text "Filter by speaker:"]
+      , div []
+          (List.map (\speaker -> 
+            span[]
+            [
+              a [href "#", onClick (SpeakerFilter (speaker))][ text (speaker)],
+              Html.span [][ text " - "]
+            ]
+              ) model.videoInfo.speakers )
+    ]
+  else
+    span [][]
 
 renderSlugsToggle : Model -> Html Msg
 renderSlugsToggle model =
@@ -216,15 +228,14 @@ renderSpeakersToggle model =
     [ text "Show speaker filters" ]  
 
 
+
 view : Model -> Html Msg
 view model =
   div [ ]
     [ (renderSlugsToggle model)
     , (renderSpeakersToggle model)
-    , if model.toggleSlugsFilter then Html.h5 [][text "Filter by topic:"] else Html.span [][]
-    , if model.toggleSlugsFilter then (renderSlugButtons model) else Html.span [][]
-    , if model.toggleSpeakersFilter then Html.h5 [][text "Filter by speaker:"] else Html.span [][]
-    , if model.toggleSpeakersFilter then (renderSpeakers model) else Html.span [][]
+    , (renderSlugFilters model)
+    , (renderSpeakerFilters model)
     , if model.currentFilterType /= "None" then Button.render MDL [0] model.mdl  [Button.raised, Button.colored, Button.onClick (ClearFilters) ] [ text "Clear all filters" ] else Html.span [][]
     , Html.h5 [][text model.currentFilterInfo]
     , div [] [ renderNDCVideos model]
