@@ -26,7 +26,7 @@
       "plays": 112,
       "likes": 2,
       "slugs": "fun",
-      "speakers": "​Richard Campbell\r\n​Carl Franklin\r\nTroy Hunt\r\nNiall Merrigan\r\nStephen Haunts"
+      "speakers": "​Richard Campbell;​Carl Franklin;Troy Hunt;Niall Merrigan;Stephen Haunts"
     },
     {
       "title": ".NET without Windows - Matt Ellis",
@@ -53,7 +53,7 @@
       "plays": 102,
       "likes": 2,
       "slugs": "microservices,ui,testing",
-      "speakers": "Arif Wider\r\nAlexey Gravanov"
+      "speakers": "Arif Wider;Alexey Gravanov"
     },
     {
       "title": "A Piece of Cake - C# powered cross platform build automation - Gary Ewan Park",
@@ -80,7 +80,7 @@
       "plays": 813,
       "likes": 15,
       "slugs": "web,microsoft",
-      "speakers": "Damian Edwards\r\nDavid Fowler"
+      "speakers": "Damian Edwards;David Fowler"
     },
     {
       "title": "ASP.NET Core 1: What has changed for MVC and Web API developers? - Manfred Steyer",
@@ -98,7 +98,7 @@
       "plays": 3098,
       "likes": 28,
       "slugs": "web,microsoft",
-      "speakers": "David Fowler\r\nDamian Edwards"
+      "speakers": "David Fowler;Damian Edwards"
     },
     {
       "title": "ASP.NET Identity 3 - Brock Allen",
@@ -620,7 +620,7 @@
       "plays": 149,
       "likes": 3,
       "slugs": "net,fun",
-      "speakers": "Rob Conery\r\nScott Allen\r\nJimmy Bogard"
+      "speakers": "Rob Conery;Scott Allen;Jimmy Bogard"
     },
     {
       "title": "Holographic Programming – Exploring the HoloLens - Lars Klint",
@@ -764,7 +764,7 @@
       "plays": 14,
       "likes": 0,
       "slugs": "fun,business-skills,architecture,people",
-      "speakers": "​Trond Pedersen\r\nKylie Hunt\r\nMichal Franc\r\nFilip Van Laenen"
+      "speakers": "​Trond Pedersen;Kylie Hunt;Michal Franc;Filip Van Laenen"
     },
     {
       "title": "Lightning Talks: Iver Dihle Skjervum, Stephane Erbrech, Cecilie Haugstvedt & David Kai Christen Kristensen",
@@ -773,7 +773,7 @@
       "plays": 27,
       "likes": 0,
       "slugs": "fun,business-skills,architecture,people",
-      "speakers": "​Trond Pedersen\r\nKylie Hunt\r\nMichal Franc\r\nFilip Van Laenen"
+      "speakers": "​Trond Pedersen;Kylie Hunt;Michal Franc;Filip Van Laenen"
     },
     {
       "title": "Linux, Open Source and Microsoft Azure: unusual friends? - Boris Baryshnikov",
@@ -809,7 +809,7 @@
       "plays": 784,
       "likes": 6,
       "slugs": "architecture,agile,microservices",
-      "speakers": "Tomas Ekeli\r\nPavneet Singh Saund"
+      "speakers": "Tomas Ekeli;Pavneet Singh Saund"
     },
     {
       "title": "MicroMonolith - Top anti-patterns of distributed systems - Michal Franc",
@@ -908,7 +908,7 @@
       "plays": 36,
       "likes": 0,
       "slugs": "database,iot,javascript,web",
-      "speakers": "Jørgen Abrahamsen\r\nTrond Smaavik"
+      "speakers": "Jørgen Abrahamsen;Trond Smaavik"
     },
     {
       "title": "Optimizing the Programmer: Get More Done Faster - Dave Rael",
@@ -926,7 +926,7 @@
       "plays": 96,
       "likes": 1,
       "slugs": "business-skills",
-      "speakers": "​Eric Brandes\r\nRob Conery\r\nBen Hall\r\nTodd Gardner\r\nOren Eini"
+      "speakers": "​Eric Brandes;Rob Conery;Ben Hall;Todd Gardner;Oren Eini"
     },
     {
       "title": "Parallelism vs. Concurrency in C++ - Detlef Vollmann",

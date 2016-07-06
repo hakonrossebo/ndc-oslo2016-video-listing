@@ -31,6 +31,7 @@ module NDCAgenda =
     let speakers = 
         NDCAgendaDocument.CssSelect("div.grid-item.msnry-item > a > p ")
         |> List.map(fun a -> a.DirectInnerText())
+        |> List.map(fun x -> x.Replace("\r\n", ";"))
 
     let slugList = 
         NDCAgendaDocument.CssSelect("section.tags.boxed-small-list > a")
@@ -50,7 +51,8 @@ module NDCAgenda =
 
     let uniqueSpeakers =
         speakers
-        |> List.map (fun x -> Seq.toList(split [|'\r';'\n'|] x))
+        |> List.map (fun x -> Seq.toList(split [|';'|] x))
+        // |> List.map (fun x -> Seq.toList(split [|'\r';'\n'|] x))
         |> List.concat
         |> List.map (fun x -> x.Trim())
         |> List.distinct
@@ -68,4 +70,5 @@ module NDCAgenda =
 
 // findByName "Sequential, Concurrent and Parallel Programming" listAgenda;;
 // NDCAgenda.uniqueSpeakers;;
+// NDCAgenda.speakers;;
 // NDCAgenda.slugList;;
