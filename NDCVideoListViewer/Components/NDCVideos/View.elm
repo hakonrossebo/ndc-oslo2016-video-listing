@@ -8,11 +8,14 @@ import String
 
 import NDCVideos.Models exposing (..)
 import NDCVideos.Messages exposing (..)
+import Material
 import Material.Button as Button
 import Material.Table as Table
 import Material.Toggles as Toggles
+import Material.Tooltip as Tooltip
+import Material.Icon as Icon
 
-renderNDCVideos : Model -> Html a
+renderNDCVideos : Model -> Html Msg
 renderNDCVideos model =
   Table.table []
   [
@@ -30,10 +33,13 @@ renderNDCVideos model =
       , Table.th []
         [ text "Speakers"
         ]
+      , Table.th []
+        [ text "More info"
+        ]
       ]
     ]
     , Table.tbody [] ( model.filteredVideos
-      |> List.map (\item -> viewVideo item ))
+      |> List.map (\item -> viewVideo item model.mdl ))
   ]
   
 renderSlugFilters : Model -> Html Msg
@@ -93,13 +99,15 @@ vimeoUrl relativePath =
   "https://vimeo.com" ++  String.dropLeft 7 relativePath
 
 
-viewVideo : VideoModel -> Html a
-viewVideo model =
-  Table.tr
+viewVideo : VideoModel -> Material.Model -> Html Msg
+viewVideo model omdl =
+  Table.tr  
   [ ]
-    [ Table.td [] [ a [ href (vimeoUrl model.url)][ text model.title]  ]
+    [ 
+        Table.td [] [ a [ href (vimeoUrl model.url) ][ text model.title]]
       , Table.td [] [ text (String.left 20 model.slugs) ]
       , Table.td [] [ text model.speakers ]
+      , Table.td [] [ Icon.view "more" [ Tooltip.attach MDL [0] ], Tooltip.render MDL [0] omdl [Tooltip.large] [text "Show more info"]]
     ]
 
 

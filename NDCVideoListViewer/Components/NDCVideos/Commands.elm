@@ -52,8 +52,9 @@ decodeNDCVideoSlugData =
 -- Finally, build the decoder for each individual NDCVideo.Model
 decodeNDCVideoData : Json.Decoder VideoModel
 decodeNDCVideoData =
-  Json.object6 VideoModel
+  Json.object7 VideoModel
     ("title" := Json.string)
+    ("description" := Json.string)
     ("url" := Json.string)
     ("slugs" := Json.string)
     ("speakers" := Json.string)
