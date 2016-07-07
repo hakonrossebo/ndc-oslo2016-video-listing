@@ -28,10 +28,10 @@ renderNDCVideos model =
       , Table.th []
         [ text "Speakers"
         ]
-      , Table.th [Table.sorted Table.Ascending, Table.numeric]
+      , Table.th [Table.sorted Table.Descending, Table.numeric, Table.onClick (SortItems PlaysColumn)]
         [ text "Plays"
         ]
-      , Table.th [Table.numeric ]
+      , Table.th [Table.sorted Table.Descending, Table.numeric, Table.onClick (SortItems LikesColumn) ]
         [ text "Likes"
         ]
       , Table.th [ ]

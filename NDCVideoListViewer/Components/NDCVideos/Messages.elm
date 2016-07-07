@@ -7,6 +7,7 @@ import NDCVideos.Models exposing (..)
 type Msg
   = NoOp
   | ClearFilters
+  | SortItems SortColumn
   | SlugFilter String
   | SpeakerFilter String
   | ToggleSpeakers Int

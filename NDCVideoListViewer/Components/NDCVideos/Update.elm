@@ -22,6 +22,18 @@ update msg model =
   case msg of
     NoOp ->
       (model, Cmd.none)
+    SortItems column->
+      ({model | filteredVideos =
+      model.filteredVideos
+      |> List.sortBy  
+        (case column of
+          PlaysColumn ->
+            .plays
+          LikesColumn ->
+            .likes
+        )
+      |> List.reverse
+      }, Cmd.none)
     Fetch ->
       (model, fetchNDCVideos)
     FetchSucceed fetchedInfo ->

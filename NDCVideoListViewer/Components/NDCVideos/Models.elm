@@ -26,7 +26,9 @@ type alias Model =
 type alias Mdl = 
   Material.Model 
 
-
+type SortColumn
+    = PlaysColumn
+    | LikesColumn
 
 initialModel : Model
 initialModel =
