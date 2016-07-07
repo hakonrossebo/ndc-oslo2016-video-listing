@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (href, class, style)
 
 import Material.Scheme
-import Material.Options exposing (css, when)
+import Material.Options as Options exposing (css, when)
 import Material.Layout as Layout 
 import Material.Scheme as Scheme
 
@@ -43,7 +43,7 @@ view model =
     { header = header model
     , drawer = drawer
     , tabs = ([], [])
-    , main = [ contentview model ]
+    , main = [ stylesheet, contentview model ]
     }
 
 -- content VIEW
@@ -52,3 +52,29 @@ contentview model =
   div [ class "elm-app" ]
     [ Html.App.map Messages.NDCVideoListMsg (NDCVideos.View.view model.videoListModel) ]
   |> Material.Scheme.top
+
+
+
+stylesheet : Html a
+stylesheet =
+  Options.stylesheet """
+  /* The following line is better done in html. We keep it here for
+     compatibility with elm-reactor.
+    @import url("assets/styles/github-gist.css");
+   */
+.full-width {
+    width: 100%;
+}
+.q-width {
+    width: 25%;
+}
+.videoDesc {
+    float: left;
+    display: inline-block;
+    width: 300px;
+    max-width: 300px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+"""

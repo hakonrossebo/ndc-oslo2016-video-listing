@@ -11,6 +11,7 @@ type Msg
   | SpeakerFilter String
   | ToggleSpeakers Int
   | ToggleSlugs Int
+  | ShowDescription String
   | Fetch
   | FetchSucceed (NDCVideoInfo)
   | FetchFail Http.Error

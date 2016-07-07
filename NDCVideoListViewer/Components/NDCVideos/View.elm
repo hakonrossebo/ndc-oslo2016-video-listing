@@ -1,83 +1,15 @@
 module NDCVideos.View exposing (..)
 
-import Html exposing (Html, text, ul, li, div, span, h3, h4, a, button)
-import Html.Attributes exposing (href)
-import Html.Events exposing (..)
-import List
-import String
+import Html exposing (Html, text, ul, li, div, span, h3, h4, a, button, p)
 
 import NDCVideos.Models exposing (..)
 import NDCVideos.Messages exposing (..)
-import Material
+import NDCVideos.ViewSlugFilters exposing (..)
+import NDCVideos.ViewSpeakerFilters exposing (..)
+import NDCVideos.ViewList exposing (..)
+
 import Material.Button as Button
-import Material.Table as Table
 import Material.Toggles as Toggles
-import Material.Tooltip as Tooltip
-import Material.Icon as Icon
-
-renderNDCVideos : Model -> Html Msg
-renderNDCVideos model =
-  Table.table []
-  [
-    Table.thead
-    [
-    ]
-    [ Table.tr []
-      [ Table.th
-        [ ]
-        [ text "Title"
-        ]
-      , Table.th []
-        [ text "Slugs"
-        ]
-      , Table.th []
-        [ text "Speakers"
-        ]
-      , Table.th []
-        [ text "More info"
-        ]
-      ]
-    ]
-    , Table.tbody [] ( model.filteredVideos
-      |> List.map (\item -> viewVideo item model.mdl ))
-  ]
-  
-renderSlugFilters : Model -> Html Msg
-renderSlugFilters model =
-  if model.toggleSlugsFilter then 
-    div []
-    [
-      Html.h5 [][text "Filter by topic:"]
-      , div []
-          (List.map (\slug -> 
-            span[]
-            [
-              a [href "#", onClick (SlugFilter (slug.slug))][ text (slug.name)],
-              Html.span [][ text " - "]
-            ]
-            -- Button.render MDL [0] model.mdl  [Button.minifab, Button.colored, Button.onClick (SlugFilter (slug.slug))] [ text (slug.name) ]    
-              ) model.videoInfo.slugs )
-    ]
-  else
-    span [][]
-
-renderSpeakerFilters : Model -> Html Msg
-renderSpeakerFilters model =
-  if model.toggleSpeakersFilter then 
-    div []
-    [
-      Html.h5 [][text "Filter by speaker:"]
-      , div []
-          (List.map (\speaker -> 
-            span[]
-            [
-              a [href "#", onClick (SpeakerFilter (speaker))][ text (speaker)],
-              Html.span [][ text " - "]
-            ]
-              ) model.videoInfo.speakers )
-    ]
-  else
-    span [][]
 
 renderSlugsToggle : Model -> Html Msg
 renderSlugsToggle model =
@@ -92,24 +24,6 @@ renderSpeakersToggle model =
     [ Toggles.onClick (ToggleSpeakers 0), Toggles.value model.toggleSpeakersFilter
     ]
     [ text "Show speaker filters" ]  
-
-
-vimeoUrl : String -> String
-vimeoUrl relativePath =
-  "https://vimeo.com" ++  String.dropLeft 7 relativePath
-
-
-viewVideo : VideoModel -> Material.Model -> Html Msg
-viewVideo model omdl =
-  Table.tr  
-  [ ]
-    [ 
-        Table.td [] [ a [ href (vimeoUrl model.url) ][ text model.title]]
-      , Table.td [] [ text (String.left 20 model.slugs) ]
-      , Table.td [] [ text model.speakers ]
-      , Table.td [] [ Icon.view "more" [ Tooltip.attach MDL [0] ], Tooltip.render MDL [0] omdl [Tooltip.large] [text "Show more info"]]
-    ]
-
 
 view : Model -> Html Msg
 view model =

@@ -40,6 +40,15 @@ update msg model =
       ({model | toggleSpeakersFilter = not model.toggleSpeakersFilter }, Cmd.none)
     ToggleSlugs val ->
       ({model | toggleSlugsFilter = not model.toggleSlugsFilter }, Cmd.none)
+    ShowDescription videoUri ->
+      ({model | filteredVideos = 
+      model.filteredVideos
+      |> List.map (\video ->
+        if video.url == videoUri then 
+          {video | showDescription = True}  
+        else
+          video )
+      }, Cmd.none)
     FetchFail error ->
       case error of
         Http.UnexpectedPayload errorMessage ->

@@ -4,7 +4,7 @@ import Material
 import Slugs.Models exposing (..)
 
 type alias VideoModel =
-  { title : String, description : String, url : String, slugs : String, speakers: String, likes: Int, plays: Int }
+  { title : String, url : String, description : String, plays: Int, likes: Int, slugs : String, speakers: String, showDescription : Bool }
 
 
 type alias NDCVideoInfo =
