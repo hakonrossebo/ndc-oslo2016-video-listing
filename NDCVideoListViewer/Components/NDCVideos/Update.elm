@@ -37,7 +37,11 @@ update msg model =
     Fetch ->
       (model, fetchNDCVideos)
     FetchSucceed fetchedInfo ->
-      ({ model | videoInfo = fetchedInfo, filteredVideos = fetchedInfo.videos}, Cmd.none)
+      let
+        modifiedSlugs = List.append fetchedInfo.slugs [{ slug = "--no match--", name = "Uncategorized" }]
+        modifiedInfo = {fetchedInfo | slugs = modifiedSlugs}
+      in
+      ({ model | videoInfo = modifiedInfo, filteredVideos = modifiedInfo.videos}, Cmd.none)
     ClearFilters ->
       ({ model | filteredVideos = model.videoInfo.videos, currentFilterInfo = "", currentFilterType = "None"}, Cmd.none)
     SlugFilter slugfilter ->
@@ -57,7 +61,7 @@ update msg model =
       model.filteredVideos
       |> List.map (\video ->
         if video.url == videoUri then 
-          {video | showDescription = True}  
+          {video | showDescription = True, description = "Not implemented yet due to issue with css. Unable to wrap text."}  
         else
           video )
       }, Cmd.none)

@@ -1,4 +1,5 @@
 ﻿#r @".\packages\FSharp.Data\lib\net40\FSharp.Data.dll"
+#load "NDCAgendaNameFix.fsx"
 
 // namespace NDC
 module NDCAgenda =
@@ -64,10 +65,13 @@ module NDCAgenda =
             None
         else
             List.tryFind (fun item -> nameEqual name item) list
+
     
     let findByName name =
-        findByNameInList listAgenda name
+        let correctedName = NDCAgendaNameFix.fixNameMismatch name
+        findByNameInList listAgenda correctedName
 
+    
 // findByName "Sequential, Concurrent and Parallel Programming" listAgenda;;
 // NDCAgenda.uniqueSpeakers;;
 // NDCAgenda.speakers;;

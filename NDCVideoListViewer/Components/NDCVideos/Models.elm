@@ -36,7 +36,7 @@ initialModel =
   , filteredVideos = []
   , currentFilterInfo = "Showing all videos"
   , currentFilterType = "None"
-  , toggleSlugsFilter = False
+  , toggleSlugsFilter = True
   , toggleSpeakersFilter = False
   , mdl = Material.model }
 

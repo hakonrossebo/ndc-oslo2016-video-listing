@@ -26,7 +26,9 @@ header model =
         [ Layout.title [] [ text "NDC 2016 Videos" ]
         , Layout.spacer
         , Layout.navigation []
-            [ ]
+            [ Layout.link
+                [ Layout.href "https://github.com/debois/elm-mdl"]
+                [ span [] [text "Fork me on Github"] ]]
         ]
     ]
   else
