@@ -30,12 +30,14 @@ module NDCVideoTokenConfig
 * Creates a json file to be used by the viewer with no backend
 
 ### Elm viewer
+* Currently based on elm-mdl, It would be interesting to see other Elm or javascript implementations. 
 
 ## Roadmap
 
 There are many things that I had to omit in the first release:
 
 * Search
+* Refactor topic and speaker filters to separate components (appreciate contributions)
 * More metadata
 * Detail view - maybe also with embedded player
 

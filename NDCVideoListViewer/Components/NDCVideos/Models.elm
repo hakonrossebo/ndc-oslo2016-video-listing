@@ -9,6 +9,7 @@ type alias VideoModel =
 
 type alias NDCVideoInfo =
   { name : String
+  , lastUpdated : String
   , videos : List VideoModel
   , slugs : List Slugs.Models.Model
   , speakers : List String
@@ -32,7 +33,7 @@ type SortColumn
 
 initialModel : Model
 initialModel =
-  { videoInfo = {name="", videos=[], slugs=[], speakers=[]}
+  { videoInfo = {name="", lastUpdated ="", videos=[], slugs=[], speakers=[]}
   , filteredVideos = []
   , currentFilterInfo = "Showing all videos"
   , currentFilterType = "None"

@@ -8,6 +8,7 @@ module NDCVideoConfig
       """
       {
           "desc": "desc123",
+          "lastUpdated": "textdate",
           "ndcvideos":
               [
                   {

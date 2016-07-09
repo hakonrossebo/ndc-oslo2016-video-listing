@@ -7254,6 +7254,251 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
+var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
+var _elm_lang$html$Html_App$program = function (app) {
+	return _elm_lang$html$Html_App$programWithFlags(
+		_elm_lang$core$Native_Utils.update(
+			app,
+			{
+				init: function (_p0) {
+					return app.init;
+				}
+			}));
+};
+var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
+	var _p2 = _p1;
+	return _elm_lang$html$Html_App$programWithFlags(
+		{
+			init: function (_p3) {
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_p2.model,
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			},
+			update: F2(
+				function (msg, model) {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						A2(_p2.update, msg, model),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				}),
+			view: _p2.view,
+			subscriptions: function (_p4) {
+				return _elm_lang$core$Platform_Sub$none;
+			}
+		});
+};
+var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
+var _debois$elm_parts$Parts$map2nd = F2(
+	function (f, _p0) {
+		var _p1 = _p0;
+		return {
+			ctor: '_Tuple2',
+			_0: _p1._0,
+			_1: f(_p1._1)
+		};
+	});
+var _debois$elm_parts$Parts$map1st = F2(
+	function (f, _p2) {
+		var _p3 = _p2;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p3._0),
+			_1: _p3._1
+		};
+	});
+var _debois$elm_parts$Parts$update$ = F3(
+	function (fwd, _p4, c) {
+		var _p5 = _p4;
+		return A2(
+			_debois$elm_parts$Parts$map2nd,
+			_elm_lang$core$Platform_Cmd$map(fwd),
+			_p5._0(c));
+	});
+var _debois$elm_parts$Parts$update = F3(
+	function (fwd, _p6, c) {
+		var _p7 = _p6;
+		return A2(
+			_debois$elm_parts$Parts$map2nd,
+			_elm_lang$core$Platform_Cmd$map(fwd),
+			A2(
+				_debois$elm_parts$Parts$map1st,
+				_elm_lang$core$Maybe$withDefault(c),
+				_p7._0(c)));
+	});
+var _debois$elm_parts$Parts$indexed = F3(
+	function (get, set, model0) {
+		return {
+			ctor: '_Tuple2',
+			_0: F2(
+				function (idx, c) {
+					return A2(
+						_elm_lang$core$Maybe$withDefault,
+						model0,
+						A2(
+							_elm_lang$core$Dict$get,
+							idx,
+							get(c)));
+				}),
+			_1: F3(
+				function (idx, model, c) {
+					return A2(
+						set,
+						A3(
+							_elm_lang$core$Dict$insert,
+							idx,
+							model,
+							get(c)),
+						c);
+				})
+		};
+	});
+var _debois$elm_parts$Parts$accessors = F4(
+	function (get0, set0, model0, idx) {
+		var _p8 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
+		var get = _p8._0;
+		var set = _p8._1;
+		return {
+			get: get(idx),
+			set: set(idx),
+			map: F2(
+				function (f, c) {
+					return A3(
+						_elm_lang$core$Basics$flip,
+						set(idx),
+						c,
+						f(
+							A2(get, idx, c)));
+				}),
+			reset: function (c) {
+				return function (m) {
+					return A2(set0, m, c);
+				}(
+					A2(
+						_elm_lang$core$Dict$remove,
+						idx,
+						get0(c)));
+			}
+		};
+	});
+var _debois$elm_parts$Parts$embedUpdate$ = F5(
+	function (get, set, update, msg, c) {
+		return A2(
+			_debois$elm_parts$Parts$map1st,
+			_elm_lang$core$Maybe$map(
+				function (x) {
+					return A2(set, x, c);
+				}),
+			A2(
+				update,
+				msg,
+				get(c)));
+	});
+var _debois$elm_parts$Parts$embedUpdate = F5(
+	function (get, set, update, msg, c) {
+		return A2(
+			_debois$elm_parts$Parts$map1st,
+			A2(_elm_lang$core$Basics$flip, set, c),
+			A2(
+				update,
+				msg,
+				get(c)));
+	});
+var _debois$elm_parts$Parts$embedView = F2(
+	function (get, view) {
+		return function (_p9) {
+			return view(
+				get(_p9));
+		};
+	});
+var _debois$elm_parts$Parts$Accessors = F4(
+	function (a, b, c, d) {
+		return {get: a, set: b, map: c, reset: d};
+	});
+var _debois$elm_parts$Parts$Msg = function (a) {
+	return {ctor: 'Msg', _0: a};
+};
+var _debois$elm_parts$Parts$pack = F2(
+	function (upd, msg) {
+		return _debois$elm_parts$Parts$Msg(
+			function (c) {
+				return A2(
+					_debois$elm_parts$Parts$map2nd,
+					_elm_lang$core$Platform_Cmd$map(
+						_debois$elm_parts$Parts$pack(upd)),
+					A2(
+						_debois$elm_parts$Parts$map1st,
+						_elm_lang$core$Maybe$Just,
+						A2(upd, msg, c)));
+			});
+	});
+var _debois$elm_parts$Parts$create = F5(
+	function (view, update, get0, set0, model0) {
+		var _p10 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
+		var get = _p10._0;
+		var set = _p10._1;
+		var embeddedUpdate = function (idx) {
+			return A3(
+				_debois$elm_parts$Parts$embedUpdate,
+				get(idx),
+				set(idx),
+				update);
+		};
+		return F3(
+			function (f, idx, c) {
+				return A2(
+					view,
+					function (_p11) {
+						return f(
+							A2(
+								_debois$elm_parts$Parts$pack,
+								embeddedUpdate(idx),
+								_p11));
+					},
+					A2(get, idx, c));
+			});
+	});
+var _debois$elm_parts$Parts$create1 = F4(
+	function (view, update, get, set) {
+		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate, get, set, update);
+		return function (f) {
+			return A2(
+				_debois$elm_parts$Parts$embedView,
+				get,
+				view(
+					function (_p12) {
+						return f(
+							A2(_debois$elm_parts$Parts$pack, embeddedUpdate, _p12));
+					}));
+		};
+	});
+var _debois$elm_parts$Parts$pack$ = F2(
+	function (upd, msg) {
+		return _debois$elm_parts$Parts$Msg(
+			function (c) {
+				return A2(
+					_debois$elm_parts$Parts$map2nd,
+					_elm_lang$core$Platform_Cmd$map(
+						_debois$elm_parts$Parts$pack$(upd)),
+					A2(upd, msg, c));
+			});
+	});
+var _debois$elm_parts$Parts$create1$ = F4(
+	function (view, upd$, get, set) {
+		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate$, get, set, upd$);
+		return function (f) {
+			return A2(
+				_debois$elm_parts$Parts$embedView,
+				get,
+				view(
+					function (_p13) {
+						return f(
+							A2(_debois$elm_parts$Parts$pack$, embeddedUpdate, _p13));
+					}));
+		};
+	});
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
@@ -7605,182 +7850,33 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 				A2(_elm_lang$core$List$filter, _elm_lang$core$Basics$snd, list))));
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
-//import Dict, List, Maybe, Native.Scheduler //
+//import Native.Scheduler //
 
-var _evancz$elm_http$Native_Http = function() {
+var _elm_lang$core$Native_Time = function() {
 
-function send(settings, request)
+var now = _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
 {
-	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback) {
-		var req = new XMLHttpRequest();
+	callback(_elm_lang$core$Native_Scheduler.succeed(Date.now()));
+});
 
-		// start
-		if (settings.onStart.ctor === 'Just')
-		{
-			req.addEventListener('loadStart', function() {
-				var task = settings.onStart._0;
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
-		}
+function setInterval_(interval, task)
+{
+	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
+	{
+		var id = setInterval(function() {
+			_elm_lang$core$Native_Scheduler.rawSpawn(task);
+		}, interval);
 
-		// progress
-		if (settings.onProgress.ctor === 'Just')
-		{
-			req.addEventListener('progress', function(event) {
-				var progress = !event.lengthComputable
-					? _elm_lang$core$Maybe$Nothing
-					: _elm_lang$core$Maybe$Just({
-						loaded: event.loaded,
-						total: event.total
-					});
-				var task = settings.onProgress._0(progress);
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
-		}
-
-		// end
-		req.addEventListener('error', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawNetworkError' }));
-		});
-
-		req.addEventListener('timeout', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawTimeout' }));
-		});
-
-		req.addEventListener('load', function() {
-			return callback(_elm_lang$core$Native_Scheduler.succeed(toResponse(req)));
-		});
-
-		req.open(request.verb, request.url, true);
-
-		// set all the headers
-		function setHeader(pair) {
-			req.setRequestHeader(pair._0, pair._1);
-		}
-		A2(_elm_lang$core$List$map, setHeader, request.headers);
-
-		// set the timeout
-		req.timeout = settings.timeout;
-
-		// enable this withCredentials thing
-		req.withCredentials = settings.withCredentials;
-
-		// ask for a specific MIME type for the response
-		if (settings.desiredResponseType.ctor === 'Just')
-		{
-			req.overrideMimeType(settings.desiredResponseType._0);
-		}
-
-		// actuall send the request
-		if(request.body.ctor === "BodyFormData")
-		{
-			req.send(request.body.formData)
-		}
-		else
-		{
-			req.send(request.body._0);
-		}
-
-		return function() {
-			req.abort();
-		};
+		return function() { clearInterval(id); };
 	});
 }
 
-
-// deal with responses
-
-function toResponse(req)
-{
-	var tag = req.responseType === 'blob' ? 'Blob' : 'Text'
-	var response = tag === 'Blob' ? req.response : req.responseText;
-	return {
-		status: req.status,
-		statusText: req.statusText,
-		headers: parseHeaders(req.getAllResponseHeaders()),
-		url: req.responseURL,
-		value: { ctor: tag, _0: response }
-	};
-}
-
-
-function parseHeaders(rawHeaders)
-{
-	var headers = _elm_lang$core$Dict$empty;
-
-	if (!rawHeaders)
-	{
-		return headers;
-	}
-
-	var headerPairs = rawHeaders.split('\u000d\u000a');
-	for (var i = headerPairs.length; i--; )
-	{
-		var headerPair = headerPairs[i];
-		var index = headerPair.indexOf('\u003a\u0020');
-		if (index > 0)
-		{
-			var key = headerPair.substring(0, index);
-			var value = headerPair.substring(index + 2);
-
-			headers = A3(_elm_lang$core$Dict$update, key, function(oldValue) {
-				if (oldValue.ctor === 'Just')
-				{
-					return _elm_lang$core$Maybe$Just(value + ', ' + oldValue._0);
-				}
-				return _elm_lang$core$Maybe$Just(value);
-			}, headers);
-		}
-	}
-
-	return headers;
-}
-
-
-function multipart(dataList)
-{
-	var formData = new FormData();
-
-	while (dataList.ctor !== '[]')
-	{
-		var data = dataList._0;
-		if (data.ctor === 'StringData')
-		{
-			formData.append(data._0, data._1);
-		}
-		else
-		{
-			var fileName = data._1.ctor === 'Nothing'
-				? undefined
-				: data._1._0;
-			formData.append(data._0, data._2, fileName);
-		}
-		dataList = dataList._1;
-	}
-
-	return { ctor: 'BodyFormData', formData: formData };
-}
-
-
-function uriEncode(string)
-{
-	return encodeURIComponent(string);
-}
-
-function uriDecode(string)
-{
-	return decodeURIComponent(string);
-}
-
 return {
-	send: F2(send),
-	multipart: multipart,
-	uriEncode: uriEncode,
-	uriDecode: uriDecode
+	now: now,
+	setInterval_: F2(setInterval_)
 };
 
-}();
-var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
+}();var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
 var _elm_lang$core$Task$andThen = _elm_lang$core$Native_Scheduler.andThen;
 var _elm_lang$core$Task$spawnCmd = F2(
 	function (router, _p0) {
@@ -8012,33 +8108,7 @@ var _elm_lang$core$Task$cmdMap = F2(
 			A2(_elm_lang$core$Task$map, tagger, _p11._0));
 	});
 _elm_lang$core$Native_Platform.effectManagers['Task'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Task$init, onEffects: _elm_lang$core$Task$onEffects, onSelfMsg: _elm_lang$core$Task$onSelfMsg, tag: 'cmd', cmdMap: _elm_lang$core$Task$cmdMap};
-//import Native.Scheduler //
-
-var _elm_lang$core$Native_Time = function() {
-
-var now = _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
-{
-	callback(_elm_lang$core$Native_Scheduler.succeed(Date.now()));
-});
-
-function setInterval_(interval, task)
-{
-	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
-	{
-		var id = setInterval(function() {
-			_elm_lang$core$Native_Scheduler.rawSpawn(task);
-		}, interval);
-
-		return function() { clearInterval(id); };
-	});
-}
-
-return {
-	now: now,
-	setInterval_: F2(setInterval_)
-};
-
-}();var _elm_lang$core$Time$setInterval = _elm_lang$core$Native_Time.setInterval_;
+var _elm_lang$core$Time$setInterval = _elm_lang$core$Native_Time.setInterval_;
 var _elm_lang$core$Time$spawnHelp = F3(
 	function (router, intervals, processes) {
 		var _p0 = intervals;
@@ -8226,186 +8296,102 @@ var _elm_lang$core$Time$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Time'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Time$init, onEffects: _elm_lang$core$Time$onEffects, onSelfMsg: _elm_lang$core$Time$onSelfMsg, tag: 'sub', subMap: _elm_lang$core$Time$subMap};
-var _evancz$elm_http$Http$send = _evancz$elm_http$Native_Http.send;
-var _evancz$elm_http$Http$defaultSettings = {timeout: 0, onStart: _elm_lang$core$Maybe$Nothing, onProgress: _elm_lang$core$Maybe$Nothing, desiredResponseType: _elm_lang$core$Maybe$Nothing, withCredentials: false};
-var _evancz$elm_http$Http$multipart = _evancz$elm_http$Native_Http.multipart;
-var _evancz$elm_http$Http$uriDecode = _evancz$elm_http$Native_Http.uriDecode;
-var _evancz$elm_http$Http$uriEncode = _evancz$elm_http$Native_Http.uriEncode;
-var _evancz$elm_http$Http$queryEscape = function (string) {
+var _elm_lang$core$Process$kill = _elm_lang$core$Native_Scheduler.kill;
+var _elm_lang$core$Process$sleep = _elm_lang$core$Native_Scheduler.sleep;
+var _elm_lang$core$Process$spawn = _elm_lang$core$Native_Scheduler.spawn;
+var _debois$elm_mdl$Material_Helpers$noAttr = A2(_elm_lang$html$Html_Attributes$attribute, 'data-elm-mdl-noop', '');
+var _debois$elm_mdl$Material_Helpers$key = function (k) {
 	return A2(
-		_elm_lang$core$String$join,
-		'+',
-		A2(
-			_elm_lang$core$String$split,
-			'%20',
-			_evancz$elm_http$Http$uriEncode(string)));
+		_elm_lang$html$Html_Attributes$property,
+		'key',
+		_elm_lang$core$Json_Encode$string(k));
 };
-var _evancz$elm_http$Http$queryPair = function (_p0) {
-	var _p1 = _p0;
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		_evancz$elm_http$Http$queryEscape(_p1._0),
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'=',
-			_evancz$elm_http$Http$queryEscape(_p1._1)));
+var _debois$elm_mdl$Material_Helpers$delay = F2(
+	function (t, x) {
+		return A3(
+			_elm_lang$core$Task$perform,
+			_elm_lang$core$Basics$always(x),
+			_elm_lang$core$Basics$always(x),
+			_elm_lang$core$Process$sleep(t));
+	});
+var _debois$elm_mdl$Material_Helpers$cssTransitionStep = function (x) {
+	return A2(_debois$elm_mdl$Material_Helpers$delay, 50, x);
 };
-var _evancz$elm_http$Http$url = F2(
-	function (baseUrl, args) {
-		var _p2 = args;
-		if (_p2.ctor === '[]') {
-			return baseUrl;
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				baseUrl,
+var _debois$elm_mdl$Material_Helpers$fx = function (msg) {
+	return A3(
+		_elm_lang$core$Task$perform,
+		_elm_lang$core$Basics$always(msg),
+		_elm_lang$core$Basics$always(msg),
+		_elm_lang$core$Task$succeed(msg));
+};
+var _debois$elm_mdl$Material_Helpers$lift = F6(
+	function (get, set, fwd, update, action, model) {
+		var _p0 = A2(
+			update,
+			action,
+			get(model));
+		var submodel$ = _p0._0;
+		var e = _p0._1;
+		return {
+			ctor: '_Tuple2',
+			_0: A2(set, model, submodel$),
+			_1: A2(_elm_lang$core$Platform_Cmd$map, fwd, e)
+		};
+	});
+var _debois$elm_mdl$Material_Helpers$lift$ = F5(
+	function (get, set, update, action, model) {
+		return {
+			ctor: '_Tuple2',
+			_0: A2(
+				set,
+				model,
 				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'?',
-					A2(
-						_elm_lang$core$String$join,
-						'&',
-						A2(_elm_lang$core$List$map, _evancz$elm_http$Http$queryPair, args))));
-		}
+					update,
+					action,
+					get(model))),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
 	});
-var _evancz$elm_http$Http$Request = F4(
-	function (a, b, c, d) {
-		return {verb: a, headers: b, url: c, body: d};
+var _debois$elm_mdl$Material_Helpers$map2nd = F2(
+	function (f, _p1) {
+		var _p2 = _p1;
+		return {
+			ctor: '_Tuple2',
+			_0: _p2._0,
+			_1: f(_p2._1)
+		};
 	});
-var _evancz$elm_http$Http$Settings = F5(
-	function (a, b, c, d, e) {
-		return {timeout: a, onStart: b, onProgress: c, desiredResponseType: d, withCredentials: e};
+var _debois$elm_mdl$Material_Helpers$map1st = F2(
+	function (f, _p3) {
+		var _p4 = _p3;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p4._0),
+			_1: _p4._1
+		};
 	});
-var _evancz$elm_http$Http$Response = F5(
-	function (a, b, c, d, e) {
-		return {status: a, statusText: b, headers: c, url: d, value: e};
-	});
-var _evancz$elm_http$Http$TODO_implement_blob_in_another_library = {ctor: 'TODO_implement_blob_in_another_library'};
-var _evancz$elm_http$Http$TODO_implement_file_in_another_library = {ctor: 'TODO_implement_file_in_another_library'};
-var _evancz$elm_http$Http$BodyBlob = function (a) {
-	return {ctor: 'BodyBlob', _0: a};
-};
-var _evancz$elm_http$Http$BodyFormData = {ctor: 'BodyFormData'};
-var _evancz$elm_http$Http$ArrayBuffer = {ctor: 'ArrayBuffer'};
-var _evancz$elm_http$Http$BodyString = function (a) {
-	return {ctor: 'BodyString', _0: a};
-};
-var _evancz$elm_http$Http$string = _evancz$elm_http$Http$BodyString;
-var _evancz$elm_http$Http$Empty = {ctor: 'Empty'};
-var _evancz$elm_http$Http$empty = _evancz$elm_http$Http$Empty;
-var _evancz$elm_http$Http$FileData = F3(
-	function (a, b, c) {
-		return {ctor: 'FileData', _0: a, _1: b, _2: c};
-	});
-var _evancz$elm_http$Http$BlobData = F3(
-	function (a, b, c) {
-		return {ctor: 'BlobData', _0: a, _1: b, _2: c};
-	});
-var _evancz$elm_http$Http$blobData = _evancz$elm_http$Http$BlobData;
-var _evancz$elm_http$Http$StringData = F2(
-	function (a, b) {
-		return {ctor: 'StringData', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$stringData = _evancz$elm_http$Http$StringData;
-var _evancz$elm_http$Http$Blob = function (a) {
-	return {ctor: 'Blob', _0: a};
-};
-var _evancz$elm_http$Http$Text = function (a) {
-	return {ctor: 'Text', _0: a};
-};
-var _evancz$elm_http$Http$RawNetworkError = {ctor: 'RawNetworkError'};
-var _evancz$elm_http$Http$RawTimeout = {ctor: 'RawTimeout'};
-var _evancz$elm_http$Http$BadResponse = F2(
-	function (a, b) {
-		return {ctor: 'BadResponse', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$UnexpectedPayload = function (a) {
-	return {ctor: 'UnexpectedPayload', _0: a};
-};
-var _evancz$elm_http$Http$handleResponse = F2(
-	function (handle, response) {
-		if ((_elm_lang$core$Native_Utils.cmp(200, response.status) < 1) && (_elm_lang$core$Native_Utils.cmp(response.status, 300) < 0)) {
-			var _p3 = response.value;
-			if (_p3.ctor === 'Text') {
-				return handle(_p3._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload('Response body is a blob, expecting a string.'));
-			}
-		} else {
-			return _elm_lang$core$Task$fail(
-				A2(_evancz$elm_http$Http$BadResponse, response.status, response.statusText));
-		}
-	});
-var _evancz$elm_http$Http$NetworkError = {ctor: 'NetworkError'};
-var _evancz$elm_http$Http$Timeout = {ctor: 'Timeout'};
-var _evancz$elm_http$Http$promoteError = function (rawError) {
-	var _p4 = rawError;
-	if (_p4.ctor === 'RawTimeout') {
-		return _evancz$elm_http$Http$Timeout;
-	} else {
-		return _evancz$elm_http$Http$NetworkError;
-	}
-};
-var _evancz$elm_http$Http$getString = function (url) {
-	var request = {
-		verb: 'GET',
-		headers: _elm_lang$core$Native_List.fromArray(
-			[]),
-		url: url,
-		body: _evancz$elm_http$Http$empty
-	};
+var _debois$elm_mdl$Material_Helpers$blurOn = function (evt) {
 	return A2(
-		_elm_lang$core$Task$andThen,
-		A2(
-			_elm_lang$core$Task$mapError,
-			_evancz$elm_http$Http$promoteError,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request)),
-		_evancz$elm_http$Http$handleResponse(_elm_lang$core$Task$succeed));
+		_elm_lang$html$Html_Attributes$attribute,
+		A2(_elm_lang$core$Basics_ops['++'], 'on', evt),
+		'this.blur()');
 };
-var _evancz$elm_http$Http$fromJson = F2(
-	function (decoder, response) {
-		var decode = function (str) {
-			var _p5 = A2(_elm_lang$core$Json_Decode$decodeString, decoder, str);
-			if (_p5.ctor === 'Ok') {
-				return _elm_lang$core$Task$succeed(_p5._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload(_p5._0));
-			}
-		};
-		return A2(
-			_elm_lang$core$Task$andThen,
-			A2(_elm_lang$core$Task$mapError, _evancz$elm_http$Http$promoteError, response),
-			_evancz$elm_http$Http$handleResponse(decode));
+var _debois$elm_mdl$Material_Helpers$effect = F2(
+	function (e, x) {
+		return {ctor: '_Tuple2', _0: x, _1: e};
 	});
-var _evancz$elm_http$Http$get = F2(
-	function (decoder, url) {
-		var request = {
-			verb: 'GET',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: _evancz$elm_http$Http$empty
-		};
+var _debois$elm_mdl$Material_Helpers$pure = _debois$elm_mdl$Material_Helpers$effect(_elm_lang$core$Platform_Cmd$none);
+var _debois$elm_mdl$Material_Helpers$filter = F3(
+	function (elem, attr, html) {
 		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
-	});
-var _evancz$elm_http$Http$post = F3(
-	function (decoder, url, body) {
-		var request = {
-			verb: 'POST',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: body
-		};
-		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
+			elem,
+			attr,
+			A2(
+				_elm_lang$core$List$filterMap,
+				function (x) {
+					return x;
+				},
+				html));
 	});
 var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
 var _elm_lang$html$Html_Events$targetChecked = A2(
@@ -8693,577 +8679,6 @@ var _debois$elm_mdl$Material_Options$Summary = F4(
 	function (a, b, c, d) {
 		return {classes: a, css: b, attrs: c, config: d};
 	});
-var _debois$elm_mdl$Material_Table$defaultCell = {numeric: false};
-var _debois$elm_mdl$Material_Table$td = F2(
-	function (options, html) {
-		var _p0 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultCell, options);
-		var summary = _p0;
-		var config = _p0.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$td,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$onClick = function (x) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{
-					onClick: _elm_lang$core$Maybe$Just(
-						_elm_lang$html$Html_Events$onClick(x))
-				});
-		});
-};
-var _debois$elm_mdl$Material_Table$sorted = function (order) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (self) {
-			return _elm_lang$core$Native_Utils.update(
-				self,
-				{
-					sorted: _elm_lang$core$Maybe$Just(order)
-				});
-		});
-};
-var _debois$elm_mdl$Material_Table$numeric = _debois$elm_mdl$Material_Options$set(
-	function (self) {
-		return _elm_lang$core$Native_Utils.update(
-			self,
-			{numeric: true});
-	});
-var _debois$elm_mdl$Material_Table$defaultHeader = {numeric: false, sorted: _elm_lang$core$Maybe$Nothing, onClick: _elm_lang$core$Maybe$Nothing};
-var _debois$elm_mdl$Material_Table$th = F2(
-	function (options, html) {
-		var _p1 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultHeader, options);
-		var summary = _p1;
-		var config = _p1.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$th,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric'),
-					function () {
-					var _p2 = config.sorted;
-					if (_p2.ctor === 'Just') {
-						if (_p2._0.ctor === 'Ascending') {
-							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-ascending');
-						} else {
-							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-descending');
-						}
-					} else {
-						return _debois$elm_mdl$Material_Options$nop;
-					}
-				}()
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[config.onClick]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
-var _debois$elm_mdl$Material_Table$tr = F2(
-	function (options, html) {
-		var _p3 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultRow, options);
-		var summary = _p3;
-		var config = _p3.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tr,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.selected ? _debois$elm_mdl$Material_Options$cs('is-selected') : _debois$elm_mdl$Material_Options$nop
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$tfoot = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tfoot,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$tbody = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tbody,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$thead = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$thead,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$table = F2(
-	function (options, nodes) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$table,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_debois$elm_mdl$Material_Options$cs('mdl-data-table'),
-					_debois$elm_mdl$Material_Options$cs('mdl-js-data-table'),
-					_debois$elm_mdl$Material_Options$cs('is-upgraded')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			nodes);
-	});
-var _debois$elm_mdl$Material_Table$Row = function (a) {
-	return {selected: a};
-};
-var _debois$elm_mdl$Material_Table$Header = F3(
-	function (a, b, c) {
-		return {numeric: a, sorted: b, onClick: c};
-	});
-var _debois$elm_mdl$Material_Table$Cell = function (a) {
-	return {numeric: a};
-};
-var _debois$elm_mdl$Material_Table$Descending = {ctor: 'Descending'};
-var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending);
-var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
-var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
-var _debois$elm_mdl$NDCVideo$vimeoUrl = function (relativePath) {
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		'https://vimeo.com',
-		A2(_elm_lang$core$String$dropLeft, 7, relativePath));
-};
-var _debois$elm_mdl$NDCVideo$view = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Table$tr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Table$td,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$a,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$href(
-								_debois$elm_mdl$NDCVideo$vimeoUrl(model.url))
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(model.title)
-							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Table$td,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(
-						A2(_elm_lang$core$String$left, 20, model.slugs))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Table$td,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.speakers)
-					]))
-			]));
-};
-var _debois$elm_mdl$NDCVideo$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {title: a, url: b, slugs: c, speakers: d, likes: e, plays: f};
-	});
-var _debois$elm_parts$Parts$map2nd = F2(
-	function (f, _p0) {
-		var _p1 = _p0;
-		return {
-			ctor: '_Tuple2',
-			_0: _p1._0,
-			_1: f(_p1._1)
-		};
-	});
-var _debois$elm_parts$Parts$map1st = F2(
-	function (f, _p2) {
-		var _p3 = _p2;
-		return {
-			ctor: '_Tuple2',
-			_0: f(_p3._0),
-			_1: _p3._1
-		};
-	});
-var _debois$elm_parts$Parts$update$ = F3(
-	function (fwd, _p4, c) {
-		var _p5 = _p4;
-		return A2(
-			_debois$elm_parts$Parts$map2nd,
-			_elm_lang$core$Platform_Cmd$map(fwd),
-			_p5._0(c));
-	});
-var _debois$elm_parts$Parts$update = F3(
-	function (fwd, _p6, c) {
-		var _p7 = _p6;
-		return A2(
-			_debois$elm_parts$Parts$map2nd,
-			_elm_lang$core$Platform_Cmd$map(fwd),
-			A2(
-				_debois$elm_parts$Parts$map1st,
-				_elm_lang$core$Maybe$withDefault(c),
-				_p7._0(c)));
-	});
-var _debois$elm_parts$Parts$indexed = F3(
-	function (get, set, model0) {
-		return {
-			ctor: '_Tuple2',
-			_0: F2(
-				function (idx, c) {
-					return A2(
-						_elm_lang$core$Maybe$withDefault,
-						model0,
-						A2(
-							_elm_lang$core$Dict$get,
-							idx,
-							get(c)));
-				}),
-			_1: F3(
-				function (idx, model, c) {
-					return A2(
-						set,
-						A3(
-							_elm_lang$core$Dict$insert,
-							idx,
-							model,
-							get(c)),
-						c);
-				})
-		};
-	});
-var _debois$elm_parts$Parts$accessors = F4(
-	function (get0, set0, model0, idx) {
-		var _p8 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
-		var get = _p8._0;
-		var set = _p8._1;
-		return {
-			get: get(idx),
-			set: set(idx),
-			map: F2(
-				function (f, c) {
-					return A3(
-						_elm_lang$core$Basics$flip,
-						set(idx),
-						c,
-						f(
-							A2(get, idx, c)));
-				}),
-			reset: function (c) {
-				return function (m) {
-					return A2(set0, m, c);
-				}(
-					A2(
-						_elm_lang$core$Dict$remove,
-						idx,
-						get0(c)));
-			}
-		};
-	});
-var _debois$elm_parts$Parts$embedUpdate$ = F5(
-	function (get, set, update, msg, c) {
-		return A2(
-			_debois$elm_parts$Parts$map1st,
-			_elm_lang$core$Maybe$map(
-				function (x) {
-					return A2(set, x, c);
-				}),
-			A2(
-				update,
-				msg,
-				get(c)));
-	});
-var _debois$elm_parts$Parts$embedUpdate = F5(
-	function (get, set, update, msg, c) {
-		return A2(
-			_debois$elm_parts$Parts$map1st,
-			A2(_elm_lang$core$Basics$flip, set, c),
-			A2(
-				update,
-				msg,
-				get(c)));
-	});
-var _debois$elm_parts$Parts$embedView = F2(
-	function (get, view) {
-		return function (_p9) {
-			return view(
-				get(_p9));
-		};
-	});
-var _debois$elm_parts$Parts$Accessors = F4(
-	function (a, b, c, d) {
-		return {get: a, set: b, map: c, reset: d};
-	});
-var _debois$elm_parts$Parts$Msg = function (a) {
-	return {ctor: 'Msg', _0: a};
-};
-var _debois$elm_parts$Parts$pack = F2(
-	function (upd, msg) {
-		return _debois$elm_parts$Parts$Msg(
-			function (c) {
-				return A2(
-					_debois$elm_parts$Parts$map2nd,
-					_elm_lang$core$Platform_Cmd$map(
-						_debois$elm_parts$Parts$pack(upd)),
-					A2(
-						_debois$elm_parts$Parts$map1st,
-						_elm_lang$core$Maybe$Just,
-						A2(upd, msg, c)));
-			});
-	});
-var _debois$elm_parts$Parts$create = F5(
-	function (view, update, get0, set0, model0) {
-		var _p10 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
-		var get = _p10._0;
-		var set = _p10._1;
-		var embeddedUpdate = function (idx) {
-			return A3(
-				_debois$elm_parts$Parts$embedUpdate,
-				get(idx),
-				set(idx),
-				update);
-		};
-		return F3(
-			function (f, idx, c) {
-				return A2(
-					view,
-					function (_p11) {
-						return f(
-							A2(
-								_debois$elm_parts$Parts$pack,
-								embeddedUpdate(idx),
-								_p11));
-					},
-					A2(get, idx, c));
-			});
-	});
-var _debois$elm_parts$Parts$create1 = F4(
-	function (view, update, get, set) {
-		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate, get, set, update);
-		return function (f) {
-			return A2(
-				_debois$elm_parts$Parts$embedView,
-				get,
-				view(
-					function (_p12) {
-						return f(
-							A2(_debois$elm_parts$Parts$pack, embeddedUpdate, _p12));
-					}));
-		};
-	});
-var _debois$elm_parts$Parts$pack$ = F2(
-	function (upd, msg) {
-		return _debois$elm_parts$Parts$Msg(
-			function (c) {
-				return A2(
-					_debois$elm_parts$Parts$map2nd,
-					_elm_lang$core$Platform_Cmd$map(
-						_debois$elm_parts$Parts$pack$(upd)),
-					A2(upd, msg, c));
-			});
-	});
-var _debois$elm_parts$Parts$create1$ = F4(
-	function (view, upd$, get, set) {
-		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate$, get, set, upd$);
-		return function (f) {
-			return A2(
-				_debois$elm_parts$Parts$embedView,
-				get,
-				view(
-					function (_p13) {
-						return f(
-							A2(_debois$elm_parts$Parts$pack$, embeddedUpdate, _p13));
-					}));
-		};
-	});
-var _elm_lang$core$Process$kill = _elm_lang$core$Native_Scheduler.kill;
-var _elm_lang$core$Process$sleep = _elm_lang$core$Native_Scheduler.sleep;
-var _elm_lang$core$Process$spawn = _elm_lang$core$Native_Scheduler.spawn;
-var _debois$elm_mdl$Material_Helpers$noAttr = A2(_elm_lang$html$Html_Attributes$attribute, 'data-elm-mdl-noop', '');
-var _debois$elm_mdl$Material_Helpers$key = function (k) {
-	return A2(
-		_elm_lang$html$Html_Attributes$property,
-		'key',
-		_elm_lang$core$Json_Encode$string(k));
-};
-var _debois$elm_mdl$Material_Helpers$delay = F2(
-	function (t, x) {
-		return A3(
-			_elm_lang$core$Task$perform,
-			_elm_lang$core$Basics$always(x),
-			_elm_lang$core$Basics$always(x),
-			_elm_lang$core$Process$sleep(t));
-	});
-var _debois$elm_mdl$Material_Helpers$cssTransitionStep = function (x) {
-	return A2(_debois$elm_mdl$Material_Helpers$delay, 50, x);
-};
-var _debois$elm_mdl$Material_Helpers$fx = function (msg) {
-	return A3(
-		_elm_lang$core$Task$perform,
-		_elm_lang$core$Basics$always(msg),
-		_elm_lang$core$Basics$always(msg),
-		_elm_lang$core$Task$succeed(msg));
-};
-var _debois$elm_mdl$Material_Helpers$lift = F6(
-	function (get, set, fwd, update, action, model) {
-		var _p0 = A2(
-			update,
-			action,
-			get(model));
-		var submodel$ = _p0._0;
-		var e = _p0._1;
-		return {
-			ctor: '_Tuple2',
-			_0: A2(set, model, submodel$),
-			_1: A2(_elm_lang$core$Platform_Cmd$map, fwd, e)
-		};
-	});
-var _debois$elm_mdl$Material_Helpers$lift$ = F5(
-	function (get, set, update, action, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: A2(
-				set,
-				model,
-				A2(
-					update,
-					action,
-					get(model))),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _debois$elm_mdl$Material_Helpers$map2nd = F2(
-	function (f, _p1) {
-		var _p2 = _p1;
-		return {
-			ctor: '_Tuple2',
-			_0: _p2._0,
-			_1: f(_p2._1)
-		};
-	});
-var _debois$elm_mdl$Material_Helpers$map1st = F2(
-	function (f, _p3) {
-		var _p4 = _p3;
-		return {
-			ctor: '_Tuple2',
-			_0: f(_p4._0),
-			_1: _p4._1
-		};
-	});
-var _debois$elm_mdl$Material_Helpers$blurOn = function (evt) {
-	return A2(
-		_elm_lang$html$Html_Attributes$attribute,
-		A2(_elm_lang$core$Basics_ops['++'], 'on', evt),
-		'this.blur()');
-};
-var _debois$elm_mdl$Material_Helpers$effect = F2(
-	function (e, x) {
-		return {ctor: '_Tuple2', _0: x, _1: e};
-	});
-var _debois$elm_mdl$Material_Helpers$pure = _debois$elm_mdl$Material_Helpers$effect(_elm_lang$core$Platform_Cmd$none);
-var _debois$elm_mdl$Material_Helpers$filter = F3(
-	function (elem, attr, html) {
-		return A2(
-			elem,
-			attr,
-			A2(
-				_elm_lang$core$List$filterMap,
-				function (x) {
-					return x;
-				},
-				html));
-	});
-var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
-var _elm_lang$html$Html_App$program = function (app) {
-	return _elm_lang$html$Html_App$programWithFlags(
-		_elm_lang$core$Native_Utils.update(
-			app,
-			{
-				init: function (_p0) {
-					return app.init;
-				}
-			}));
-};
-var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
-	var _p2 = _p1;
-	return _elm_lang$html$Html_App$programWithFlags(
-		{
-			init: function (_p3) {
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_p2.model,
-					_elm_lang$core$Native_List.fromArray(
-						[]));
-			},
-			update: F2(
-				function (msg, model) {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
-						A2(_p2.update, msg, model),
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				}),
-			view: _p2.view,
-			subscriptions: function (_p4) {
-				return _elm_lang$core$Platform_Sub$none;
-			}
-		});
-};
-var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _debois$elm_mdl$Material_Ripple$styles = F2(
 	function (m, frame) {
 		var r = m.rect;
@@ -12542,179 +11957,526 @@ var _debois$elm_mdl$Material$Model = F7(
 	function (a, b, c, d, e, f, g) {
 		return {button: a, textfield: b, menu: c, snackbar: d, layout: e, toggles: f, tooltip: g};
 	});
-var _debois$elm_mdl$Components_NDCVideoList$slugs = _elm_lang$core$Native_List.fromArray(
-	[
-		{ctor: '_Tuple2', _0: 'net', _1: '.NET'},
-		{ctor: '_Tuple2', _0: 'agile', _1: 'Agile'},
-		{ctor: '_Tuple2', _0: 'architecture', _1: 'Architecture'},
-		{ctor: '_Tuple2', _0: 'asp-net', _1: 'ASP.NET'},
-		{ctor: '_Tuple2', _0: 'big-data', _1: 'Big Data'},
-		{ctor: '_Tuple2', _0: 'business-skills', _1: 'Business Skills'},
-		{ctor: '_Tuple2', _0: 'c', _1: 'C'},
-		{ctor: '_Tuple2', _0: 'c-sharp', _1: 'C#'},
-		{ctor: '_Tuple2', _0: 'c-plus-plus', _1: 'C++'},
-		{ctor: '_Tuple2', _0: 'cloud', _1: 'Cloud'},
-		{ctor: '_Tuple2', _0: 'concurrency', _1: 'Concurrency'},
-		{ctor: '_Tuple2', _0: 'continuous-delivery', _1: 'Continuous Delivery'},
-		{ctor: '_Tuple2', _0: 'continuous-integration', _1: 'Continuous Integration'},
-		{ctor: '_Tuple2', _0: 'craftsmanship', _1: 'Craftsmanship'},
-		{ctor: '_Tuple2', _0: 'cross-platform', _1: 'Cross-Platform'},
-		{ctor: '_Tuple2', _0: 'database', _1: 'Database'},
-		{ctor: '_Tuple2', _0: 'design', _1: 'Design'},
-		{ctor: '_Tuple2', _0: 'devops', _1: 'Devops'},
-		{ctor: '_Tuple2', _0: 'embedded', _1: 'Embedded'},
-		{ctor: '_Tuple2', _0: 'f', _1: 'F#'},
-		{ctor: '_Tuple2', _0: 'fun', _1: 'Fun'},
-		{ctor: '_Tuple2', _0: 'functional', _1: 'Functional Programming'},
-		{ctor: '_Tuple2', _0: 'iot', _1: 'IoT'},
-		{ctor: '_Tuple2', _0: 'javascript', _1: 'JavaScript'},
-		{ctor: '_Tuple2', _0: 'languages', _1: 'Languages'},
-		{ctor: '_Tuple2', _0: 'machine-learning', _1: 'Machine Learning'},
-		{ctor: '_Tuple2', _0: 'microservices', _1: 'Microservices'},
-		{ctor: '_Tuple2', _0: 'microsoft', _1: 'Microsoft'},
-		{ctor: '_Tuple2', _0: 'mobile', _1: 'Mobile'},
-		{ctor: '_Tuple2', _0: 'monitoring', _1: 'Monitoring'},
-		{ctor: '_Tuple2', _0: 'nosql', _1: 'NoSQL'},
-		{ctor: '_Tuple2', _0: 'people', _1: 'People'},
-		{ctor: '_Tuple2', _0: 'phyton', _1: 'Python'},
-		{ctor: '_Tuple2', _0: 'scalability', _1: 'Scalability'},
-		{ctor: '_Tuple2', _0: 'search', _1: 'Search'},
-		{ctor: '_Tuple2', _0: 'security', _1: 'Security'},
-		{ctor: '_Tuple2', _0: 'testing', _1: 'Testing'},
-		{ctor: '_Tuple2', _0: 'tools', _1: 'Tools'},
-		{ctor: '_Tuple2', _0: 'ui', _1: 'UI'},
-		{ctor: '_Tuple2', _0: 'ux', _1: 'UX'},
-		{ctor: '_Tuple2', _0: 'web', _1: 'Web'}
-	]);
-var _debois$elm_mdl$Components_NDCVideoList$renderNDCVideos = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Table$table,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Table$thead,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_debois$elm_mdl$Material_Table$tr,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Table$th,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Title')
-									])),
-								A2(
-								_debois$elm_mdl$Material_Table$th,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Slugs')
-									])),
-								A2(
-								_debois$elm_mdl$Material_Table$th,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Speakers')
-									]))
-							]))
-					])),
-				A2(
-				_debois$elm_mdl$Material_Table$tbody,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				A2(
-					_elm_lang$core$List$map,
-					function (item) {
-						return _debois$elm_mdl$NDCVideo$view(item);
-					},
-					model.filteredVideos))
-			]));
-};
-var _debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoData = A7(
-	_elm_lang$core$Json_Decode$object6,
-	_debois$elm_mdl$NDCVideo$Model,
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'slugs', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'speakers', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'plays', _elm_lang$core$Json_Decode$int),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'likes', _elm_lang$core$Json_Decode$int));
-var _debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoList = _elm_lang$core$Json_Decode$list(_debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoData);
-var _debois$elm_mdl$Components_NDCVideoList$initialModel = {
+var _debois$elm_mdl$Slugs_Models$Model = F2(
+	function (a, b) {
+		return {slug: a, name: b};
+	});
+var _debois$elm_mdl$NDCVideos_Models$initialModel = {
 	videoInfo: {
 		name: '',
+		lastUpdated: '',
 		videos: _elm_lang$core$Native_List.fromArray(
+			[]),
+		slugs: _elm_lang$core$Native_List.fromArray(
+			[]),
+		speakers: _elm_lang$core$Native_List.fromArray(
 			[])
 	},
 	filteredVideos: _elm_lang$core$Native_List.fromArray(
 		[]),
+	currentFilterInfo: 'Showing all videos',
+	currentFilterType: 'None',
+	toggleSlugsFilter: true,
+	toggleSpeakersFilter: false,
 	mdl: _debois$elm_mdl$Material$model
 };
-var _debois$elm_mdl$Components_NDCVideoList$NDCVideoInfo = F2(
-	function (a, b) {
-		return {name: a, videos: b};
+var _debois$elm_mdl$NDCVideos_Models$VideoModel = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {title: a, url: b, description: c, plays: d, likes: e, slugs: f, speakers: g, showDescription: h};
 	});
-var _debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoFetch = A3(
-	_elm_lang$core$Json_Decode$object2,
-	_debois$elm_mdl$Components_NDCVideoList$NDCVideoInfo,
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
-	A2(
-		_elm_lang$core$Json_Decode_ops[':='],
-		'ndcvideos',
-		A2(
-			_elm_lang$core$Json_Decode$at,
-			_elm_lang$core$Native_List.fromArray(
-				['ndcvideos']),
-			_debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoList)));
-var _debois$elm_mdl$Components_NDCVideoList$Model = F3(
+var _debois$elm_mdl$NDCVideos_Models$NDCVideoInfo = F5(
+	function (a, b, c, d, e) {
+		return {name: a, lastUpdated: b, videos: c, slugs: d, speakers: e};
+	});
+var _debois$elm_mdl$NDCVideos_Models$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {videoInfo: a, filteredVideos: b, currentFilterInfo: c, currentFilterType: d, toggleSlugsFilter: e, toggleSpeakersFilter: f, mdl: g};
+	});
+var _debois$elm_mdl$NDCVideos_Models$LikesColumn = {ctor: 'LikesColumn'};
+var _debois$elm_mdl$NDCVideos_Models$PlaysColumn = {ctor: 'PlaysColumn'};
+var _debois$elm_mdl$Models$Model = F3(
 	function (a, b, c) {
-		return {videoInfo: a, filteredVideos: b, mdl: c};
+		return {videoListModel: a, mdl: b, transparentHeader: c};
 	});
-var _debois$elm_mdl$Components_NDCVideoList$MDL = function (a) {
+//import Dict, List, Maybe, Native.Scheduler //
+
+var _evancz$elm_http$Native_Http = function() {
+
+function send(settings, request)
+{
+	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback) {
+		var req = new XMLHttpRequest();
+
+		// start
+		if (settings.onStart.ctor === 'Just')
+		{
+			req.addEventListener('loadStart', function() {
+				var task = settings.onStart._0;
+				_elm_lang$core$Native_Scheduler.rawSpawn(task);
+			});
+		}
+
+		// progress
+		if (settings.onProgress.ctor === 'Just')
+		{
+			req.addEventListener('progress', function(event) {
+				var progress = !event.lengthComputable
+					? _elm_lang$core$Maybe$Nothing
+					: _elm_lang$core$Maybe$Just({
+						loaded: event.loaded,
+						total: event.total
+					});
+				var task = settings.onProgress._0(progress);
+				_elm_lang$core$Native_Scheduler.rawSpawn(task);
+			});
+		}
+
+		// end
+		req.addEventListener('error', function() {
+			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawNetworkError' }));
+		});
+
+		req.addEventListener('timeout', function() {
+			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawTimeout' }));
+		});
+
+		req.addEventListener('load', function() {
+			return callback(_elm_lang$core$Native_Scheduler.succeed(toResponse(req)));
+		});
+
+		req.open(request.verb, request.url, true);
+
+		// set all the headers
+		function setHeader(pair) {
+			req.setRequestHeader(pair._0, pair._1);
+		}
+		A2(_elm_lang$core$List$map, setHeader, request.headers);
+
+		// set the timeout
+		req.timeout = settings.timeout;
+
+		// enable this withCredentials thing
+		req.withCredentials = settings.withCredentials;
+
+		// ask for a specific MIME type for the response
+		if (settings.desiredResponseType.ctor === 'Just')
+		{
+			req.overrideMimeType(settings.desiredResponseType._0);
+		}
+
+		// actuall send the request
+		if(request.body.ctor === "BodyFormData")
+		{
+			req.send(request.body.formData)
+		}
+		else
+		{
+			req.send(request.body._0);
+		}
+
+		return function() {
+			req.abort();
+		};
+	});
+}
+
+
+// deal with responses
+
+function toResponse(req)
+{
+	var tag = req.responseType === 'blob' ? 'Blob' : 'Text'
+	var response = tag === 'Blob' ? req.response : req.responseText;
+	return {
+		status: req.status,
+		statusText: req.statusText,
+		headers: parseHeaders(req.getAllResponseHeaders()),
+		url: req.responseURL,
+		value: { ctor: tag, _0: response }
+	};
+}
+
+
+function parseHeaders(rawHeaders)
+{
+	var headers = _elm_lang$core$Dict$empty;
+
+	if (!rawHeaders)
+	{
+		return headers;
+	}
+
+	var headerPairs = rawHeaders.split('\u000d\u000a');
+	for (var i = headerPairs.length; i--; )
+	{
+		var headerPair = headerPairs[i];
+		var index = headerPair.indexOf('\u003a\u0020');
+		if (index > 0)
+		{
+			var key = headerPair.substring(0, index);
+			var value = headerPair.substring(index + 2);
+
+			headers = A3(_elm_lang$core$Dict$update, key, function(oldValue) {
+				if (oldValue.ctor === 'Just')
+				{
+					return _elm_lang$core$Maybe$Just(value + ', ' + oldValue._0);
+				}
+				return _elm_lang$core$Maybe$Just(value);
+			}, headers);
+		}
+	}
+
+	return headers;
+}
+
+
+function multipart(dataList)
+{
+	var formData = new FormData();
+
+	while (dataList.ctor !== '[]')
+	{
+		var data = dataList._0;
+		if (data.ctor === 'StringData')
+		{
+			formData.append(data._0, data._1);
+		}
+		else
+		{
+			var fileName = data._1.ctor === 'Nothing'
+				? undefined
+				: data._1._0;
+			formData.append(data._0, data._2, fileName);
+		}
+		dataList = dataList._1;
+	}
+
+	return { ctor: 'BodyFormData', formData: formData };
+}
+
+
+function uriEncode(string)
+{
+	return encodeURIComponent(string);
+}
+
+function uriDecode(string)
+{
+	return decodeURIComponent(string);
+}
+
+return {
+	send: F2(send),
+	multipart: multipart,
+	uriEncode: uriEncode,
+	uriDecode: uriDecode
+};
+
+}();
+var _evancz$elm_http$Http$send = _evancz$elm_http$Native_Http.send;
+var _evancz$elm_http$Http$defaultSettings = {timeout: 0, onStart: _elm_lang$core$Maybe$Nothing, onProgress: _elm_lang$core$Maybe$Nothing, desiredResponseType: _elm_lang$core$Maybe$Nothing, withCredentials: false};
+var _evancz$elm_http$Http$multipart = _evancz$elm_http$Native_Http.multipart;
+var _evancz$elm_http$Http$uriDecode = _evancz$elm_http$Native_Http.uriDecode;
+var _evancz$elm_http$Http$uriEncode = _evancz$elm_http$Native_Http.uriEncode;
+var _evancz$elm_http$Http$queryEscape = function (string) {
+	return A2(
+		_elm_lang$core$String$join,
+		'+',
+		A2(
+			_elm_lang$core$String$split,
+			'%20',
+			_evancz$elm_http$Http$uriEncode(string)));
+};
+var _evancz$elm_http$Http$queryPair = function (_p0) {
+	var _p1 = _p0;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_evancz$elm_http$Http$queryEscape(_p1._0),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'=',
+			_evancz$elm_http$Http$queryEscape(_p1._1)));
+};
+var _evancz$elm_http$Http$url = F2(
+	function (baseUrl, args) {
+		var _p2 = args;
+		if (_p2.ctor === '[]') {
+			return baseUrl;
+		} else {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				baseUrl,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'?',
+					A2(
+						_elm_lang$core$String$join,
+						'&',
+						A2(_elm_lang$core$List$map, _evancz$elm_http$Http$queryPair, args))));
+		}
+	});
+var _evancz$elm_http$Http$Request = F4(
+	function (a, b, c, d) {
+		return {verb: a, headers: b, url: c, body: d};
+	});
+var _evancz$elm_http$Http$Settings = F5(
+	function (a, b, c, d, e) {
+		return {timeout: a, onStart: b, onProgress: c, desiredResponseType: d, withCredentials: e};
+	});
+var _evancz$elm_http$Http$Response = F5(
+	function (a, b, c, d, e) {
+		return {status: a, statusText: b, headers: c, url: d, value: e};
+	});
+var _evancz$elm_http$Http$TODO_implement_blob_in_another_library = {ctor: 'TODO_implement_blob_in_another_library'};
+var _evancz$elm_http$Http$TODO_implement_file_in_another_library = {ctor: 'TODO_implement_file_in_another_library'};
+var _evancz$elm_http$Http$BodyBlob = function (a) {
+	return {ctor: 'BodyBlob', _0: a};
+};
+var _evancz$elm_http$Http$BodyFormData = {ctor: 'BodyFormData'};
+var _evancz$elm_http$Http$ArrayBuffer = {ctor: 'ArrayBuffer'};
+var _evancz$elm_http$Http$BodyString = function (a) {
+	return {ctor: 'BodyString', _0: a};
+};
+var _evancz$elm_http$Http$string = _evancz$elm_http$Http$BodyString;
+var _evancz$elm_http$Http$Empty = {ctor: 'Empty'};
+var _evancz$elm_http$Http$empty = _evancz$elm_http$Http$Empty;
+var _evancz$elm_http$Http$FileData = F3(
+	function (a, b, c) {
+		return {ctor: 'FileData', _0: a, _1: b, _2: c};
+	});
+var _evancz$elm_http$Http$BlobData = F3(
+	function (a, b, c) {
+		return {ctor: 'BlobData', _0: a, _1: b, _2: c};
+	});
+var _evancz$elm_http$Http$blobData = _evancz$elm_http$Http$BlobData;
+var _evancz$elm_http$Http$StringData = F2(
+	function (a, b) {
+		return {ctor: 'StringData', _0: a, _1: b};
+	});
+var _evancz$elm_http$Http$stringData = _evancz$elm_http$Http$StringData;
+var _evancz$elm_http$Http$Blob = function (a) {
+	return {ctor: 'Blob', _0: a};
+};
+var _evancz$elm_http$Http$Text = function (a) {
+	return {ctor: 'Text', _0: a};
+};
+var _evancz$elm_http$Http$RawNetworkError = {ctor: 'RawNetworkError'};
+var _evancz$elm_http$Http$RawTimeout = {ctor: 'RawTimeout'};
+var _evancz$elm_http$Http$BadResponse = F2(
+	function (a, b) {
+		return {ctor: 'BadResponse', _0: a, _1: b};
+	});
+var _evancz$elm_http$Http$UnexpectedPayload = function (a) {
+	return {ctor: 'UnexpectedPayload', _0: a};
+};
+var _evancz$elm_http$Http$handleResponse = F2(
+	function (handle, response) {
+		if ((_elm_lang$core$Native_Utils.cmp(200, response.status) < 1) && (_elm_lang$core$Native_Utils.cmp(response.status, 300) < 0)) {
+			var _p3 = response.value;
+			if (_p3.ctor === 'Text') {
+				return handle(_p3._0);
+			} else {
+				return _elm_lang$core$Task$fail(
+					_evancz$elm_http$Http$UnexpectedPayload('Response body is a blob, expecting a string.'));
+			}
+		} else {
+			return _elm_lang$core$Task$fail(
+				A2(_evancz$elm_http$Http$BadResponse, response.status, response.statusText));
+		}
+	});
+var _evancz$elm_http$Http$NetworkError = {ctor: 'NetworkError'};
+var _evancz$elm_http$Http$Timeout = {ctor: 'Timeout'};
+var _evancz$elm_http$Http$promoteError = function (rawError) {
+	var _p4 = rawError;
+	if (_p4.ctor === 'RawTimeout') {
+		return _evancz$elm_http$Http$Timeout;
+	} else {
+		return _evancz$elm_http$Http$NetworkError;
+	}
+};
+var _evancz$elm_http$Http$getString = function (url) {
+	var request = {
+		verb: 'GET',
+		headers: _elm_lang$core$Native_List.fromArray(
+			[]),
+		url: url,
+		body: _evancz$elm_http$Http$empty
+	};
+	return A2(
+		_elm_lang$core$Task$andThen,
+		A2(
+			_elm_lang$core$Task$mapError,
+			_evancz$elm_http$Http$promoteError,
+			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request)),
+		_evancz$elm_http$Http$handleResponse(_elm_lang$core$Task$succeed));
+};
+var _evancz$elm_http$Http$fromJson = F2(
+	function (decoder, response) {
+		var decode = function (str) {
+			var _p5 = A2(_elm_lang$core$Json_Decode$decodeString, decoder, str);
+			if (_p5.ctor === 'Ok') {
+				return _elm_lang$core$Task$succeed(_p5._0);
+			} else {
+				return _elm_lang$core$Task$fail(
+					_evancz$elm_http$Http$UnexpectedPayload(_p5._0));
+			}
+		};
+		return A2(
+			_elm_lang$core$Task$andThen,
+			A2(_elm_lang$core$Task$mapError, _evancz$elm_http$Http$promoteError, response),
+			_evancz$elm_http$Http$handleResponse(decode));
+	});
+var _evancz$elm_http$Http$get = F2(
+	function (decoder, url) {
+		var request = {
+			verb: 'GET',
+			headers: _elm_lang$core$Native_List.fromArray(
+				[]),
+			url: url,
+			body: _evancz$elm_http$Http$empty
+		};
+		return A2(
+			_evancz$elm_http$Http$fromJson,
+			decoder,
+			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
+	});
+var _evancz$elm_http$Http$post = F3(
+	function (decoder, url, body) {
+		var request = {
+			verb: 'POST',
+			headers: _elm_lang$core$Native_List.fromArray(
+				[]),
+			url: url,
+			body: body
+		};
+		return A2(
+			_evancz$elm_http$Http$fromJson,
+			decoder,
+			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
+	});
+var _debois$elm_mdl$NDCVideos_Messages$MDL = function (a) {
 	return {ctor: 'MDL', _0: a};
 };
-var _debois$elm_mdl$Components_NDCVideoList$FetchFail = function (a) {
+var _debois$elm_mdl$NDCVideos_Messages$FetchFail = function (a) {
 	return {ctor: 'FetchFail', _0: a};
 };
-var _debois$elm_mdl$Components_NDCVideoList$FetchSucceed = function (a) {
+var _debois$elm_mdl$NDCVideos_Messages$FetchSucceed = function (a) {
 	return {ctor: 'FetchSucceed', _0: a};
 };
-var _debois$elm_mdl$Components_NDCVideoList$fetchNDCVideos = function () {
+var _debois$elm_mdl$NDCVideos_Messages$Fetch = {ctor: 'Fetch'};
+var _debois$elm_mdl$NDCVideos_Messages$ShowDescription = function (a) {
+	return {ctor: 'ShowDescription', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$ToggleSlugs = function (a) {
+	return {ctor: 'ToggleSlugs', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$ToggleSpeakers = function (a) {
+	return {ctor: 'ToggleSpeakers', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$SpeakerFilter = function (a) {
+	return {ctor: 'SpeakerFilter', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$SlugFilter = function (a) {
+	return {ctor: 'SlugFilter', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$SortItems = function (a) {
+	return {ctor: 'SortItems', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Messages$ClearFilters = {ctor: 'ClearFilters'};
+var _debois$elm_mdl$NDCVideos_Messages$NoOp = {ctor: 'NoOp'};
+var _debois$elm_mdl$Messages$MDL = function (a) {
+	return {ctor: 'MDL', _0: a};
+};
+var _debois$elm_mdl$Messages$NDCVideoListMsg = function (a) {
+	return {ctor: 'NDCVideoListMsg', _0: a};
+};
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoData = A9(
+	_elm_lang$core$Json_Decode$object8,
+	_debois$elm_mdl$NDCVideos_Models$VideoModel,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'description', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'plays', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'likes', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'slugs', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'speakers', _elm_lang$core$Json_Decode$string),
+	_elm_lang$core$Json_Decode$oneOf(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_elm_lang$core$Json_Decode_ops[':='], 'showDescription', _elm_lang$core$Json_Decode$bool),
+				_elm_lang$core$Json_Decode$succeed(false)
+			])));
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugData = A3(
+	_elm_lang$core$Json_Decode$object2,
+	_debois$elm_mdl$Slugs_Models$Model,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'slug', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string));
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSpeakers = _elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string);
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugs = _elm_lang$core$Json_Decode$list(_debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugData);
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoList = _elm_lang$core$Json_Decode$list(_debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoData);
+var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoFetch = A6(
+	_elm_lang$core$Json_Decode$object5,
+	_debois$elm_mdl$NDCVideos_Models$NDCVideoInfo,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'desc', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'lastUpdated', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideos', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoList),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideoslugs', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugs),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideospeakers', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSpeakers));
+var _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos = function () {
 	var url = 'NDCVideos.json';
 	return A3(
 		_elm_lang$core$Task$perform,
-		_debois$elm_mdl$Components_NDCVideoList$FetchFail,
-		_debois$elm_mdl$Components_NDCVideoList$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _debois$elm_mdl$Components_NDCVideoList$decodeNDCVideoFetch, url));
+		_debois$elm_mdl$NDCVideos_Messages$FetchFail,
+		_debois$elm_mdl$NDCVideos_Messages$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoFetch, url));
 }();
-var _debois$elm_mdl$Components_NDCVideoList$update = F2(
+var _debois$elm_mdl$NDCVideos_Update$stringHasItem = F3(
+	function (stringWithItems, filter, split) {
+		return A2(
+			_elm_lang$core$List$member,
+			filter,
+			A2(_elm_lang$core$String$split, split, stringWithItems));
+	});
+var _debois$elm_mdl$NDCVideos_Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'NoOp':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _debois$elm_mdl$Components_NDCVideoList$fetchNDCVideos};
-			case 'FetchSucceed':
-				var _p1 = _p0._0;
+			case 'SortItems':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{videoInfo: _p1, filteredVideos: _p1.videos}),
+						{
+							filteredVideos: _elm_lang$core$List$reverse(
+								A2(
+									_elm_lang$core$List$sortBy,
+									function () {
+										var _p1 = _p0._0;
+										if (_p1.ctor === 'PlaysColumn') {
+											return function (_) {
+												return _.plays;
+											};
+										} else {
+											return function (_) {
+												return _.likes;
+											};
+										}
+									}(),
+									model.filteredVideos))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Fetch':
+				return {ctor: '_Tuple2', _0: model, _1: _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos};
+			case 'FetchSucceed':
+				var _p2 = _p0._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{videoInfo: _p2, filteredVideos: _p2.videos}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ClearFilters':
@@ -12722,115 +12484,116 @@ var _debois$elm_mdl$Components_NDCVideoList$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{filteredVideos: model.videoInfo.videos}),
+						{filteredVideos: model.videoInfo.videos, currentFilterInfo: '', currentFilterType: 'None'}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SlugFilter':
+				var _p3 = _p0._0;
 				var flt = A2(
 					_elm_lang$core$List$filter,
 					function (vid) {
-						return A2(_elm_lang$core$String$contains, vid.slugs, _p0._0);
+						return A3(_debois$elm_mdl$NDCVideos_Update$stringHasItem, vid.slugs, _p3, ',');
 					},
 					model.videoInfo.videos);
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{filteredVideos: flt}),
+						{
+							filteredVideos: flt,
+							currentFilterInfo: A2(_elm_lang$core$Basics_ops['++'], 'Filtered by topic: ', _p3),
+							currentFilterType: 'Topic'
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SpeakerFilter':
+				var _p4 = _p0._0;
+				var flt = A2(
+					_elm_lang$core$List$filter,
+					function (vid) {
+						return A3(_debois$elm_mdl$NDCVideos_Update$stringHasItem, vid.speakers, _p4, ';');
+					},
+					model.videoInfo.videos);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: flt,
+							currentFilterInfo: A2(_elm_lang$core$Basics_ops['++'], 'Filtered by speaker: ', _p4),
+							currentFilterType: 'Speaker'
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleSpeakers':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							toggleSpeakersFilter: _elm_lang$core$Basics$not(model.toggleSpeakersFilter)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleSlugs':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							toggleSlugsFilter: _elm_lang$core$Basics$not(model.toggleSlugsFilter)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ShowDescription':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: A2(
+								_elm_lang$core$List$map,
+								function (video) {
+									return _elm_lang$core$Native_Utils.eq(video.url, _p0._0) ? _elm_lang$core$Native_Utils.update(
+										video,
+										{showDescription: true, description: 'Not implemented yet due to issue with css. Unable to wrap text.'}) : video;
+								},
+								model.filteredVideos)
+						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'FetchFail':
-				var _p2 = _p0._0;
-				if (_p2.ctor === 'UnexpectedPayload') {
+				var _p5 = _p0._0;
+				if (_p5.ctor === 'UnexpectedPayload') {
 					return A2(
 						_elm_lang$core$Debug$log,
-						_p2._0,
+						_p5._0,
 						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
 				} else {
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				}
 			default:
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Components_NDCVideoList$MDL, _p0._0, model);
+				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$NDCVideos_Messages$MDL, _p0._0, model);
 		}
 	});
-var _debois$elm_mdl$Components_NDCVideoList$Fetch = {ctor: 'Fetch'};
-var _debois$elm_mdl$Components_NDCVideoList$SlugFilter = function (a) {
-	return {ctor: 'SlugFilter', _0: a};
-};
-var _debois$elm_mdl$Components_NDCVideoList$renderSlugButtons = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		A2(
-			_elm_lang$core$List$map,
-			function (slug) {
-				return A5(
-					_debois$elm_mdl$Material_Button$render,
-					_debois$elm_mdl$Components_NDCVideoList$MDL,
-					_elm_lang$core$Native_List.fromArray(
-						[0]),
-					model.mdl,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_debois$elm_mdl$Material_Button$raised,
-							_debois$elm_mdl$Material_Button$colored,
-							_debois$elm_mdl$Material_Button$onClick(
-							_debois$elm_mdl$Components_NDCVideoList$SlugFilter(
-								_elm_lang$core$Basics$fst(slug)))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text(
-							_elm_lang$core$Basics$snd(slug))
-						]));
-			},
-			_debois$elm_mdl$Components_NDCVideoList$slugs));
-};
-var _debois$elm_mdl$Components_NDCVideoList$ClearFilters = {ctor: 'ClearFilters'};
-var _debois$elm_mdl$Components_NDCVideoList$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A5(
-				_debois$elm_mdl$Material_Button$render,
-				_debois$elm_mdl$Components_NDCVideoList$MDL,
-				_elm_lang$core$Native_List.fromArray(
-					[0]),
-				model.mdl,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Button$raised,
-						_debois$elm_mdl$Material_Button$colored,
-						_debois$elm_mdl$Material_Button$onClick(_debois$elm_mdl$Components_NDCVideoList$ClearFilters)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Clear all filters')
-					])),
-				A2(
-				_elm_lang$html$Html$h4,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Filter by:')
-					])),
-				_debois$elm_mdl$Components_NDCVideoList$renderSlugButtons(model),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Components_NDCVideoList$renderNDCVideos(model)
-					]))
-			]));
-};
-var _debois$elm_mdl$Components_NDCVideoList$NoOp = {ctor: 'NoOp'};
+var _debois$elm_mdl$Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'NDCVideoListMsg') {
+			var _p1 = A2(_debois$elm_mdl$NDCVideos_Update$update, _p0._0, model.videoListModel);
+			var updatedModel = _p1._0;
+			var cmd = _p1._1;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{videoListModel: updatedModel}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Messages$NDCVideoListMsg, cmd)
+			};
+		} else {
+			return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Messages$MDL, _p0._0, model);
+		}
+	});
 var _debois$elm_mdl$Material_Color$text = function (_p0) {
 	var _p1 = _p0;
 	return _debois$elm_mdl$Material_Options$cs(
@@ -13066,7 +12829,626 @@ var _debois$elm_mdl$Material_Scheme$topWithScheme = F3(
 var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
-var _debois$elm_mdl$Main$header = function (model) {
+var _debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters = function (model) {
+	return model.toggleSlugsFilter ? A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h5,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Filter by topic:')
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				A2(
+					_elm_lang$core$List$map,
+					function (slug) {
+						return A2(
+							_elm_lang$html$Html$span,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_elm_lang$html$Html$a,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$href('#'),
+											_elm_lang$html$Html_Events$onClick(
+											_debois$elm_mdl$NDCVideos_Messages$SlugFilter(slug.slug))
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text(slug.name)
+										])),
+									A2(
+									_elm_lang$html$Html$span,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text(' - ')
+										]))
+								]));
+					},
+					model.videoInfo.slugs))
+			])) : A2(
+		_elm_lang$html$Html$span,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters = function (model) {
+	return model.toggleSpeakersFilter ? A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h5,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Filter by speaker:')
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				A2(
+					_elm_lang$core$List$map,
+					function (speaker) {
+						return A2(
+							_elm_lang$html$Html$span,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_elm_lang$html$Html$a,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$href('#'),
+											_elm_lang$html$Html_Events$onClick(
+											_debois$elm_mdl$NDCVideos_Messages$SpeakerFilter(speaker))
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text(speaker)
+										])),
+									A2(
+									_elm_lang$html$Html$span,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text(' - ')
+										]))
+								]));
+					},
+					model.videoInfo.speakers))
+			])) : A2(
+		_elm_lang$html$Html$span,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _debois$elm_mdl$Material_Table$defaultCell = {numeric: false};
+var _debois$elm_mdl$Material_Table$td = F2(
+	function (options, html) {
+		var _p0 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultCell, options);
+		var summary = _p0;
+		var config = _p0.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$td,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$onClick = function (x) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{
+					onClick: _elm_lang$core$Maybe$Just(
+						_elm_lang$html$Html_Events$onClick(x))
+				});
+		});
+};
+var _debois$elm_mdl$Material_Table$sorted = function (order) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (self) {
+			return _elm_lang$core$Native_Utils.update(
+				self,
+				{
+					sorted: _elm_lang$core$Maybe$Just(order)
+				});
+		});
+};
+var _debois$elm_mdl$Material_Table$numeric = _debois$elm_mdl$Material_Options$set(
+	function (self) {
+		return _elm_lang$core$Native_Utils.update(
+			self,
+			{numeric: true});
+	});
+var _debois$elm_mdl$Material_Table$defaultHeader = {numeric: false, sorted: _elm_lang$core$Maybe$Nothing, onClick: _elm_lang$core$Maybe$Nothing};
+var _debois$elm_mdl$Material_Table$th = F2(
+	function (options, html) {
+		var _p1 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultHeader, options);
+		var summary = _p1;
+		var config = _p1.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$th,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric'),
+					function () {
+					var _p2 = config.sorted;
+					if (_p2.ctor === 'Just') {
+						if (_p2._0.ctor === 'Ascending') {
+							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-ascending');
+						} else {
+							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-descending');
+						}
+					} else {
+						return _debois$elm_mdl$Material_Options$nop;
+					}
+				}()
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[config.onClick]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
+var _debois$elm_mdl$Material_Table$tr = F2(
+	function (options, html) {
+		var _p3 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultRow, options);
+		var summary = _p3;
+		var config = _p3.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tr,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.selected ? _debois$elm_mdl$Material_Options$cs('is-selected') : _debois$elm_mdl$Material_Options$nop
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tfoot = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tfoot,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tbody = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tbody,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$thead = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$thead,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$table = F2(
+	function (options, nodes) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$table,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_debois$elm_mdl$Material_Options$cs('mdl-data-table'),
+					_debois$elm_mdl$Material_Options$cs('mdl-js-data-table'),
+					_debois$elm_mdl$Material_Options$cs('is-upgraded')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			nodes);
+	});
+var _debois$elm_mdl$Material_Table$Row = function (a) {
+	return {selected: a};
+};
+var _debois$elm_mdl$Material_Table$Header = F3(
+	function (a, b, c) {
+		return {numeric: a, sorted: b, onClick: c};
+	});
+var _debois$elm_mdl$Material_Table$Cell = function (a) {
+	return {numeric: a};
+};
+var _debois$elm_mdl$Material_Table$Descending = {ctor: 'Descending'};
+var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending);
+var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
+var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
+var _debois$elm_mdl$NDCVideos_ViewItem$vimeoUrl = function (relativePath) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'https://vimeo.com',
+		A2(_elm_lang$core$String$dropLeft, 7, relativePath));
+};
+var _debois$elm_mdl$NDCVideos_ViewItem$viewVideo = F2(
+	function (model, outerMdl) {
+		return A2(
+			_debois$elm_mdl$Material_Table$tr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href(
+									_debois$elm_mdl$NDCVideos_ViewItem$vimeoUrl(model.url)),
+									_elm_lang$html$Html_Attributes$target('_blank')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(model.title)
+								])),
+							model.showDescription ? A2(
+							_elm_lang$html$Html$p,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(model.description)
+								])) : A2(
+							_elm_lang$html$Html$span,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[]))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							A2(_elm_lang$core$String$left, 20, model.slugs))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(model.speakers)
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[_debois$elm_mdl$Material_Table$numeric]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.plays))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[_debois$elm_mdl$Material_Table$numeric]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.likes))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Icon$view,
+							'more',
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Icon$onClick(
+									_debois$elm_mdl$NDCVideos_Messages$ShowDescription(model.url)),
+									A2(
+									_debois$elm_mdl$Material_Tooltip$attach,
+									_debois$elm_mdl$NDCVideos_Messages$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[0]))
+								])),
+							A5(
+							_debois$elm_mdl$Material_Tooltip$render,
+							_debois$elm_mdl$NDCVideos_Messages$MDL,
+							_elm_lang$core$Native_List.fromArray(
+								[0]),
+							outerMdl,
+							_elm_lang$core$Native_List.fromArray(
+								[_debois$elm_mdl$Material_Tooltip$large]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Show more info')
+								]))
+						]))
+				]));
+	});
+var _debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Table$table,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Options$cs('full-width')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Table$thead,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Table$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Title')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Slugs')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Speakers')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
+										_debois$elm_mdl$Material_Table$numeric,
+										_debois$elm_mdl$Material_Table$onClick(
+										_debois$elm_mdl$NDCVideos_Messages$SortItems(_debois$elm_mdl$NDCVideos_Models$PlaysColumn))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Plays')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
+										_debois$elm_mdl$Material_Table$numeric,
+										_debois$elm_mdl$Material_Table$onClick(
+										_debois$elm_mdl$NDCVideos_Messages$SortItems(_debois$elm_mdl$NDCVideos_Models$LikesColumn))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Likes')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('More info')
+									]))
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Table$tbody,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				A2(
+					_elm_lang$core$List$map,
+					function (item) {
+						return A2(_debois$elm_mdl$NDCVideos_ViewItem$viewVideo, item, model.mdl);
+					},
+					model.filteredVideos))
+			]));
+};
+var _debois$elm_mdl$NDCVideos_View$renderSpeakersToggle = function (model) {
+	return A5(
+		_debois$elm_mdl$Material_Toggles$switch,
+		_debois$elm_mdl$NDCVideos_Messages$MDL,
+		_elm_lang$core$Native_List.fromArray(
+			[0]),
+		model.mdl,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Toggles$onClick(
+				_debois$elm_mdl$NDCVideos_Messages$ToggleSpeakers(0)),
+				_debois$elm_mdl$Material_Toggles$value(model.toggleSpeakersFilter)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Show speaker filters')
+			]));
+};
+var _debois$elm_mdl$NDCVideos_View$renderSlugsToggle = function (model) {
+	return A5(
+		_debois$elm_mdl$Material_Toggles$switch,
+		_debois$elm_mdl$NDCVideos_Messages$MDL,
+		_elm_lang$core$Native_List.fromArray(
+			[0]),
+		model.mdl,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Toggles$onClick(
+				_debois$elm_mdl$NDCVideos_Messages$ToggleSlugs(0)),
+				_debois$elm_mdl$Material_Toggles$value(model.toggleSlugsFilter)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Show topic filters')
+			]));
+};
+var _debois$elm_mdl$NDCVideos_View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('NDC Oslo is a great conference and they have shared all their conference talks on Vimeo. Finding the videos you are interested in can be cumbersome. As a learning challenge this summer, I created some F# scripts and a viewer in Elm \nto facilitate a better experience. I\'ve used this as a way to learn functional programming with F# and Elm. I would appreciate feedback and contributions on ways to improve this codebase. Other viewer implementations would also be great.')
+					])),
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'Vimeo data last updated: ', model.videoInfo.lastUpdated))
+					])),
+				_debois$elm_mdl$NDCVideos_View$renderSlugsToggle(model),
+				_debois$elm_mdl$NDCVideos_View$renderSpeakersToggle(model),
+				_debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters(model),
+				_debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters(model),
+				(!_elm_lang$core$Native_Utils.eq(model.currentFilterType, 'None')) ? A5(
+				_debois$elm_mdl$Material_Button$render,
+				_debois$elm_mdl$NDCVideos_Messages$MDL,
+				_elm_lang$core$Native_List.fromArray(
+					[0]),
+				model.mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Button$raised,
+						_debois$elm_mdl$Material_Button$colored,
+						_debois$elm_mdl$Material_Button$onClick(_debois$elm_mdl$NDCVideos_Messages$ClearFilters)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Clear all filters')
+					])) : A2(
+				_elm_lang$html$Html$span,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$h5,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.currentFilterInfo)
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos(model)
+					]))
+			]));
+};
+var _debois$elm_mdl$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
+var _debois$elm_mdl$View$contentview = function (model) {
+	return _debois$elm_mdl$Material_Scheme$top(
+		A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('elm-app')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html_App$map,
+					_debois$elm_mdl$Messages$NDCVideoListMsg,
+					_debois$elm_mdl$NDCVideos_View$view(model.videoListModel))
+				])));
+};
+var _debois$elm_mdl$View$header = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -13083,7 +13465,7 @@ var _debois$elm_mdl$Main$header = function (model) {
 						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('NDC 2016 Videos')
+							_elm_lang$html$Html$text('NDC Oslo 2016 Videos')
 						])),
 					_debois$elm_mdl$Material_Layout$spacer,
 					A2(
@@ -13091,75 +13473,40 @@ var _debois$elm_mdl$Main$header = function (model) {
 					_elm_lang$core$Native_List.fromArray(
 						[]),
 					_elm_lang$core$Native_List.fromArray(
-						[]))
+						[
+							A2(
+							_debois$elm_mdl$Material_Layout$link,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Layout$href('https://github.com/hakonrossebo/ndc-oslo2016-video-listing')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_elm_lang$html$Html$span,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Fork me on Github')
+										]))
+								]))
+						]))
 				]))
 		]);
 };
-var _debois$elm_mdl$Main$drawer = _elm_lang$core$Native_List.fromArray(
+var _debois$elm_mdl$View$drawer = _elm_lang$core$Native_List.fromArray(
 	[]);
-var _debois$elm_mdl$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _debois$elm_mdl$Main$model = {videoListModel: _debois$elm_mdl$Components_NDCVideoList$initialModel, mdl: _debois$elm_mdl$Material$model, transparentHeader: true};
-var _debois$elm_mdl$Main$Model = F3(
-	function (a, b, c) {
-		return {videoListModel: a, mdl: b, transparentHeader: c};
-	});
-var _debois$elm_mdl$Main$MDL = function (a) {
-	return {ctor: 'MDL', _0: a};
-};
-var _debois$elm_mdl$Main$NDCVideoListMsg = function (a) {
-	return {ctor: 'NDCVideoListMsg', _0: a};
-};
-var _debois$elm_mdl$Main$init = {
-	ctor: '_Tuple2',
-	_0: _debois$elm_mdl$Main$model,
-	_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Main$NDCVideoListMsg, _debois$elm_mdl$Components_NDCVideoList$fetchNDCVideos)
-};
-var _debois$elm_mdl$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'NDCVideoListMsg') {
-			var _p1 = A2(_debois$elm_mdl$Components_NDCVideoList$update, _p0._0, model.videoListModel);
-			var updatedModel = _p1._0;
-			var cmd = _p1._1;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{videoListModel: updatedModel}),
-				_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Main$NDCVideoListMsg, cmd)
-			};
-		} else {
-			return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Main$MDL, _p0._0, model);
-		}
-	});
-var _debois$elm_mdl$Main$contentview = function (model) {
-	return _debois$elm_mdl$Material_Scheme$top(
-		A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('elm-app')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html_App$map,
-					_debois$elm_mdl$Main$NDCVideoListMsg,
-					_debois$elm_mdl$Components_NDCVideoList$view(model.videoListModel))
-				])));
-};
-var _debois$elm_mdl$Main$view = function (model) {
+var _debois$elm_mdl$View$view = function (model) {
 	return A4(
 		_debois$elm_mdl$Material_Layout$render,
-		_debois$elm_mdl$Main$MDL,
+		_debois$elm_mdl$Messages$MDL,
 		model.mdl,
 		_elm_lang$core$Native_List.fromArray(
 			[_debois$elm_mdl$Material_Layout$fixedHeader]),
 		{
-			header: _debois$elm_mdl$Main$header(model),
-			drawer: _debois$elm_mdl$Main$drawer,
+			header: _debois$elm_mdl$View$header(model),
+			drawer: _debois$elm_mdl$View$drawer,
 			tabs: {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_List.fromArray(
@@ -13169,13 +13516,23 @@ var _debois$elm_mdl$Main$view = function (model) {
 			},
 			main: _elm_lang$core$Native_List.fromArray(
 				[
-					_debois$elm_mdl$Main$contentview(model)
+					_debois$elm_mdl$View$stylesheet,
+					_debois$elm_mdl$View$contentview(model)
 				])
 		});
 };
+var _debois$elm_mdl$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _debois$elm_mdl$Main$initialmodel = {videoListModel: _debois$elm_mdl$NDCVideos_Models$initialModel, mdl: _debois$elm_mdl$Material$model, transparentHeader: true};
+var _debois$elm_mdl$Main$init = {
+	ctor: '_Tuple2',
+	_0: _debois$elm_mdl$Main$initialmodel,
+	_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Messages$NDCVideoListMsg, _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos)
+};
 var _debois$elm_mdl$Main$main = {
 	main: _elm_lang$html$Html_App$program(
-		{init: _debois$elm_mdl$Main$init, view: _debois$elm_mdl$Main$view, update: _debois$elm_mdl$Main$update, subscriptions: _debois$elm_mdl$Main$subscriptions})
+		{init: _debois$elm_mdl$Main$init, view: _debois$elm_mdl$View$view, update: _debois$elm_mdl$Update$update, subscriptions: _debois$elm_mdl$Main$subscriptions})
 };
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

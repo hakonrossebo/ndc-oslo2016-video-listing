@@ -35,7 +35,7 @@ let jsonMovieSlugData slugList =
     |> Seq.toArray
 
 let newNDCVideos parsedVideos findByName slugList uniqueSpeakers=
-    ndcVideos.Ndc (desc= "NDCOslo2016 Videos", ndcvideos=jsonMovieData parsedVideos findByName, ndcvideoslugs=jsonMovieSlugData slugList, ndcvideospeakers=uniqueSpeakers )
+    ndcVideos.Ndc (desc= "NDCOslo2016 Videos", lastUpdated = System.DateTime.Now.ToShortDateString(), ndcvideos=jsonMovieData parsedVideos findByName, ndcvideoslugs=jsonMovieSlugData slugList, ndcvideospeakers=uniqueSpeakers )
 
 let path file = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"data", file)
 

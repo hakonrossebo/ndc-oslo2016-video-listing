@@ -20,8 +20,9 @@ fetchNDCVideos =
 -- Fetch the videos out of the "ndcvideos" key
 decodeNDCVideoFetch : Json.Decoder (NDCVideoInfo)
 decodeNDCVideoFetch =
-      Json.object4 NDCVideoInfo
+      Json.object5 NDCVideoInfo
           ("desc" := Json.string)
+          ("lastUpdated" := Json.string)
           ("ndcvideos" := decodeNDCVideoList)
           ("ndcvideoslugs" := decodeNDCVideoSlugs)
           ("ndcvideospeakers" := decodeNDCVideoSpeakers)
