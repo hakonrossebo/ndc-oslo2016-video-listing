@@ -1,0 +1,30 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL = function (a) {
+	return {ctor: 'MDL', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$Fetch = {ctor: 'Fetch'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ShowDescription = function (a) {
+	return {ctor: 'ShowDescription', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSlugs = function (a) {
+	return {ctor: 'ToggleSlugs', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSpeakers = function (a) {
+	return {ctor: 'ToggleSpeakers', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SpeakerFilter = function (a) {
+	return {ctor: 'SpeakerFilter', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SlugFilter = function (a) {
+	return {ctor: 'SlugFilter', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SortItems = function (a) {
+	return {ctor: 'SortItems', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ClearFilters = {ctor: 'ClearFilters'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$NoOp = {ctor: 'NoOp'};

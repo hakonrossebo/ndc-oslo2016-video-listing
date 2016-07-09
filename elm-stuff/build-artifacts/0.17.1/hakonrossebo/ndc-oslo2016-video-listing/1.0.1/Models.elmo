@@ -1,0 +1,4 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$Models$Model = F3(
+	function (a, b, c) {
+		return {videoListModel: a, mdl: b, transparentHeader: c};
+	});

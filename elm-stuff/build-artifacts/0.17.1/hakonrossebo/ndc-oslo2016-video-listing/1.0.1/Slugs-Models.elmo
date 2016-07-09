@@ -1,0 +1,4 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$Slugs_Models$Model = F2(
+	function (a, b) {
+		return {slug: a, name: b};
+	});

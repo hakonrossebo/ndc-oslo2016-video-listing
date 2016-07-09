@@ -1,0 +1,40 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoData = A9(
+	_elm_lang$core$Json_Decode$object8,
+	_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$VideoModel,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'description', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'plays', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'likes', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'slugs', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'speakers', _elm_lang$core$Json_Decode$string),
+	_elm_lang$core$Json_Decode$oneOf(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_elm_lang$core$Json_Decode_ops[':='], 'showDescription', _elm_lang$core$Json_Decode$bool),
+				_elm_lang$core$Json_Decode$succeed(false)
+			])));
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugData = A3(
+	_elm_lang$core$Json_Decode$object2,
+	_hakonrossebo$ndc_oslo2016_video_listing$Slugs_Models$Model,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'slug', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string));
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSpeakers = _elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugs = _elm_lang$core$Json_Decode$list(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugData);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoList = _elm_lang$core$Json_Decode$list(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoData);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoFetch = A6(
+	_elm_lang$core$Json_Decode$object5,
+	_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$NDCVideoInfo,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'desc', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'lastUpdated', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideos', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoList),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideoslugs', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugs),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideospeakers', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSpeakers));
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos = function () {
+	var url = 'NDCVideos.json';
+	return A3(
+		_elm_lang$core$Task$perform,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchFail,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoFetch, url));
+}();

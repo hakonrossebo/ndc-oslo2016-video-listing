@@ -1,0 +1,115 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$vimeoUrl = function (relativePath) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'https://vimeo.com',
+		A2(_elm_lang$core$String$dropLeft, 7, relativePath));
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
+	function (model, outerMdl) {
+		return A2(
+			_debois$elm_mdl$Material_Table$tr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href(
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$vimeoUrl(model.url)),
+									_elm_lang$html$Html_Attributes$target('_blank')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(model.title)
+								])),
+							model.showDescription ? A2(
+							_elm_lang$html$Html$p,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text(model.description)
+								])) : A2(
+							_elm_lang$html$Html$span,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[]))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							A2(_elm_lang$core$String$left, 20, model.slugs))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(model.speakers)
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[_debois$elm_mdl$Material_Table$numeric]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.plays))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[_debois$elm_mdl$Material_Table$numeric]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.likes))
+						])),
+					A2(
+					_debois$elm_mdl$Material_Table$td,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Icon$view,
+							'more',
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Icon$onClick(
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ShowDescription(model.url)),
+									A2(
+									_debois$elm_mdl$Material_Tooltip$attach,
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
+									_elm_lang$core$Native_List.fromArray(
+										[0]))
+								])),
+							A5(
+							_debois$elm_mdl$Material_Tooltip$render,
+							_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
+							_elm_lang$core$Native_List.fromArray(
+								[0]),
+							outerMdl,
+							_elm_lang$core$Native_List.fromArray(
+								[_debois$elm_mdl$Material_Tooltip$large]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Show more info')
+								]))
+						]))
+				]));
+	});

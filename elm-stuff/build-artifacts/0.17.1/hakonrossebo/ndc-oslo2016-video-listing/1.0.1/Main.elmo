@@ -1,0 +1,13 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$initialmodel = {videoListModel: _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$initialModel, mdl: _debois$elm_mdl$Material$model, transparentHeader: true};
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$init = {
+	ctor: '_Tuple2',
+	_0: _hakonrossebo$ndc_oslo2016_video_listing$Main$initialmodel,
+	_1: A2(_elm_lang$core$Platform_Cmd$map, _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos)
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$main = {
+	main: _elm_lang$html$Html_App$program(
+		{init: _hakonrossebo$ndc_oslo2016_video_listing$Main$init, view: _hakonrossebo$ndc_oslo2016_video_listing$View$view, update: _hakonrossebo$ndc_oslo2016_video_listing$Update$update, subscriptions: _hakonrossebo$ndc_oslo2016_video_listing$Main$subscriptions})
+};

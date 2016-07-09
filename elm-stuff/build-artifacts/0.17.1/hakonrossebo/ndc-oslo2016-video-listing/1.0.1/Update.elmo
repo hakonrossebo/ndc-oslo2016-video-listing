@@ -1,0 +1,18 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'NDCVideoListMsg') {
+			var _p1 = A2(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update, _p0._0, model.videoListModel);
+			var updatedModel = _p1._0;
+			var cmd = _p1._1;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{videoListModel: updatedModel}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg, cmd)
+			};
+		} else {
+			return A3(_debois$elm_mdl$Material$update, _hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL, _p0._0, model);
+		}
+	});

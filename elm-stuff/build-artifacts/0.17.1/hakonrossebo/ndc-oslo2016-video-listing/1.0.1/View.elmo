@@ -1,0 +1,90 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$contentview = function (model) {
+	return _debois$elm_mdl$Material_Scheme$top(
+		A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('elm-app')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html_App$map,
+					_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
+					_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
+				])));
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$View$header = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_debois$elm_mdl$Material_Layout$row,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_debois$elm_mdl$Material_Options$css, 'transition', 'height 333ms ease-in-out 0s')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Layout$title,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('NDC Oslo 2016 Videos')
+						])),
+					_debois$elm_mdl$Material_Layout$spacer,
+					A2(
+					_debois$elm_mdl$Material_Layout$navigation,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_debois$elm_mdl$Material_Layout$link,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_debois$elm_mdl$Material_Layout$href('https://github.com/hakonrossebo/ndc-oslo2016-video-listing')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_elm_lang$html$Html$span,
+									_elm_lang$core$Native_List.fromArray(
+										[]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html$text('Fork me on Github')
+										]))
+								]))
+						]))
+				]))
+		]);
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$View$drawer = _elm_lang$core$Native_List.fromArray(
+	[]);
+var _hakonrossebo$ndc_oslo2016_video_listing$View$view = function (model) {
+	return A4(
+		_debois$elm_mdl$Material_Layout$render,
+		_hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL,
+		model.mdl,
+		_elm_lang$core$Native_List.fromArray(
+			[_debois$elm_mdl$Material_Layout$fixedHeader]),
+		{
+			header: _hakonrossebo$ndc_oslo2016_video_listing$View$header(model),
+			drawer: _hakonrossebo$ndc_oslo2016_video_listing$View$drawer,
+			tabs: {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_List.fromArray(
+					[]),
+				_1: _elm_lang$core$Native_List.fromArray(
+					[])
+			},
+			main: _elm_lang$core$Native_List.fromArray(
+				[
+					_hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet,
+					_hakonrossebo$ndc_oslo2016_video_listing$View$contentview(model)
+				])
+		});
+};

@@ -1,0 +1,103 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSpeakersToggle = function (model) {
+	return A5(
+		_debois$elm_mdl$Material_Toggles$switch,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
+		_elm_lang$core$Native_List.fromArray(
+			[0]),
+		model.mdl,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Toggles$onClick(
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSpeakers(0)),
+				_debois$elm_mdl$Material_Toggles$value(model.toggleSpeakersFilter)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Show speaker filters')
+			]));
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSlugsToggle = function (model) {
+	return A5(
+		_debois$elm_mdl$Material_Toggles$switch,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
+		_elm_lang$core$Native_List.fromArray(
+			[0]),
+		model.mdl,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_debois$elm_mdl$Material_Toggles$onClick(
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSlugs(0)),
+				_debois$elm_mdl$Material_Toggles$value(model.toggleSlugsFilter)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Show topic filters')
+			]));
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('NDC Oslo is a great conference and they have shared all their conference talks on Vimeo. Finding the videos you are interested in can be cumbersome. As a learning challenge this summer, I created some F# scripts and a viewer in Elm \nto facilitate a better experience. I\'ve used this as a way to learn functional programming with F# and Elm. I would appreciate feedback and contributions on ways to improve this codebase. Other viewer implementations would also be great.')
+					])),
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'Vimeo data last updated: ', model.videoInfo.lastUpdated))
+					])),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSlugsToggle(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSpeakersToggle(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSlugFilters$renderSlugFilters(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters(model),
+				(!_elm_lang$core$Native_Utils.eq(model.currentFilterType, 'None')) ? A5(
+				_debois$elm_mdl$Material_Button$render,
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
+				_elm_lang$core$Native_List.fromArray(
+					[0]),
+				model.mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Button$raised,
+						_debois$elm_mdl$Material_Button$colored,
+						_debois$elm_mdl$Material_Button$onClick(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ClearFilters)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Clear all filters')
+					])) : A2(
+				_elm_lang$html$Html$span,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$h5,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.currentFilterInfo)
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos(model)
+					]))
+			]));
+};

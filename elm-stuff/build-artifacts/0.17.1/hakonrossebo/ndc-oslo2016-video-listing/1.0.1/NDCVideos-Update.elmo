@@ -1,0 +1,146 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem = F3(
+	function (stringWithItems, filter, split) {
+		return A2(
+			_elm_lang$core$List$member,
+			filter,
+			A2(_elm_lang$core$String$split, split, stringWithItems));
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'SortItems':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: _elm_lang$core$List$reverse(
+								A2(
+									_elm_lang$core$List$sortBy,
+									function () {
+										var _p1 = _p0._0;
+										if (_p1.ctor === 'PlaysColumn') {
+											return function (_) {
+												return _.plays;
+											};
+										} else {
+											return function (_) {
+												return _.likes;
+											};
+										}
+									}(),
+									model.filteredVideos))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Fetch':
+				return {ctor: '_Tuple2', _0: model, _1: _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos};
+			case 'FetchSucceed':
+				var _p2 = _p0._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{videoInfo: _p2, filteredVideos: _p2.videos}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ClearFilters':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{filteredVideos: model.videoInfo.videos, currentFilterInfo: '', currentFilterType: 'None'}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SlugFilter':
+				var _p3 = _p0._0;
+				var flt = A2(
+					_elm_lang$core$List$filter,
+					function (vid) {
+						return A3(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem, vid.slugs, _p3, ',');
+					},
+					model.videoInfo.videos);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: flt,
+							currentFilterInfo: A2(_elm_lang$core$Basics_ops['++'], 'Filtered by topic: ', _p3),
+							currentFilterType: 'Topic'
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SpeakerFilter':
+				var _p4 = _p0._0;
+				var flt = A2(
+					_elm_lang$core$List$filter,
+					function (vid) {
+						return A3(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem, vid.speakers, _p4, ';');
+					},
+					model.videoInfo.videos);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: flt,
+							currentFilterInfo: A2(_elm_lang$core$Basics_ops['++'], 'Filtered by speaker: ', _p4),
+							currentFilterType: 'Speaker'
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleSpeakers':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							toggleSpeakersFilter: _elm_lang$core$Basics$not(model.toggleSpeakersFilter)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleSlugs':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							toggleSlugsFilter: _elm_lang$core$Basics$not(model.toggleSlugsFilter)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ShowDescription':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							filteredVideos: A2(
+								_elm_lang$core$List$map,
+								function (video) {
+									return _elm_lang$core$Native_Utils.eq(video.url, _p0._0) ? _elm_lang$core$Native_Utils.update(
+										video,
+										{showDescription: true, description: 'Not implemented yet due to issue with css. Unable to wrap text.'}) : video;
+								},
+								model.filteredVideos)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'FetchFail':
+				var _p5 = _p0._0;
+				if (_p5.ctor === 'UnexpectedPayload') {
+					return A2(
+						_elm_lang$core$Debug$log,
+						_p5._0,
+						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			default:
+				return A3(_debois$elm_mdl$Material$update, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL, _p0._0, model);
+		}
+	});

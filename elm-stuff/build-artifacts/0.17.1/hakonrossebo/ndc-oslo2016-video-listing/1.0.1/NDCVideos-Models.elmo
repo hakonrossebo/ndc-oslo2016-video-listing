@@ -1,0 +1,33 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$initialModel = {
+	videoInfo: {
+		name: '',
+		lastUpdated: '',
+		videos: _elm_lang$core$Native_List.fromArray(
+			[]),
+		slugs: _elm_lang$core$Native_List.fromArray(
+			[]),
+		speakers: _elm_lang$core$Native_List.fromArray(
+			[])
+	},
+	filteredVideos: _elm_lang$core$Native_List.fromArray(
+		[]),
+	currentFilterInfo: 'Showing all videos',
+	currentFilterType: 'None',
+	toggleSlugsFilter: true,
+	toggleSpeakersFilter: false,
+	mdl: _debois$elm_mdl$Material$model
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$VideoModel = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {title: a, url: b, description: c, plays: d, likes: e, slugs: f, speakers: g, showDescription: h};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$NDCVideoInfo = F5(
+	function (a, b, c, d, e) {
+		return {name: a, lastUpdated: b, videos: c, slugs: d, speakers: e};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {videoInfo: a, filteredVideos: b, currentFilterInfo: c, currentFilterType: d, toggleSlugsFilter: e, toggleSpeakersFilter: f, mdl: g};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$LikesColumn = {ctor: 'LikesColumn'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$PlaysColumn = {ctor: 'PlaysColumn'};

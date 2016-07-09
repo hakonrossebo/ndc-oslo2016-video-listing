@@ -1,0 +1,6 @@
+var _hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL = function (a) {
+	return {ctor: 'MDL', _0: a};
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg = function (a) {
+	return {ctor: 'NDCVideoListMsg', _0: a};
+};
