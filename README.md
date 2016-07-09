@@ -1,5 +1,7 @@
 # NDC Oslo 2016 video listing
 
+## Live Site! click this link
+# [NDC Oslo 2016 video listing](https://hakonrossebo.github.io/ndc-oslo2016-video-listing/)
 ## About
 
 NDC Oslo is a great conference and they have shared all their conference talks on Vimeo. Finding the videos you are interested in can be cumbersome. As a learning challenge this summer, I created some F# scripts and a viewer in Elm 
@@ -45,6 +47,8 @@ There are many things that I had to omit in the first release:
 
 I am more than happy to accept external contributions to the project in the form of feedback, bug reports and pull requests.
 
+## Disclaimer
+I don't have any connections to NDC Oslo. This is only a personal project. Please notify me on any violations.
 ---
 Thanks for checking this out.
 
