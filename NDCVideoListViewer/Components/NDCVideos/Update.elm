@@ -37,11 +37,7 @@ update msg model =
     Fetch ->
       (model, fetchNDCVideos)
     FetchSucceed fetchedInfo ->
-      let
-        modifiedSlugs = List.append fetchedInfo.slugs [{ slug = "--no match--", name = "Uncategorized" }]
-        modifiedInfo = {fetchedInfo | slugs = modifiedSlugs}
-      in
-      ({ model | videoInfo = modifiedInfo, filteredVideos = modifiedInfo.videos}, Cmd.none)
+      ({ model | videoInfo = fetchedInfo, filteredVideos = fetchedInfo.videos}, Cmd.none)
     ClearFilters ->
       ({ model | filteredVideos = model.videoInfo.videos, currentFilterInfo = "", currentFilterType = "None"}, Cmd.none)
     SlugFilter slugfilter ->

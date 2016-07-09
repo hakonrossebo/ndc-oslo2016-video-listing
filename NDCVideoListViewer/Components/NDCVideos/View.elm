@@ -28,7 +28,11 @@ renderSpeakersToggle model =
 view : Model -> Html Msg
 view model =
   div [ ]
-    [ (renderSlugsToggle model)
+    [ p [][ text "NDC Oslo is a great conference and they have shared all their conference talks on Vimeo. Finding the videos you are interested in can be cumbersome, so I created some F# scripts and a viewer in Elm 
+to facilitate a better experience. 
+
+I've used this as a way to learn functional programming with F# and Elm. I would appreciate feedback on ways to improve this codebase."]
+    , (renderSlugsToggle model)
     , (renderSpeakersToggle model)
     , (renderSlugFilters model)
     , (renderSpeakerFilters model)

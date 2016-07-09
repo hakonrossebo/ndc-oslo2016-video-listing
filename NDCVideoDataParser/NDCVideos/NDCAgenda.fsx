@@ -38,6 +38,9 @@ module NDCAgenda =
         NDCAgendaDocument.CssSelect("section.tags.boxed-small-list > a")
         |> List.map(fun a -> a.AttributeValue("data-slug"), a.DirectInnerText())
         |> List.sortBy(fun x -> snd x)
+        |> List.rev
+        |> List.append ["--no match--","Not in agenda"; "","Missing topic"]
+        |> List.rev
         |> Seq.toArray
 
 
@@ -53,7 +56,6 @@ module NDCAgenda =
     let uniqueSpeakers =
         speakers
         |> List.map (fun x -> Seq.toList(split [|';'|] x))
-        // |> List.map (fun x -> Seq.toList(split [|'\r';'\n'|] x))
         |> List.concat
         |> List.map (fun x -> x.Trim())
         |> List.distinct

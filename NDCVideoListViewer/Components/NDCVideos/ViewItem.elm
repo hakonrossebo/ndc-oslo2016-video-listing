@@ -21,7 +21,7 @@ viewVideo model outerMdl =
   Table.tr  
   [ ]
     [ 
-        Table.td [] [ a [ href (vimeoUrl model.url) ][ text model.title ]
+        Table.td [] [ a [ href (vimeoUrl model.url), Html.Attributes.target "_blank" ][ text model.title ]
         , if model.showDescription then p [][text model.description] else span [][]]
       , Table.td [] [ text (String.left 20 model.slugs) ]
       , Table.td [] [ text model.speakers ]

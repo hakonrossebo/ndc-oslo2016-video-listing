@@ -23,11 +23,11 @@ header model =
         [  
           css "transition" "height 333ms ease-in-out 0s"
         ]
-        [ Layout.title [] [ text "NDC 2016 Videos" ]
+        [ Layout.title [] [ text "NDC Oslo 2016 Videos" ]
         , Layout.spacer
         , Layout.navigation []
             [ Layout.link
-                [ Layout.href "https://github.com/debois/elm-mdl"]
+                [ Layout.href "https://github.com/hakonrossebo/ndc-oslo2016-video-listing"]
                 [ span [] [text "Fork me on Github"] ]]
         ]
     ]

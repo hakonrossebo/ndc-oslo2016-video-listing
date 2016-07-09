@@ -1615,6 +1615,14 @@
     {
       "slug": "web",
       "name": "Web"
+    },
+    {
+      "slug": "",
+      "name": "Missing topic"
+    },
+    {
+      "slug": "--no match--",
+      "name": "Not in agenda"
     }
   ],
   "ndcvideospeakers": [
