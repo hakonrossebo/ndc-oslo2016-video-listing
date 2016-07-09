@@ -1,6 +1,6 @@
 {
   "desc": "NDCOslo2016 Videos",
-  "lastUpdated": "09.07.2016 15.35",
+  "lastUpdated": "09.07.2016",
   "ndcvideos": [
     {
       "title": ".NET Data Security : Hope is not a Strategy - Stephen Haunts",
@@ -15,7 +15,7 @@
       "title": ".NET Deployment Strategies: the Good, the Bad, and the Ugly - Damian Brady",
       "url": "/videos/171950824",
       "description": "Ever wonder how other teams deploy their software? It’s hard to know what goes on behind the walls of another company and even harder to learn from their mistakes. At Octopus Deploy, we see a broad range of deployment strategies and techniques. Some are extremely effective, some … well, not so much.\nJoin me as I take you through a range of delivery strategies employed by development teams all over the world. How do teams overcome the challenges of delivering quality software and which techniques work in which scenarios?\n\nYou'll see everything from \"what were they thinking!\" to \"it must be black magic!\" and hopefully walk away with some ideas of your own.",
-      "plays": 253,
+      "plays": 254,
       "likes": 5,
       "slugs": "continuous-integration,continuous-delivery,devops,net,web",
       "speakers": "Damian Brady"
@@ -33,7 +33,7 @@
       "title": ".NET without Windows - Matt Ellis",
       "url": "/videos/171704554",
       "description": "The Microsoft stack has changed, and suddenly, it’s not just about Windows any more. Thanks to .NET Core, we can now host .NET applications on Windows, Linux and even the Mac! So how does it work? What does it look like? And why would I want to do it?\nLet’s take a .NET Core app through its lifecycle, and see how to create it, and what tools we need to test and debug. We’ll also see how we host a web app without IIS, and how to deploy in a world of Docker and containers.",
-      "plays": 98,
+      "plays": 115,
       "likes": 2,
       "slugs": "net,microsoft,c-sharp,asp-net",
       "speakers": "​Matt Ellis"
@@ -51,7 +51,7 @@
       "title": "A High-Performance Solution to Microservices UI Composition - Alexey Gravanov & Arif Wider",
       "url": "/videos/171927597",
       "description": "So you have decided to go for Microservices and you want to achieve maximum autonomy for your teams. However, at the front end your services still have to be joined into a single page.Here you have two options: Either have a single UI layer which all teams depend on or let each service render its own UI and compose these UI pieces later on.\nIn the course of moving the Autoscout24 platform - one of Europe’s leading internet car portals - to an AWS-hosted Microservice architecture, we favored autonomy and therefore decided for the UI Composition approach. During this process we faced all the challenges of UI Composition, such as performance, consistency, isolation, and testing. Learn how we started off with a rather complex attempt and then managed to greatly improve and simplify our solution.",
-      "plays": 118,
+      "plays": 119,
       "likes": 2,
       "slugs": "microservices,ui,testing",
       "speakers": "Arif Wider;Alexey Gravanov"
@@ -60,7 +60,7 @@
       "title": "A Piece of Cake - C# powered cross platform build automation - Gary Ewan Park",
       "url": "/videos/171704581",
       "description": "Have you ever wanted to create a build script for your application, but been faced with learning a new language, or DSL, or writing more XML than any person should ever need to?\n\nHave you ever wanted to create a build script that will work cross platform?\n\nHave you ever wanted to create a build script that has first class support for the most common build tools like XUnit, WiX, SignTool, and many others?\n\nHave you ever wanted to create a build script that uses a language that you already know, and love?\nIf you have answered yes to any of these questions, then the Cake (http://cakebuild.net/) Build Automation System is for you!In this session we will start with a standard .Net Solution and incrementally add a build and orchestration script to compile the application, run unit tests, perform static analysis, package the application, and more, using the C# skills that you may already have.",
-      "plays": 153,
+      "plays": 154,
       "likes": 2,
       "slugs": "devops,net,c-sharp,continuous-integration,cross-platform",
       "speakers": "​Gary Ewan Park "
@@ -78,7 +78,7 @@
       "title": "ASP.NET Core 1.0 Deep Dive - David Fowler & Damian Edwards",
       "url": "/videos/171995866",
       "description": "ASP.NET Core 1.0 is almost here and with it comes new APIs, patterns, and characteristics.\nDamian & David from the ASP.NET team will go beyond the basics to uncover true appreciation and understanding of the new framework and how it fits in to the overall .NET Core story.",
-      "plays": 932,
+      "plays": 940,
       "likes": 16,
       "slugs": "web,microsoft",
       "speakers": "Damian Edwards;David Fowler"
@@ -87,7 +87,7 @@
       "title": "ASP.NET Core 1: What has changed for MVC and Web API developers? - Manfred Steyer",
       "url": "/videos/171704586",
       "description": "The revamped ASP.NET vNext will do away with duplications in the ASP.NET family's individual frameworks and, by doing so, will combine MVC, Web API and web pages[c1] within ASP.NET MVC 6.\nIt is clear to see that this cannot be achieved without breaking changes. This session will detail all the relative changes as well as the new possibilities that MVC will offer.",
-      "plays": 230,
+      "plays": 232,
       "likes": 1,
       "slugs": "net,asp-net",
       "speakers": "Manfred Steyer"
@@ -96,7 +96,7 @@
       "title": "ASP.NET Core Kestrel: Adventures in building a fast web server - Damian Edwards, David Fowler",
       "url": "/videos/172009499",
       "description": "How does ASP.NET Core manage to be more than 20x faster than ASP.NET? A large part of it is thanks to the brand new cross-platform .NET web server \"Kestrel\", based on libuv.\nIn this talk, Damian and David from the ASP.NET team will talk about the challenges faced in trying to build a truly fast web server in .NET.",
-      "plays": 3482,
+      "plays": 3492,
       "likes": 30,
       "slugs": "web,microsoft",
       "speakers": "David Fowler;Damian Edwards"
@@ -105,8 +105,8 @@
       "title": "ASP.NET Identity 3 - Brock Allen",
       "url": "/videos/172009501",
       "description": "ASP.NET Identity 3 has had a bit of an update in ASP.NET Core. To get started with this framework most developers use the Visual Studio project templates, which have historically been ridiculed for the mountains of code dumped into a new project.\nIn this session we will spend the time to understand it all (since that’s what most developers end up using). Along the way we will see features that are the same as the prior version of ASP.NET Identity, but there are some new features to point out in this updated ASP.NET Core based framework. Additionally, as the templates are examined, we will discuss changes that can be made to lock down the security of your application even more. Finally, some freestyle coding might be in order to add even more security features than what are provided out of the box.",
-      "plays": 350,
-      "likes": 5,
+      "plays": 357,
+      "likes": 6,
       "slugs": "security,asp-net",
       "speakers": "Brock Allen"
     },
@@ -141,7 +141,7 @@
       "title": "Analysing Big Time-series Data in the Cloud - Tomas Petricek",
       "url": "/videos/171317247",
       "description": "Working with small time-series data is fun. You can easily load daily Microsoft stock prices into memory and find the most successful year it its history. Or you can download average daily temperatures in your city over the last 10 years and try to spot a trend in a chart. But what if you have prices at millisecond frequency for thousands of stocks or high-resolution temperatures for the entire globe? With the right tools, working with massive time-series can feel the same as crunching through hundreds of observations in memory.\n\nIn this talk, I will show what's available if you are using R, the .NET platform and Azure. We'll use Deedle, a scalable .NET data analytics library, R type provider that makes thousands of R packages available to .NET developers and MBrace, a cloud computing framework that can easily scale your data analytics over an Azure compute cluster.",
-      "plays": 140,
+      "plays": 144,
       "likes": 3,
       "slugs": "functional",
       "speakers": "Tomas Petricek"
@@ -150,7 +150,7 @@
       "title": "App 2.0 - why the web lost and Apps won - Liam Westley",
       "url": "/videos/171704625",
       "description": "In the heady days after the dotcom boom and bust, Web 2.0 arrived and created an exciting new delivery mechanism for software. Browser wars improved performance to a level where they could host fully functional applications, with easy of deployment and updating.At the same time smartphones had appeared and the first real applications were breaking cover, but they suffered from reliability, performance and discoverability issues.When Apple launched the iPhone, and the App Store it solved many of these concerns.\nWe now have easily discovered applications, streamlined deployment and high levels of usability.Is everything solved though? There are issues related to speed of updates, development costs, security, deep linking and whether the mobile platform owners are fighting back against the likes of Facebook.What is the future of apps? Who will win the platform battles? What will it mean to write an app for a light switch?",
-      "plays": 58,
+      "plays": 60,
       "likes": 1,
       "slugs": "web,mobile",
       "speakers": "Liam Westley"
@@ -168,7 +168,7 @@
       "title": "Atari 2600, what can we learn 30 years later? -  Cristian Prieto",
       "url": "/videos/171704654",
       "description": "Atari 2600, the device that changed every home more than 30 years ago. It still a great example of what happens when hardware intercepts software. Now, in the era of IoT, multiple programming paradigms, agile development and cross platform, what can we learn from a system which is so simple?\nCome to this session where we will explore the history of how this console was created, the challenges faced by developers when making software for the device and what lessons can we learn in a cross platform world of IoT.",
-      "plays": 222,
+      "plays": 224,
       "likes": 1,
       "slugs": "iot,c,craftsmanship,cross-platform,embedded,languages,fun",
       "speakers": "Cristian Prieto"
@@ -177,7 +177,7 @@
       "title": "Authentication & secure API access for native & mobile Applications - Dominick Baier",
       "url": "/videos/171942749",
       "description": "Modern native & mobile applications have requirements like authenticating a user and securely accessing APIs on behalf of that user. Since those application types have access to advanced platform and OS features like cryptography and secure storage we can enable advanced features like mobile single sign-on, seamless token lifetime management and other advanced security features. The OpenID Connect and OAuth 2.0 hybrid flow alongside some new specification like PKCE and PoP are a perfect match for these scenarios.",
-      "plays": 349,
+      "plays": 352,
       "likes": 4,
       "slugs": "security,mobile,cross-platform",
       "speakers": "Dominick Baier"
@@ -204,7 +204,7 @@
       "title": "Best Practices for using JS in your mobile app - Ricardo Minguez Pablos",
       "url": "/videos/171927612",
       "description": "In this session we will explain the Microsoft strategy for Mobile Hybrid development using not only Visual Studio but also other open source tools and frameworks like Visual Studio Code that allows the development in Mac and Linux. We will show the best practices we've learned helping hundreds of customers with cordova development.\nBecause the technologies used are HTML, CSS and JS we will explore different patterns to maximize code reuse between your web and cordova investments.",
-      "plays": 56,
+      "plays": 57,
       "likes": 0,
       "slugs": "mobile,javascript,web,cross-platform",
       "speakers": "Ricardo Minguez Pablos "
@@ -267,7 +267,7 @@
       "title": "Building your own custom Linux distribution for embedded devices - Oscar Utbult",
       "url": "/videos/171704616",
       "description": "The Yocto Project is an open source project that helps you create custom Linux-based systems for embedded devices regardless of hardware architecture. It is today used to build software for everything from coffee machines to telecom equipment.\nIn this session you will learn the fundamental theory and tools that you need in order to build a Linux distribution for Raspberry Pi. Along the way I will also share some lessons learnt from using Yocto at Ericsson.",
-      "plays": 33,
+      "plays": 35,
       "likes": 0,
       "slugs": "iot,embedded,tools",
       "speakers": "Oscar Utbult "
@@ -276,7 +276,7 @@
       "title": "Busting the Myths with Cross-Platform Xamarin - Filip Ekberg",
       "url": "/videos/172111825",
       "description": "You're promised high amounts of code sharing when building your next million dollar business with Xamarin, but is that really what's going to happen?\nWe'll uncover the truth about code sharing with Xamarin; looking at custom renderers versus doing a native UI approach, as well as talking about how these decisions can haunt your throughout the development and maintenance of your app.",
-      "plays": 921,
+      "plays": 925,
       "likes": 3,
       "slugs": "net,mobile,cross-platform",
       "speakers": "Filip Ekberg"
@@ -285,7 +285,7 @@
       "title": "C# Today and Tomorrow - Mads Torgersen",
       "url": "/videos/171317266",
       "description": "C# can be developed and run on more and more platforms, and thanks to the “Roslyn” language engine you can increasingly make your own tooling for it.\nC# 7 is set to embrace several new features for working better with data, such as pattern matching, tuples and records. Come see what’s in store for C#!",
-      "plays": 341,
+      "plays": 345,
       "likes": 9,
       "slugs": "languages,net,microsoft,c-sharp",
       "speakers": "Mads Torgersen"
@@ -294,7 +294,7 @@
       "title": "Can We Build Whatsapp with Xamarin and Azure in 60 Minutes? Yes we can! - Ariel Ben Horesh",
       "url": "/videos/171997998",
       "description": ".NET developers today enjoy a bountiful source of platforms, tools at their disposal. With Xamarin they can target all the major mobile platforms and Azure providing cross cutting features for mobile developers and the necessary scale to support any degree of mobile clients.\nIn this session we will take Xamarin Forms, Azure App Services and SignalR to create a full blown Messenger app in just 60 minutes.",
-      "plays": 164,
+      "plays": 165,
       "likes": 1,
       "slugs": "cloud,mobile,net,c-sharp,cross-platform,microsoft",
       "speakers": "Ariel Ben Horesh"
@@ -303,7 +303,7 @@
       "title": "Choosing a JavaScript Framework - Rob Eisenberg",
       "url": "/videos/170598656",
       "description": "In the last couple of years there has been an explosion in JavaScript frameworks. How is a developer or business to make a wise choice? What are the advantages, trade-offs and differences? In this talk we’ll compare and contrast six popular front-end frameworks: Angular 1, Angular 2, Polymer, React, Ember and Aurelia. We’ll look at the same “Hello World” example in each framework so we can see, side-by-side, the differences in development strategy and philosophy.\nWe’ll also discuss how these frameworks stack up against a set of both technical and non-technical key evaluators so that you can get beyond the hype and finally make a solid technical and business decision.",
-      "plays": 2103,
+      "plays": 2112,
       "likes": 27,
       "slugs": "web,javascript,cross-platform",
       "speakers": "Rob Eisenberg"
@@ -348,7 +348,7 @@
       "title": "Cross-Platform Desktop Apps with Electron - David Neal",
       "url": "/videos/171942751",
       "description": "Would you like to leverage your HTML, CSS, and JavaScript skills to build cross-platform desktop applications? Electron is an open source application shell created by GitHub, designed to make building great desktop applications easy.\nYou may have already experienced Electron using applications such as Atom, Slack, or Visual Studio Code. In this talk, you will learn its features, how to quickly get started, and tips from my experience building Electron applications.",
-      "plays": 108,
+      "plays": 110,
       "likes": 2,
       "slugs": "web,javascript,cross-platform",
       "speakers": "David Neal"
@@ -366,7 +366,7 @@
       "title": "Data Modeling with Document Stores - Martin Esmann",
       "url": "/videos/172009503",
       "description": "Document Stores give a high level of freedom, you can store almost anything in document, but is that wise? Or can we do better?\nWith freedom comes the responsibility and the need to think twice and do things in the best way for the task at hand.\n\nIn this talk we will discuss different strategies for normalising and denormalising data, key patterns, query, reference documents and other tricks to shape the documents and performance to best match usage.\n\nThis talk is for everyone and requires no prior knowlagde of document stores.",
-      "plays": 137,
+      "plays": 138,
       "likes": 2,
       "slugs": "",
       "speakers": "Martin Esmann "
@@ -375,7 +375,7 @@
       "title": "Debugging your communication for more success and efficiency in DevOps - Sabine Bernecker-Bendixen",
       "url": "/videos/172411285",
       "description": "DevOps is far more then just the tools to be used in and an organizational change. DevOps is a mindset, which requires a lot of “soft skills” of all stakeholders in this system! And these skills are important for the success or the failure of the experiment “DevOps”!\nIn this talk we will focus on the role of communication for a DevOps team, although we will also touch psychological aspects of mindset, attitude and behavior!\nWhenever people come together, communications starts at once! You can´t stop it! In addition to the original face-to-face communication we use a lot of different communication channels like phones, chats, live webinars and emails in our modern times.\nAs communication is a very complex topic misunderstanding is part of daily our work; it is always the companion of communication. We have to spend a lot of time to deal with these misunderstandings or - what is worse - things will go wrong.\n\nThe more different characters work together in cross-functional teams like DevOps the higher the probability of misunderstanding. With release cycles getting shorter and shorter or continuous delivery, time is a very precious factor in IT projects. So why do we waste time in clearing up misunderstanding? For more success and more efficiency it will be extremely helpful to identify the bugs in your communication and eliminate them to reduce misunderstandings and save time! And we will talk about the nearly unbelievable effect on everyone´s motivation.\n\nIn this session theoretical background will be combined with best practice; the importance of further education in communication skills especially for “people from IT” to reach more efficiency will be pointed out.\n\nThe takeaways for the audience:\n\n- what is beyond organizational change and tools when doing / being DevOps\n\n- the importance of communication and the difficulties\n\n- bugs and misunderstanding\n\n- smart ways to eliminate bugs in order to create a successful and efficient communication\n\n- communication as part of culture, attitude and motivation\n\n- Best practice of slight but successful improvement of communication and the effect on everyone in a company",
-      "plays": 59,
+      "plays": 60,
       "likes": 1,
       "slugs": "devops,business-skills,people",
       "speakers": "Sabine Bernecker-Bendixen"
@@ -393,7 +393,7 @@
       "title": "Deploying Kubernetes, a Container Cluster Manager - Ben Hall",
       "url": "/videos/171704635",
       "description": "Docker in development is very different to Docker in production. When running 100s or 1000s of containers you’re faced with different concerns and problems.\nBen will introduce Kubernetes, a Container Cluster Manager originally from Google. Now an established open source project, Kubernetes helps manage your containers running on a cluster.\n\nThe talk will cover:\n\n- When to implement Kubernetes\n\n- Launching a cluster\n\n- Managing mutli-host networking\n\n- Managing Secrets and Security\n\n- Running Kubernetes on Bare Metal, AWS, GCE and Azure\n\n- Auto Scaling Containers\n\n- Nomad vs Kubernetes vs Mesos vs Swarm\n\nAt the end attendees will understand the foundations of Kubernetes, when they’ll require a cluster manager and the details of running it on bare metal and in the cloud.",
-      "plays": 34,
+      "plays": 36,
       "likes": 1,
       "slugs": "cloud,devops",
       "speakers": "Ben Hall"
@@ -402,7 +402,7 @@
       "title": "Deploying Straight to Production: A guide to the Holy Grail - Damian Brady",
       "url": "/videos/171704607",
       "description": "You've toiled hard on your code, tested it locally, and you're confident it's ready to go. But how long until you see it in production? For some teams, it can be months or even years. By the time your new feature or bug fix gets used in anger, you've forgotten what you did! But with a great deployment pipeline and some clever architecture, there's a better way.\nThis session is packed with war stories and real world successes. We'll walk through the realities of a no-touch deployment pipeline that you can trust all the way to production, and we'll examine some clever architectural patterns to enable true software agility. By the end, you'll be convinced that if it's not in production, it doesn't count. If you struggle to get updates in the hands of users, this is the session for you.",
-      "plays": 93,
+      "plays": 94,
       "likes": 2,
       "slugs": "devops",
       "speakers": "Damian Brady"
@@ -411,7 +411,7 @@
       "title": "Developing Correct C++ @ Scale - Mark Isaacson",
       "url": "/videos/171996392",
       "description": "Enabling engineers to write correct C++ is hard. Period. Full stop. At Facebook we've put a lot of effort into letting our engineers focus on impact; everything else should \"just work\". This talk addresses the question \"How do you prevent code from breaking?\". We'll talk about the automatic tools behind knowing when and why code breaks; the answers to these questions inform more than just whether it's ok to ship code, but also how to triage existing bugs more effectively.\nWe'll also talk about the human issues behind making that information easily consumable; incorrect or flakey reporting of bugs is an obvious problem, but reporting real bugs in a noisy fashion is a dangerous problem in its own right. This talk is about all of the things that go into creating a scalable environment to develop correct C++.",
-      "plays": 287,
+      "plays": 288,
       "likes": 3,
       "slugs": "c-plus-plus,scalability",
       "speakers": "​Mark Isaacson"
@@ -429,8 +429,8 @@
       "title": "Don’t Be Dilbert: Survival Tactics for Uninspiring Workplaces - Kylie Hunt",
       "url": "/videos/171704602",
       "description": "Let’s face it, the majority of work environments don’t exactly have us skipping on the way to work on a Monday morning. They’re just so… Dilbert. Managers who don’t understand what you do. Cookie-cutter. One-size-fits-all. But workplaces shouldn’t be where we go to work, they should be places we go to be inspired, to communicate, to be as productive as we possibly can be. A happy place.\nBut most workplaces aren’t happy places; most of us are not happy at work. I was one of those people with my very own Pointy Haired Boss and I want to help you do something about yours. This talk isn’t about turning your office into the Googleplex and now magically you’re in a fun workplace, but how you can influence your environment to help make you happier and more productive at work doing what you love. And who wouldn’t want to be happier at work?!",
-      "plays": 308,
-      "likes": 5,
+      "plays": 309,
+      "likes": 6,
       "slugs": "business-skills,people,fun",
       "speakers": "Kylie Hunt"
     },
@@ -438,7 +438,7 @@
       "title": "Elastic scaling in a (micro)service oriented architecture - Bastian Hofmann",
       "url": "/videos/171950821",
       "description": "Splitting an application up into multiple independent services can be a good way to keep it scaling and ensure stability and developer productivity in larger, growing teams. But just splitting the codebase, creating APIs and deploying the code on some servers is not enough, somehow your services need to know where and how other services are accessible. Classical approaches like hardcoding everything in every service or having a central load-balancer can quickly lead to problems in terms of scalability and maintainability.\nIn this talk I'll show how we at ResearchGate tackled this challenge. With the help of tools like Consul and haproxy we created a setup that allows us to quickly boot and shutdown services. This ensures that all servers are utilized optimally and load spikes can be reacted upon quickly and automatically.",
-      "plays": 86,
+      "plays": 90,
       "likes": 3,
       "slugs": "microservices,devops,architecture,continuous-delivery,monitoring,security,cloud,cross-platform,concurrency,scalability",
       "speakers": "Bastian Hofmann"
@@ -447,7 +447,7 @@
       "title": "Elixir Is Neat But What Can You Actually Do With It? - Rob Conery",
       "url": "/videos/171317253",
       "description": "Working with Elixir is intoxicating. The syntax is clean, pattern matching is thrilling, and the power of the Erlang VM underneath is mind-blowing. But what can you actually build with it? What patterns do you use… what tools? Are Phoenix and Ecto my only choices for web and data frameworks?\nIn this talk Rob Conery will share his experience migrating a Ruby on Rails application to Elixir, and the choices he faced along the way. We’ll dive into Agents, Supervision Trees, JSONB and potential life on Mars as we figure out the best way to structure an application in Elixir that works great both now and into the future.",
-      "plays": 2042,
+      "plays": 2045,
       "likes": 24,
       "slugs": "functional",
       "speakers": "Rob Conery"
@@ -456,7 +456,7 @@
       "title": "Escaping the Big Ball of Mud - Mathew McLoughlin",
       "url": "/videos/171704597",
       "description": "Over the years I’ve seen many implementations of an n-tiered application with an anaemic domain model. You know the kind, presentation, service, data access layer. This architecture whilst quick to start building has its problems. Over time, as the application becomes more complex the codebase will become more and more difficult to maintain, often resulting in a ”Big Ball of Mud”.\nIn this talk I will present some ideas that address these maintainability problems using a solution with a domain model and command patterns to give you a clean extensible architecture. Further to this we will explore event sourcing and cqrs and the benefits they can bring.\n\nAt the end the you will have seen an alternative way of building business applications, especially those with complex business logic.",
-      "plays": 131,
+      "plays": 132,
       "likes": 5,
       "slugs": "architecture",
       "speakers": "Mathew McLoughlin "
@@ -465,7 +465,7 @@
       "title": "Everything I know about computers, I learned from the movies: Reloaded - Mark Rendle",
       "url": "/videos/171319746",
       "description": "Hooray for Hollywood! Nothing has done more to educate the public about technology and computers than the silver screen. Come on a ride down the boulevard of dreams, where you can learn how hackers hack; why artificial intelligence wants to kill us all; and what happens when a self-replicating trojan virus worm breaks through a 256-bit firewall. I promise to start on time this time.",
-      "plays": 266,
+      "plays": 268,
       "likes": 2,
       "slugs": "fun,net,agile,architecture,asp-net,big-data,business-skills,c,c-sharp,c-plus-plus,cloud,continuous-delivery,continuous-integration,craftsmanship,database,design,devops,embedded,f,functional,iot,javascript,languages,machine-learning,microservices,microsoft,mobile,monitoring,nosql,people,phyton,search,security,testing,ui,ux,web,concurrency,cross-platform,scalability,tools",
       "speakers": "Mark Rendle"
@@ -474,7 +474,7 @@
       "title": "Exploring C++17 and beyond - ​Mark Isaacson",
       "url": "/videos/171704648",
       "description": "This talk will preview what's to come on the C++17 and C++20 horizons. We'll explore real, working, code to show how new features will both change the way you handle day-to-day problems and also push the limits of what's possible in C++. We'll talk about how these language features have been put to use in the D community, which has had years of experience with them in production code.\nTopics include:\n\nA discussion of what's likely to come in C++17 and what's being delayed to C++20\nstd::string_view and the day-to-day benefits it provides, including preventing the dreaded static initialization order fiasco\nUsing operator dot for a variety of unconventional uses, such as implementing poor-man's contracts\nUsing std::uncaught_exceptions to write a generic Transaction class\nMaking templates more accessible to the masses by using constexpr_if. We'll discuss how this is different from Concepts as well as how this can be used for Design by Introspection.\nWhere new features are neither implemented in current compilers nor implementable in terms of C++14, this talk will feature the D language as a proxy.",
-      "plays": 967,
+      "plays": 969,
       "likes": 6,
       "slugs": "c-plus-plus,languages",
       "speakers": "​Mark Isaacson"
@@ -483,7 +483,7 @@
       "title": "F# in the Real World - Yan Cui",
       "url": "/videos/171942750",
       "description": "F# is an incredibly versatile and expressive language and enables you to solve a wide array of problems succinctly and efficiently. This talk illustrates, with real-world examples, how the Gamesys social team is using F# to build the backend services that support around 1 million Daily Active Users (DAU) and 250 million daily requests across its social games on both mobile and web platforms.",
-      "plays": 401,
+      "plays": 411,
       "likes": 6,
       "slugs": "functional,cloud,concurrency,scalability",
       "speakers": "Yan Cui "
@@ -492,7 +492,7 @@
       "title": "Foolproofing your UI & UX - Jessica Engström",
       "url": "/videos/171704695",
       "description": "Can you foolproof your design?\nHow do you design your app to be noticed and feel beautiful and harmonious?\nUI & UX is commonly thought about at the last stages of developing. I say that you should incorporate this already from the beginning to save time and code.\n\nI will take you through the planning stage, how to choose what elements to use, how to polish your design and finishing off with the testing stage.",
-      "plays": 87,
+      "plays": 88,
       "likes": 2,
       "slugs": "ux,ui,testing,design",
       "speakers": "Jessica Engström"
@@ -510,7 +510,7 @@
       "title": "Functional Programming for Mobile Apps - Frank A. Krueger",
       "url": "/videos/171996394",
       "description": "Learn how to apply functional programming techniques to build interactive mobile applications.\nA lot of us are impressed by the power of F# for mining and manipulating data but have a hard time understanding how to apply that power to GUIs. This talk will demonstrate that there are indeed many advantages to using FP techniques such as immutability and data transformations to build your app. That theme will continue as a selection of modern application architectures are presented that codify these techniques. At the end of this talk, you will have heard the word \"function\" far too many times, but you will also have a powerful new tool in your toolbox.",
-      "plays": 375,
+      "plays": 390,
       "likes": 6,
       "slugs": "functional",
       "speakers": "Frank A. Krueger"
@@ -519,7 +519,7 @@
       "title": "Functional Programming for the Object Oriented - Øystein Kolsrud",
       "url": "/videos/171317258",
       "description": "Functional programming is about how to model problems, not about what programming language you use. Most modern programming languages have taken inspiration from the functional programming paradigm and have implemented features for making functional modelling easier.\nTo be able to fully leverage the power of languages such as C#, it is therefore necessary to have an understanding of functional programming as well as other paradigms such as object orientation. This presentation gives an introduction to Haskell and compares it to the features provided in C# that have been influenced by concepts from the functional world. In particular, it aims to illustrate how a functional approach to solving problems differs from an object oriented approach.\n\nThis presentation assumes no previous experience of functional programming. In fact, its intended target audience is software developers who have been working with imperative or object oriented programming, but never had the opportunity to investigate what functional programming is all about.",
-      "plays": 415,
+      "plays": 416,
       "likes": 5,
       "slugs": "functional,net,c-sharp",
       "speakers": "​Øystein Kolsrud "
@@ -528,7 +528,7 @@
       "title": "Functional web applications using F# and suave - Tomas Jansson",
       "url": "/videos/171704578",
       "description": "The web is functional, so why not write web applications in a functional language? Suave is a lightweight, non-blocking web server implemented in and for F#. To get a web application up and running you only need a couple of lines of code compared to multiple classes and tons of boiler plate code in a standard .NET web application. The building blocks in suave are really small, and making custom ones is easy. You can chain the building blocks together forming one application using one simple operator. Suave also comes with features like typed routing for better safety, sockets, basic authentication and more.\nThis talk will show you how to get started with suave on Windows or Linux and create a 100 % functional web application.",
-      "plays": 664,
+      "plays": 673,
       "likes": 8,
       "slugs": "functional,net,web,f",
       "speakers": "Tomas Jansson "
@@ -537,7 +537,7 @@
       "title": "Generic Locking in C++ -  Andrei Alexandrescu",
       "url": "/videos/171704579",
       "description": "Lock-based synchronization continues to be a dominant technique for synchronizing multithreaded programs. Better support for multiple readers/single writer locks has made it more competitive. Furthermore, C++1x STL introduces special guarantees for containers aimed at better support for the readers/writer paradigm.\nHowever, lock-based synchronization still has well understood downsides such as proneness to races and deadlocks due to its poor integration with type systems. This talk discusses folly/Synchronized, a C++ library that provides reliable encapsulated locking for generic types.",
-      "plays": 391,
+      "plays": 392,
       "likes": 5,
       "slugs": "c-plus-plus",
       "speakers": "Andrei Alexandrescu"
@@ -582,7 +582,7 @@
       "title": "Habits of highly effective JavaScript developers - Jonathan Mills",
       "url": "/videos/171319722",
       "description": "Javascript is easy to do very badly, but also fantastic when done well. In this session, Jon will walk through some JavaScript best practices to make you a more productive developer.\nFrom linting your code, to adhering to common patterns, Jon will give you practical tips to help prevent some common JavaScript troubles.",
-      "plays": 151,
+      "plays": 152,
       "likes": 1,
       "slugs": "javascript,web,business-skills,people",
       "speakers": "Jonathan Mills"
@@ -600,7 +600,7 @@
       "title": "Hacking your home – reverse engineering radio devices in your home - Karl Henrik Nilsson",
       "url": "/videos/172111824",
       "description": "The internet of things is built around sensors, without sensors we don’t know what goes on and we can’t tell our software to make rational choices based on the analytics of this data, but building our own sensors are not always practical or cost efficient when there are numerous of the shelf solution that could do the same thing if we could only access their data!\nThis talk demonstrates how to reverse engineer standard sensor wireless protocols from weather stations, movement sensors and more to use for your own designs!",
-      "plays": 521,
+      "plays": 522,
       "likes": 0,
       "slugs": "iot,embedded,c",
       "speakers": "Karl-Henrik Nilsson"
@@ -609,7 +609,7 @@
       "title": "Have I Got NDC Oslo for You!",
       "url": "/videos/171704689",
       "description": "With: Todd Gardner, Mark Rendle, Rob Conery, Carl Franklin, ​​Richard Campbell ,David Fowler, Dylan Beattie & Damian Edwards\nThe comedy quiz show about software, programming, the internet and technology. Join hosts Mark Rendle and Dylan Beattie, team captains and .NET Rocks stars Carl Franklin and Rich Campbell, and their guests for an hour of technology, trivia, bizarre programming facts, missing words and Twitter bots. You'll laugh, you'll cry, it'll change your life - don't miss it!\"",
-      "plays": 210,
+      "plays": 212,
       "likes": 2,
       "slugs": "--no match--",
       "speakers": "--no match--"
@@ -618,7 +618,7 @@
       "title": "Head to Head #2: K. Scott Allen and Jimmy Bogard",
       "url": "/videos/171927601",
       "description": "We’re back with another Stack Overflow Question and Answer session - this time with K. Scott Allen going up against Headspring’s Jimmy Bogard. In this session, Rob Conery will select five questions from Stack Overflow pertaining to .NET and will send these questions to Scott and Jimmy a week before the talk.\nThey won’t be allowed to see the answers online, nor can they see *each other’s answers* - they’re only allowed to reveal their answer at the talk. Will they be different? The same? You’ll find out...",
-      "plays": 175,
+      "plays": 178,
       "likes": 3,
       "slugs": "net,fun",
       "speakers": "Rob Conery;Scott Allen;Jimmy Bogard"
@@ -636,7 +636,7 @@
       "title": "How to become Agile without Scrum or Kanban - Kjell Ljøstad",
       "url": "/videos/171319731",
       "description": "This is NOT a talk about Scrum or Kanban. The Agile Manifesto is all about communication, interaction, collaboration and building trust. Yet when most companies decide to go agile, they focus on implementing some rigid process that they don't yet fully understand, and they have a hard time getting it to work. We go back to the core of the Agile ideology. We will talk about how you can use relational skills to improve communication, get team members engaged and build trust.\nAgile initiatives tend to become a matter limited to the developers, and it is often hard to engage other parts of the organisation?. In this workshop you will learn what make teams work efficiently and the basics of how you can get the whole organisation to cooperate better. By building relations and trust between people, working on how they communicate and how they interact with each other, you will build the foundation of a truly agile organization.\n\nTakeaways:\n\nMost of us have experiences from both good and bad teams. It is often hard to point out why things turned out the way they did. After this talk you will know what make teams more efficient and increase your awareness of the things that make your team dysfunctional.",
-      "plays": 1145,
+      "plays": 1146,
       "likes": 2,
       "slugs": "agile",
       "speakers": "Kjell Ljøstad"
@@ -654,7 +654,7 @@
       "title": "I Think I Know What You’re Talking About, But I’m Not Sure - Jennifer Wong",
       "url": "/videos/171926351",
       "description": "Recursion, instantiate, lexical scope - where do these words come from?! If you’ve ever been in conversation with other developers and thought, “I think I know what they’re talking about, but I’m not sure...”, you’re not alone. Let’s delve into the weird and wonderful parlance that computer scientists and developers have created for themselves. Whether the words are borrowed or just plain made up, I’ll uncover how they made their way into the vocabulary of the modern programmer.\nIn this session, you’ll learn everything from etymology to history to broader definitions, all of which can help you understand what the heck that person’s rambling about. So, the next time you’re in conversation, you’llbe the one discussing dependency injection versus inversion of control with ease.",
-      "plays": 164,
+      "plays": 165,
       "likes": 1,
       "slugs": "fun,javascript,web,languages,people",
       "speakers": "Jennifer Wong"
@@ -708,7 +708,7 @@
       "title": "Is your code ready for .NET Core? - Mark Rendle",
       "url": "/videos/171704576",
       "description": ".NET Core is coming, and it's like .NET, but different. Whether you're starting a new application, or thinking of migrating an existing ASP.NET MVC application to ASP.NET Core, you need to know what's new, what's different and what's gone forever. Learn how to get your existing code ready to migrate before pushing the button.\nUnderstand the differences between Entity Frameworks, MVCs and Web APIs. And find out all about the CLI tooling for .NET Core, because Real Programmers Use The Command Line.",
-      "plays": 282,
+      "plays": 285,
       "likes": 6,
       "slugs": "architecture,net,asp-net,c-sharp,microsoft,web",
       "speakers": "Mark Rendle"
@@ -717,7 +717,7 @@
       "title": "Keynote NDC Oslo 2016: Yesterday’s Technology is Dead, Today’s is on Life Support - Troy Hunt",
       "url": "/videos/171897425",
       "description": "Isn’t technology just awesome? Well we think it’s awesome and then a year or two later it’s old junk that for most of us, serves no further useful purposes. The technology of yesterday is rapidly becoming unrecognisable not just in the sense that it’s so different to what we use today, but a whole generation has literally never even seen a cassette tape or a rotary dial phone before.\nLooked at the other way, our present day technology was inconceivable such a short time ago. What we take for granted today was little more than a pipedream yesterday yet our lives would be unrecognisable without them. Our children could not conceive of a time without mobile phones or internet; there are adults today that have not known this time!\n\nThis talk delves into how technology is changing around us from the essential to the absurd. Technology we put in our homes, technology we carry, technology we insert inside ourselves and all of it headed for rapid obsoletion as the next inconceivable wave takes hold. As much as yesterday’s technology is dead, today’s is on life support and we’d better get ready for the next big thing.",
-      "plays": 1683,
+      "plays": 1691,
       "likes": 9,
       "slugs": "security,fun",
       "speakers": "Troy Hunt"
@@ -726,7 +726,7 @@
       "title": "LFE: a real lisp in the Erlang ecosystem - Robert Virding",
       "url": "/videos/171317251",
       "description": "Why yet another lisp? This talk will look at some of the basic properties of the Erlang VM and OTP and how they affect implementing languages on it.\nIt will show what makes existings lisps, even Clojure, a bad fit. LFE (Lisp Flvaoured Erlang) has been designed to run efficiently on the Erlang VM and at the same time be a \"real lisp\" providing Lisp's good bits. We will describe the language and how it uses the properties of the system to run efficiently and interact seamlessly with other languages running in the Erlang environment.",
-      "plays": 158,
+      "plays": 163,
       "likes": 4,
       "slugs": "",
       "speakers": "​Robert Virding"
@@ -735,7 +735,7 @@
       "title": "Learn the Lingo: Design Patterns - Jeremy Clark",
       "url": "/videos/171319724",
       "description": "You already use Design Patterns but probably don't know it. Observer, Facade, Iterator, Proxy - Learning the lingo allows us to better communicate your ideas with other developers.\nDesign patterns aren't just for architects; they're for us everyday developers, too. We'll take a look at several Gang of Four patterns that we regularly use without realizing it. Don't know who the Gang of Four is? Join us to find out.",
-      "plays": 113,
+      "plays": 114,
       "likes": 0,
       "slugs": "architecture,business-skills,design",
       "speakers": "​Jeremy Clark "
@@ -744,7 +744,7 @@
       "title": "Lessons from a quarter of a billion breached records - Troy Hunt",
       "url": "/videos/171704683",
       "description": "What motivates attackers to dump data publicly? How is it sold, traded and redistributed and for that matter, what even causes adversaries to go public with it? These are all questions I’ve dealt with over the years running the ethical data breach search service “Have I been pwned”. It’s also given me the opportunity to interact with everyone from the attackers breaching these systems to the impacted organisations to law enforcement agencies.\nIn this talk, I’ll share the lessons learned from working with more than a quarter of a billion publicly dumped records as a result of major data breaches. The talk sheds light on how this class of adversary operates and the weaknesses within organisations they continually manage to exploit. It’s a unique inside look at security from a very real world and very actionable perspective.",
-      "plays": 333,
+      "plays": 336,
       "likes": 4,
       "slugs": "security",
       "speakers": "Troy Hunt"
@@ -798,7 +798,7 @@
       "title": "Logging makes perfect - real-world monitoring and visualizations with Riemann and friends - Itamar Syn-Hershko",
       "url": "/videos/171704643",
       "description": "How to keep a real-time, low-latency and high-stakes system up and running and well-monitored? how to investigate failure cases as they happen? and how to even know something is wrong before it's too late? With logs of course. Lots of them. And then some cool stack to do stuff with it.Forter is a company with a Decision-as-a-Service product that deals with many e-commerce transactions in real time and answers a simple but hard question: \"is this a fraud attempt or not?\". And if we were wrong, we pay.\nIn this talk I will show how we are using various technologies to power our service and keep it high-available and well under control. Among the technologies I will discuss are Apache Storm, Node.js, Riemann (state machines in Clojure, yay!), collectd, D3.js and of course the ELK stack (and beats!). Some integrations which will be mentioned include PagerDuty, Slack, Jenkings and GitHub.",
-      "plays": 68,
+      "plays": 80,
       "likes": 0,
       "slugs": "monitoring,devops,scalability",
       "speakers": "Itamar Syn-Hershko"
@@ -807,7 +807,7 @@
       "title": "Making Komplett big by going small - Pavneet Singh Saund &Tomas Ekeli",
       "url": "/videos/171317265",
       "description": "How we're scaling the architecture, ecommerce platform and our business in one of Europe’s largest e-commerce providers & changing with the business as we go.\nGrowth problems are good, it means your business is doing well. How can we build an organisation and architecture that gives us room to grow and change, while still keeping our customers happy? At Komplett Group we are going through growth as an organisation in size and scope.\n\nIn this talk we will dive into how the development team at Komplett are breaking up a 10 year old platform. By making every mistake in the book we’re building a platform for our future!\n\nWe’d like to share our experiences in scaling the architecture and development team. We are breaking a monolith into micro-services to match change within our organization. At the same time we have scaled our web development team from 5 to 50 , and we're not stopping here!",
-      "plays": 833,
+      "plays": 834,
       "likes": 6,
       "slugs": "architecture,agile,microservices",
       "speakers": "Tomas Ekeli;Pavneet Singh Saund"
@@ -816,7 +816,7 @@
       "title": "MicroMonolith - Top anti-patterns of distributed systems - Michal Franc",
       "url": "/videos/171704583",
       "description": "Microservices are becoming more and more popular. Due to this a lot of companies will start adopting this principle just like they did with TDD and all the other trends. As with all the practices and approaches they are not silver bullets and there are mistakes to be done.\nIn this talk we will talk about those 'anti-patterns' that might cause you pain and problems.Come and learn so that you will be able to avoid common micro services pitfalls and anti-patterns.",
-      "plays": 267,
+      "plays": 270,
       "likes": 5,
       "slugs": "architecture,microservices",
       "speakers": "Michal Franc"
@@ -843,7 +843,7 @@
       "title": "My Favorite Azure Security Features - and why you should care -​Michele Bustamante",
       "url": "/videos/172113491",
       "description": "Companies tend to worry more about security up front when they move toward cloud-enabled solutions. Interestingly, platforms such as Azure provide a secure environment beyond what self-managed co-location operations can achieve without significant effort - with a plethora of platform features that help you secure your solutions end to end.\nIn this latest and greatest session Michele will discuss the mini-avalanche that comprises Azure security across features looking at recommended practices for securing Azure solutions end to end and discuss the tangential benefits of moving to Azure and how it can help you with checking the boxes on those pesky security surveys. Topics will include Azure Security Center, Key Vault, data encryption, data masking, Azure AD, secure network topologies and solution design, compliance and more.",
-      "plays": 108,
+      "plays": 111,
       "likes": 2,
       "slugs": "security,cloud,architecture",
       "speakers": "​Michele Bustamante "
@@ -852,7 +852,7 @@
       "title": "NDC Oslo 2016: Conference kick off!",
       "url": "/videos/169881262",
       "description": "NDC Oslo kicked off in Oslo Spektrum today with 2000 attendees. Check out why our speaker Jeremy Clark thinks it's important to be a social developer. ‪",
-      "plays": 361,
+      "plays": 362,
       "likes": 5,
       "slugs": "--no match--",
       "speakers": "--no match--"
@@ -888,7 +888,7 @@
       "title": "New Executors for C++ - Detlef Vollmann",
       "url": "/videos/171704621",
       "description": "Executors (or schedulers) will be a base building block in C++ for asynchronous and parallel work. Executors for asynchronisity are somehow similar to allocators for containers: They are a very important implementation aspect, but for most people they are hidden behind the scene.\nThe C++ committee faces three more or less competing proposals for executors and the hope is to have an idea how to align them into a single direction by the time of NDC Oslo 2016. Also new in the game are coroutines, which should play together with executors smoothly. This talk will present the differnces between the proposals, their common underlying mechanisms and what glue might combine the executor proposals and the coroutine mechanisms.",
-      "plays": 160,
+      "plays": 161,
       "likes": 3,
       "slugs": "c-plus-plus",
       "speakers": "Detlef Vollmann"
@@ -906,7 +906,7 @@
       "title": "Open data in intelligent transport systems - Trond Smaavik & Jørgen Abrahamsen",
       "url": "/videos/171927599",
       "description": "ITS, intelligent transport systems, is about making transport more efficient, secure and environment friendly. Data from sensors along the roads, combined with data from cars and the world around it, makes it possible for you to build new and exciting services. There are a lot of datasets with such data freely available for you to use.\nThe Norwegian Public Road Administration - NPRA (Statens vegvesen) is one of the largest providers of open location based ITS data. We will show you how you through APIs can get access to data about live traffic reports, travel time, road toll, speed limits, web cameras and much more.\n\nNorwegian Public Roads Administration has recently launched a new web based map solution. We will also take a look at this solution, the experiences and challenges developing it, and what data sets that are used in it.",
-      "plays": 38,
+      "plays": 39,
       "likes": 0,
       "slugs": "database,iot,javascript,web",
       "speakers": "Jørgen Abrahamsen;Trond Smaavik"
@@ -915,7 +915,7 @@
       "title": "Optimizing the Programmer: Get More Done Faster - Dave Rael",
       "url": "/videos/171704675",
       "description": "Software developers have a reputation for being unlike other humans. We eat, drink, and sleep code and aren't interested in much else and aren't very good at interacting with others of our species. This may be true of a few programmers, but for most of us, it's a misguided stereotype. We're human just like everyone else. Though geeking out about a challenging technical problem gives us a charge and is an enjoyable experience, we want more from life (though we want the tech, too).\nFurther, there's a diminishing return on each hour you spend writing software each week to the point that working more can be counterproductive. Dave Rael is passionate about getting more done in less time. Come and join Dave as he takes you on a journey of how to more effectively use your chosen tools, like Visual Studio, Windows, and Powershell and how to manage your tasks so you can get your job done and live your life. Bring your laptop to play along.",
-      "plays": 111,
+      "plays": 113,
       "likes": 3,
       "slugs": "business-skills,net,tools",
       "speakers": "Dave Rael"
@@ -933,7 +933,7 @@
       "title": "Parallelism vs. Concurrency in C++ - Detlef Vollmann",
       "url": "/videos/172009498",
       "description": "Parallelism is important to use modern multi-core hardware architectures.\nConcurrency allows for programs to do more than one thing (seemingly) at once.\nBoth concepts are important for modern software systems, and often they play well together. But sometimes the compete with each other.\nThis talk will present the underlying commonalities and fundamental differences of concurrency and parallelism. It explores the different mechanism in current and future C++ and how to use them to implement software systems that exploit modern hardware and gives a responsive user experience.",
-      "plays": 427,
+      "plays": 429,
       "likes": 6,
       "slugs": "c-plus-plus,concurrency",
       "speakers": "Detlef Vollmann"
@@ -942,7 +942,7 @@
       "title": "Performance Optimizations in the Wild - Oren Eini",
       "url": "/videos/171927596",
       "description": "In this session, we'll talk about a recent performance iteration in RavenDB, discuss the things that were found and how we fixed them.\nExpect a discussion on low-level branch predictions and memory layout, figuring out the best algorithm for the job and in general, making this much faster.",
-      "plays": 242,
+      "plays": 245,
       "likes": 3,
       "slugs": "net,database,concurrency,scalability",
       "speakers": "Oren Eini"
@@ -951,7 +951,7 @@
       "title": "Performance is not an Option- Building services with GRPC and Cassandra -  Dave Bechberger",
       "url": "/videos/171704575",
       "description": "In today's development ecosystem building a service oriented architecture based on a micro services is common practice. With the rise of Big Data and Internet of Things applications making these services highly performant services is no longer an option. In order to accomplish the scalability and performance requirements that customers expect we are required to start thinking differently about how we architect and build these applications in order to meet those demands.\nThis session will demonstrate a method for creating a highly performant service based application using Google’s GRPC and Apache Cassandra in .NET. We will show how you can combine gRPC to minimize communication overhead while leveraging Cassandra to optimize storage of time series data. We will explore these concepts by creating an Internet of Things (IoT) application to demonstrate how you can effectively meet the performance and scalability challenges posed by these new breeds of applications.",
-      "plays": 39,
+      "plays": 41,
       "likes": 1,
       "slugs": "iot,big-data,nosql,cross-platform",
       "speakers": "Dave Bechberger"
@@ -969,7 +969,7 @@
       "title": "Phoenix a web framework for the new web - José Valim",
       "url": "/videos/172009502",
       "description": "Web developers have typically been presented with a choice between performance or a productive development environment. \nWith Phoenix, developers can have both while enjoying a wonderful set of abstractions for working with thenew web, making streaming data to browsers, native mobile application or embedded clients a breeze. Finally, we will see how Phoenix leverages the Elixir language and the Erlang VM for writing maintainable and scalable code.",
-      "plays": 209,
+      "plays": 216,
       "likes": 4,
       "slugs": "functional,web,scalability,concurrency",
       "speakers": "José Valim"
@@ -1005,7 +1005,7 @@
       "title": "R for the .NET Developer - Jamie Dixon",
       "url": "/videos/171950826",
       "description": "R is a programming language that has exploded in popularity over the last several years to where it has become the lingua franca of the data science world. Recently, Microsoft announced that it purchased Revolution Analytics, a leading R company, and is introducing support for R in Sql Server 2016. In this session, we will take an introductory look at R from a .NET perspective. Topics we will cover are:",
-      "plays": 131,
+      "plays": 132,
       "likes": 3,
       "slugs": "machine-learning,net",
       "speakers": "Jamie Dixon"
@@ -1032,7 +1032,7 @@
       "title": "Real-Time Web Apps & .NET: What are your options? - Phil Leggetter",
       "url": "/videos/171319753",
       "description": "Real-time is becoming the life blood of applications. Facebook, Twitter, Uber, Google Docs and many more apps have increased user expectation to demand real-time features. Features such as Notifications, activity streams, real-time data visualisations, chat or collaborative experiences instantly keep users up to date and enable them to work much more effectively. So, how do you build these sorts of features with .NET?\nThis talk will cover the benefits of moving away from polling to push, the options you have with .NET web application to do this and when adding real-time features to your apps, and the pros and cons of each to help choose which is the best solution for you.",
-      "plays": 240,
+      "plays": 242,
       "likes": 2,
       "slugs": "web,net,javascript,c-sharp,architecture,asp-net,scalability",
       "speakers": "Phil Leggetter"
@@ -1041,7 +1041,7 @@
       "title": "Rearchitect your code towards async/await - Daniel Marbach",
       "url": "/videos/172111826",
       "description": "The die is cast. Your business- and infrastructure logic will need to move gradually to asynchronous code. Changing large code-bases to async/await seems like a monumental effort. It doesn't have to be! In this talk, I show you a four-phased approach to evolving your code-base towards async/wait. In the identification phase, we classify the components which would benefit from async/await. In the exploration phase, we discover potential road blockers which might hinder the async/await adoption.\nIn the obstacle phase, we learn to redesign parts of the code to remove the previously identified road blockers. In the bring-it-together phase, we gradually move the components which benefit the most from async/await to a full asynchronous API. Small steps. No Big Bang. Join me on a journey towards async/await and learn to leverage the power of asynchronous code to embrace the cloud-first APIs of today and tomorrow.",
-      "plays": 269,
+      "plays": 270,
       "likes": 4,
       "slugs": "net,design,architecture",
       "speakers": "Daniel Marbach"
@@ -1086,7 +1086,7 @@
       "title": "Sequential, Concurrent and Parallel Programming - Joe Armstrong",
       "url": "/videos/171704604",
       "description": "Programming languages can be classified according to two different criteria.\nFirstly we can classify languages according to the metaphor that they obey, for example, we can describe languages as being Procedural,Imperative, Declarative, Functional, Object Oriented and so on.\nSecondly we can classify languages according to their behavioral characteristics asking is they are concurrent, parallel, fault-tolerant, or real time and so on.\nIn this talk I'll talk about the different programming metaphors and the behavioral characteristics of commonly used languages and operating systems.\n\nI'll hope to show how use of an inappropriate metaphor can make simple problems embarrassingly difficult, and how hard problems become trivial by correctly choosing the metaphor and the characteristics of the languages.",
-      "plays": 149,
+      "plays": 150,
       "likes": 6,
       "slugs": "concurrency,languages,functional",
       "speakers": "Joe Armstrong"
@@ -1104,7 +1104,7 @@
       "title": "Simplifying Thread Safety - Andrew Clymer",
       "url": "/videos/171704620",
       "description": "When developing multi­­threaded, we need to consider thread safety when sharing state across multiple threads. These techniques require the developer to understand possible race conditions and select the cheapest synchronisation technique to satisfy thread safety.\nHowever, while this process is essential, it can often become tedious and can make even simple algorithms seem overly complex and hard to maintain. In this module, we will explore the use of framework providedconcurrent data structures shipped with the Task Parallel Library that will simplify multi­threaded code while maximising concurrency and efficiency.",
-      "plays": 49,
+      "plays": 52,
       "likes": 1,
       "slugs": "concurrency",
       "speakers": "Andrew Clymer"
@@ -1167,7 +1167,7 @@
       "title": "Talk devops please: A .NET developers guide to 3rd party tools for better DevOps - Adam Cogan",
       "url": "/videos/171996391",
       "description": "DevOps is all about bringing the developers and operations together so that they are working as a team in the best interests of the product rather than themselves. Let's talk about the main goals you want to achieve by implementing good DevOps.\nMicrosoft is embracing the winning tools in the development space and is building them into the next version of Visual Studio. Things are looking better with the open sourcing of .NET and ASP.NET along with the release of the free Visual Studio Community Edition but you still need 3rd party tools for great devops. Come see Adam give you a tour and expand your development horizons that will include 15 tools starting with Azure Deployment Slots, Octopus, Testing in Production and more.",
-      "plays": 157,
+      "plays": 158,
       "likes": 3,
       "slugs": "devops,microsoft,web,continuous-delivery,testing,cloud,tools",
       "speakers": "Adam Cogan"
@@ -1176,7 +1176,7 @@
       "title": "The C++ Type System is your Friend - Hubert Matthews",
       "url": "/videos/171704639",
       "description": "C++ programmers want fast and small code that is safe, generic and reusable. This talk shows how using the C++ type system and templates can achieve this using simple lightweight abstractions. Type-rich APIs help avoid errors whilst improving readability, and template techniques provide reusable libraries for operators and their relationships with zero run-time overhead.",
-      "plays": 200,
+      "plays": 203,
       "likes": 2,
       "slugs": "c-plus-plus",
       "speakers": "Hubert Matthews"
@@ -1185,7 +1185,7 @@
       "title": "The C++ and CLR Memory Models - Sasha Goldshtein",
       "url": "/videos/171942746",
       "description": "The words \"memory model\" are known to induce fear, sleep, or even coma among the best of developers. Truly understanding the intricate relationship between the compiler, the processor, and the memory system is necessary if you plan to design low-level synchronization, write lock-free code, or even debug race conditions that are already present in your code.\nIn this deep session we will climb down into the abyss of the CLR and C++ memory models, affectionately known as SC-DRF. We will talk about volatile and atomic variables, see multiple examples of compiler- and processor-induced reorderings, and see how a lot of code we assume to be correct in fact happens to be totally broken on non-Intel processors.",
-      "plays": 174,
+      "plays": 175,
       "likes": 3,
       "slugs": "c-plus-plus,net,concurrency",
       "speakers": "Sasha Goldshtein"
@@ -1194,7 +1194,7 @@
       "title": "The Continuing Future of C++ Concurrency - Anthony Williams",
       "url": "/videos/171938409",
       "description": "An overview at the additions to the Standard C++ concurrency libraries in the Technical Specifications for Concurrency and Parallelism in C++and C++17, including: continuations, executors, and parallel algorithms,as well as std::shared_mutex from C++14.",
-      "plays": 289,
+      "plays": 290,
       "likes": 2,
       "slugs": "c-plus-plus,concurrency",
       "speakers": "Anthony Williams"
@@ -1203,7 +1203,7 @@
       "title": "The F#orce Awakens -  Evelina Gabasova",
       "url": "/videos/171704582",
       "description": "Let's dive together into the the world of Star Wars! We'll use the force of F# and R to process publicly available datasets relating to the Star Wars movies to find out who's the most important character in the stories and why were the prequels so unsuccessful.\nOn the way, you'll see why F# is a great language for data science - from preprocessing the data to visualizing them - and you'll also learn how you can use similar data processing pipelines to get interesting insights from your own data.",
-      "plays": 285,
+      "plays": 289,
       "likes": 8,
       "slugs": "functional,fun,f,machine-learning",
       "speakers": "Evelina Gabasova "
@@ -1212,7 +1212,7 @@
       "title": "The Things Git Can Do (that none of the GUIs have ever told you about) - Enrico Campidoglio",
       "url": "/videos/171317261",
       "description": "It took less than a decade for Git to become the de-facto standard in version control systems. Most people who use it praise its speed. Some appreciate its flexibility. Everyone criticizes its unwarranted complexity. In order to make Git more approachable, a number of GUIs have been developed on top of it. While many of them have contributed to its widespread popularity, they all share a common design flaw: sacrificing Git's true potential on the altar of user-friendliness.\nRegardless of how many features these tools may have, no graphical metaphor can effectively represent what was conceived for the command line. In this session I'll demonstrate exactly what Git can do for you that none of the GUI tools ever tells you about. Moving chunks of commits between branches in a single command, custom history visualizations and data recovery are only some of the things I'll demonstrate, all 100% from the command line.\n\nIf you're using Git through a GUI, you're missing out. Let me show you why.",
-      "plays": 284,
+      "plays": 290,
       "likes": 7,
       "slugs": "tools",
       "speakers": "Enrico Campidoglio"
@@ -1221,7 +1221,7 @@
       "title": "The Vector in Your CPU: Exploiting SIMD for Superscalar Performance - Sasha Goldshtein",
       "url": "/videos/171704658",
       "description": "For more than ten years modern processors have been equipped with vector registers and instructions that can make certain algorithms four to eight times faster. In the past, it took special language intrinsics or intimate knowledge of assembly language to use them. In this talk you will learn how to take advantage of vector instructions in .NET applications using the newly released System.Numerics.Vectors library and the RyuJIT compiler that's part of .NET 4.6.\nWe will explore a variety of algorithms that can benefit from vectorization, ranging from simple 4-8x-wins like matrix multiplication and dot product, all the way to algorithms that must be refactored to benefit from vectorization because they contain inter-iteration dependencies or complex control flow.",
-      "plays": 60,
+      "plays": 61,
       "likes": 3,
       "slugs": "net",
       "speakers": "Sasha Goldshtein"
@@ -1230,7 +1230,7 @@
       "title": "There Still Be Dragons in the New JavaScript  - Scott Allen",
       "url": "/videos/172111843",
       "description": "After two years of using ECMAScript 2015 features in live applications, I’ve come to recognize a few features that developers can find confusing and misuse. There are also features with the potential to hurt the maintainability of the code for other developers, and degrade the performance of the application at runtime.\nIn this session we’ll look at features like string templates, arrow functions, promises and modules in a different light.",
-      "plays": 199,
+      "plays": 201,
       "likes": 3,
       "slugs": "web,javascript",
       "speakers": "Scott Allen"
@@ -1239,7 +1239,7 @@
       "title": "There's treasure everywhere -  Andrei Alexandrescu",
       "url": "/videos/171927600",
       "description": "To some extent, optimization is to our industry what sexual intercourse is to teenagers. There's a veil of awesomeness surrounding it; everybody thinks it's cool, has an opinion about it, and talks about it a great deal; yet in spite of ample folklore, few get to do it meaningfully or at all.\nImproving the ordeals of teenage years being too daunting a project, the next best thing to do is teaching how to write fast code. So Andrei setout to write a book about it.\n\nThis talk is a sneak preview into some of the book's material.",
-      "plays": 1636,
+      "plays": 1646,
       "likes": 9,
       "slugs": "craftsmanship,c-plus-plus",
       "speakers": "Andrei Alexandrescu"
@@ -1248,7 +1248,7 @@
       "title": "Understanding parser combinators: a deep dive - Scott Wlaschin",
       "url": "/videos/171704565",
       "description": "Traditionally, writing parsers has been hard, involving arcane tools like Lex and Yacc.An alternative approach is to write a parser in your favourite programming language, using a \"parser combinator\" library and concepts no more complicated than regular expressions. In this talk, we'll do a deep dive into parser combinators.\nWe'll build a parser combinator library from scratch in F# using functional programming techniques, and then use it to implement a full featured JSON parser.",
-      "plays": 437,
+      "plays": 444,
       "likes": 9,
       "slugs": "functional,net,f",
       "speakers": "Scott Wlaschin"
@@ -1257,7 +1257,7 @@
       "title": "Unit testing patterns for concurrent code - Dror Helper",
       "url": "/videos/171317257",
       "description": "Getting started with unit testing is not hard, the only problem is that most programs are more than a simple calculator with two parameters and a returns value that is easy to verify.\nWriting unit tests for multi-threaded code is harder still.\nOver the years I discovered useful patterns that helped me to test multi-threaded and asynchronous code and enabled the creation of deterministic, simple and robust unit tests.\n\nCome learn how to test code that uses concurrency and parallelism – so that the excuses of not writing unit tests for such code would become as obsolete as a single core processors.",
-      "plays": 59,
+      "plays": 60,
       "likes": 2,
       "slugs": "testing,concurrency",
       "speakers": "Dror Helper"
@@ -1266,7 +1266,7 @@
       "title": "Universal web with npm, React and Redux using WebPack - Jake Ginnivan",
       "url": "/videos/171996395",
       "description": "This is not a buzzword talk. Together we will build a simple universal web application (does an initial server side render, then becomes a client side JS app) to see how you can leverage WebPack with React and Redux to completely change your view on what web development can be!\nIf you have been wondering what everyone is on about with any of these tools you must attend this session. Based on his experience using these tools in production Jake will share what building a universal web application which can be rendered initially on the server, then support time travel and hot reloading on the client looks like.\n\nThese libraries and tools are not the only ones that can give you this amazing experience though, we will finish up with your options and when to use each of these tools.",
-      "plays": 134,
+      "plays": 137,
       "likes": 2,
       "slugs": "javascript,web,tools",
       "speakers": "Jake Ginnivan"
@@ -1284,7 +1284,7 @@
       "title": "Using the C++ STL Without Dynamic Memory - Dan Saks",
       "url": "/videos/171704624",
       "description": "Some embedded systems have constraints that preclude using dynamically allocated memory. Some industry guidelines require safety-critical systems to avoid dynamic memory management. Many embedded developers seem to have the misconception that you can't use the C++ Standard Template Library (STL) without also using dynamic memory allocation.\nThis isn't true. Granted, some parts of the STL pretty much demand dynamic memory. However, you can use other parts very effectively with only statically and automatically allocated memory. This session explains which parts of the STL you can use without dynamic memory and how those parts can be surprisingly useful. It also presents techniques you can use to automatically detect when your program inadvertently uses dynamic allocation.",
-      "plays": 269,
+      "plays": 272,
       "likes": 2,
       "slugs": "c-plus-plus,embedded",
       "speakers": "Dan Saks"
@@ -1302,7 +1302,7 @@
       "title": "We Replaced a Multi-Application Home-Grown Authentication System - Ken Dale",
       "url": "/videos/171704608",
       "description": "",
-      "plays": 54,
+      "plays": 57,
       "likes": 1,
       "slugs": "security,net,c-sharp,web",
       "speakers": "Ken Dale"
@@ -1347,7 +1347,7 @@
       "title": "What every Node.js developer needs to know about Elixir - Bryan Hunter",
       "url": "/videos/171068992",
       "description": "Node with its sweet-spot of quickly standing up back-ends has caught fire in dev shops around the world. Depending on your business case, that fire can yield a high-fiving “we did it!” celebration, or a charred project timeline with scorched, haggard developers. When is Node OK? When is it dangerous? What’s the alternative?\nMany seasoned Node developers are discovering Elixir makes a great lifeline when Node turns creepy. They're escaping to a polyglot approach: JavaScript in the browser, Elixir on the server. OK… but why Elixir? Answer: Elixir is approachable and productive like Node, but it’s much more versatile and safe than Node.\n\nElixir is an expressive functional programming language that is 100% \"good parts” borrowed from Erlang, Ruby, Clojure, Python, F#, and Node.js. Elixir delivers familiar (modern) tooling, developer joy, simplified distribution, massive concurrency, and carrier grade fault-tolerance.\n\nCurious? Good! Come join the fun!",
-      "plays": 1147,
+      "plays": 1150,
       "likes": 19,
       "slugs": "functional,concurrency,javascript,scalability,fun,languages",
       "speakers": "Bryan Hunter"
@@ -1356,7 +1356,7 @@
       "title": "What happens when…? - Tatham Oddie",
       "url": "/videos/171317264",
       "description": "Starting from an innocent question - what happens when you type google.com into a browser? - we'll explore how complex our field of computing has become. It'll be a ride through acronym soup and rarely seen debugging experiences, as we peel back layer upon layer of magic.\nYou'll leave this talk with a reinvigorated passion for complexity and problem solving. Or, you'll want to rage quit and take up horticulture.",
-      "plays": 74,
+      "plays": 90,
       "likes": 2,
       "slugs": "web,devops,tools",
       "speakers": "Tatham Oddie "
@@ -1374,7 +1374,7 @@
       "title": "Where did you find that? - Niall Merrigan",
       "url": "/videos/172009500",
       "description": "The internet is not just full of cats. There is useful stuff on there too, like dogs, Netflix and internet connected fridges.\nThis talk shows you how to use some of the most common tools that you probably use everyday in another way. Think life hacks, with more focus on the hacking. We will go through how to use Google to evaluate your security, find out what the internet really knows about your network and attempt to answer the question, why would someone want to connect a toilet to the internet?",
-      "plays": 167,
+      "plays": 168,
       "likes": 4,
       "slugs": "security,fun",
       "speakers": "Niall Merrigan"
@@ -1392,7 +1392,7 @@
       "title": "Why cross-browser PTSD shouldn’t stop client and server side innovation - Chris Heilmann",
       "url": "/videos/171704670",
       "description": "Cross-browser issues are seemingly the bane of our existence as developers of the web. Many hard-core developers wouldn’t even touch CSS, and even more rely on libraries to even the playing field and let us worry about the logic of our code instead of differences across browsers. This leads to bloated and hard to maintain products that slow down the web. Even worse, simply hearing that supporting various runtimes gives us the shakes as we remember the browser wars (or we pretend we do to have a quick way out).\nIn this talk Chris Heilmann will show that having two JavaScript engines for node is not extra work for us, but is a great opportunity to write better code. And that cross-browser in 2016 is not as tough as you think, if you start embracing capabilities over runtime detection.",
-      "plays": 16,
+      "plays": 17,
       "likes": 1,
       "slugs": "web,javascript,tools",
       "speakers": "​Chris Heilmann "
@@ -1428,7 +1428,7 @@
       "title": "You Don't Know Node.js - Azat Mardan",
       "url": "/videos/171317250",
       "description": "This talk will give a sneak peak of the most interesting and powerful Node.js features. Node.js is quickly capturing the programming world not just in web, but in IoT, drones, robots and embedded systems. Do you use Node tool such as Grunt, Gulp or Webpack to built your front-end assets. Do you use an HTTP server built with Express? Do you generate code using Yeoman? But do you really know Node? If you are a geek like most of us, then you’d appreciate this presentation. You’ll become more confident in the internals of Node.js and understand how certain things work. Node.js is fast and scalable web-oriented non-blocking I/O built on top of Google Chrome V8 engine. Almost every web developer uses Node or Node-based tools to some extent. However, Node has some really powerful features worth knowing.\nThis talk dives deep into the core mechanisms of the Node.js platform and some of its most interesting features such as:\n\nEvent Loop: Brush-up on the core concept which enables the non-blocking I/O\nStreams and buffers: Effective way to work with data\nProcess and global: How to access more info\nEvent emitters: Crash course in the event-based pattern\nClusters: Fork processes like a pro\nAsyncWrap, Domain and uncaughtException: Handling async errors\nC++ addons: Contributing to the core and writing your own C++ addons",
-      "plays": 76,
+      "plays": 77,
       "likes": 1,
       "slugs": "javascript,web,cloud,scalability,architecture,tools,cross-platform,concurrency",
       "speakers": "Azat Mardan"
@@ -1437,7 +1437,7 @@
       "title": "You don’t have to shave that yak - Eirik Langholm Vullum",
       "url": "/videos/171950823",
       "description": "The amount of tools, preprocessors, bundlers, transpilers (*add arbitrary made up names for abstract processes here*) and resulting boilerplates has exploded the last few years, making front-end development seem really intimidating to both new and seasoned developers. You seemingly have to spend days (weeks..) just to get a decent front-end project up and running.\nOr do you..?\nLet’s demystify all of these scary words and look at how you can avoid most of them and do «just-in-time» development - introducing these tools only when they are needed and actually provide value to your project.",
-      "plays": 72,
+      "plays": 73,
       "likes": 2,
       "slugs": "javascript,web,tools",
       "speakers": "Eirik Langholm Vullum"
