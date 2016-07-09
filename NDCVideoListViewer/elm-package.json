@@ -1,12 +1,12 @@
 {
     "version": "1.0.1",
-    "summary": "Material Design Lite port to Elm",
-    "repository": "https://github.com/debois/elm-mdl.git",
+    "summary": "NDC Oslo 2016 Video listing",
+    "repository": "https://github.com/hakonrossebo/ndc-oslo2016-video-listing.git",
     "license": "BSD3",
     "source-directories": [
-        "../src",
+        "./src",
         ".",
-        "./Components"
+        "./src/Components"
     ],
     "exposed-modules": [],
     "dependencies": {

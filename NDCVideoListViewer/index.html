@@ -5671,6 +5671,214 @@ var _debois$elm_dom$DOM$Rectangle = F4(
 	function (a, b, c, d) {
 		return {top: a, left: b, width: c, height: d};
 	});
+var _debois$elm_parts$Parts$map2nd = F2(
+	function (f, _p0) {
+		var _p1 = _p0;
+		return {
+			ctor: '_Tuple2',
+			_0: _p1._0,
+			_1: f(_p1._1)
+		};
+	});
+var _debois$elm_parts$Parts$map1st = F2(
+	function (f, _p2) {
+		var _p3 = _p2;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p3._0),
+			_1: _p3._1
+		};
+	});
+var _debois$elm_parts$Parts$update$ = F3(
+	function (fwd, _p4, c) {
+		var _p5 = _p4;
+		return A2(
+			_debois$elm_parts$Parts$map2nd,
+			_elm_lang$core$Platform_Cmd$map(fwd),
+			_p5._0(c));
+	});
+var _debois$elm_parts$Parts$update = F3(
+	function (fwd, _p6, c) {
+		var _p7 = _p6;
+		return A2(
+			_debois$elm_parts$Parts$map2nd,
+			_elm_lang$core$Platform_Cmd$map(fwd),
+			A2(
+				_debois$elm_parts$Parts$map1st,
+				_elm_lang$core$Maybe$withDefault(c),
+				_p7._0(c)));
+	});
+var _debois$elm_parts$Parts$indexed = F3(
+	function (get, set, model0) {
+		return {
+			ctor: '_Tuple2',
+			_0: F2(
+				function (idx, c) {
+					return A2(
+						_elm_lang$core$Maybe$withDefault,
+						model0,
+						A2(
+							_elm_lang$core$Dict$get,
+							idx,
+							get(c)));
+				}),
+			_1: F3(
+				function (idx, model, c) {
+					return A2(
+						set,
+						A3(
+							_elm_lang$core$Dict$insert,
+							idx,
+							model,
+							get(c)),
+						c);
+				})
+		};
+	});
+var _debois$elm_parts$Parts$accessors = F4(
+	function (get0, set0, model0, idx) {
+		var _p8 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
+		var get = _p8._0;
+		var set = _p8._1;
+		return {
+			get: get(idx),
+			set: set(idx),
+			map: F2(
+				function (f, c) {
+					return A3(
+						_elm_lang$core$Basics$flip,
+						set(idx),
+						c,
+						f(
+							A2(get, idx, c)));
+				}),
+			reset: function (c) {
+				return function (m) {
+					return A2(set0, m, c);
+				}(
+					A2(
+						_elm_lang$core$Dict$remove,
+						idx,
+						get0(c)));
+			}
+		};
+	});
+var _debois$elm_parts$Parts$embedUpdate$ = F5(
+	function (get, set, update, msg, c) {
+		return A2(
+			_debois$elm_parts$Parts$map1st,
+			_elm_lang$core$Maybe$map(
+				function (x) {
+					return A2(set, x, c);
+				}),
+			A2(
+				update,
+				msg,
+				get(c)));
+	});
+var _debois$elm_parts$Parts$embedUpdate = F5(
+	function (get, set, update, msg, c) {
+		return A2(
+			_debois$elm_parts$Parts$map1st,
+			A2(_elm_lang$core$Basics$flip, set, c),
+			A2(
+				update,
+				msg,
+				get(c)));
+	});
+var _debois$elm_parts$Parts$embedView = F2(
+	function (get, view) {
+		return function (_p9) {
+			return view(
+				get(_p9));
+		};
+	});
+var _debois$elm_parts$Parts$Accessors = F4(
+	function (a, b, c, d) {
+		return {get: a, set: b, map: c, reset: d};
+	});
+var _debois$elm_parts$Parts$Msg = function (a) {
+	return {ctor: 'Msg', _0: a};
+};
+var _debois$elm_parts$Parts$pack = F2(
+	function (upd, msg) {
+		return _debois$elm_parts$Parts$Msg(
+			function (c) {
+				return A2(
+					_debois$elm_parts$Parts$map2nd,
+					_elm_lang$core$Platform_Cmd$map(
+						_debois$elm_parts$Parts$pack(upd)),
+					A2(
+						_debois$elm_parts$Parts$map1st,
+						_elm_lang$core$Maybe$Just,
+						A2(upd, msg, c)));
+			});
+	});
+var _debois$elm_parts$Parts$create = F5(
+	function (view, update, get0, set0, model0) {
+		var _p10 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
+		var get = _p10._0;
+		var set = _p10._1;
+		var embeddedUpdate = function (idx) {
+			return A3(
+				_debois$elm_parts$Parts$embedUpdate,
+				get(idx),
+				set(idx),
+				update);
+		};
+		return F3(
+			function (f, idx, c) {
+				return A2(
+					view,
+					function (_p11) {
+						return f(
+							A2(
+								_debois$elm_parts$Parts$pack,
+								embeddedUpdate(idx),
+								_p11));
+					},
+					A2(get, idx, c));
+			});
+	});
+var _debois$elm_parts$Parts$create1 = F4(
+	function (view, update, get, set) {
+		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate, get, set, update);
+		return function (f) {
+			return A2(
+				_debois$elm_parts$Parts$embedView,
+				get,
+				view(
+					function (_p12) {
+						return f(
+							A2(_debois$elm_parts$Parts$pack, embeddedUpdate, _p12));
+					}));
+		};
+	});
+var _debois$elm_parts$Parts$pack$ = F2(
+	function (upd, msg) {
+		return _debois$elm_parts$Parts$Msg(
+			function (c) {
+				return A2(
+					_debois$elm_parts$Parts$map2nd,
+					_elm_lang$core$Platform_Cmd$map(
+						_debois$elm_parts$Parts$pack$(upd)),
+					A2(upd, msg, c));
+			});
+	});
+var _debois$elm_parts$Parts$create1$ = F4(
+	function (view, upd$, get, set) {
+		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate$, get, set, upd$);
+		return function (f) {
+			return A2(
+				_debois$elm_parts$Parts$embedView,
+				get,
+				view(
+					function (_p13) {
+						return f(
+							A2(_debois$elm_parts$Parts$pack$, embeddedUpdate, _p13));
+					}));
+		};
+	});
 //import Native.Json //
 
 var _elm_lang$virtual_dom$Native_VirtualDom = function() {
@@ -7254,251 +7462,6 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
-var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
-var _elm_lang$html$Html_App$program = function (app) {
-	return _elm_lang$html$Html_App$programWithFlags(
-		_elm_lang$core$Native_Utils.update(
-			app,
-			{
-				init: function (_p0) {
-					return app.init;
-				}
-			}));
-};
-var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
-	var _p2 = _p1;
-	return _elm_lang$html$Html_App$programWithFlags(
-		{
-			init: function (_p3) {
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_p2.model,
-					_elm_lang$core$Native_List.fromArray(
-						[]));
-			},
-			update: F2(
-				function (msg, model) {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
-						A2(_p2.update, msg, model),
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				}),
-			view: _p2.view,
-			subscriptions: function (_p4) {
-				return _elm_lang$core$Platform_Sub$none;
-			}
-		});
-};
-var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
-var _debois$elm_parts$Parts$map2nd = F2(
-	function (f, _p0) {
-		var _p1 = _p0;
-		return {
-			ctor: '_Tuple2',
-			_0: _p1._0,
-			_1: f(_p1._1)
-		};
-	});
-var _debois$elm_parts$Parts$map1st = F2(
-	function (f, _p2) {
-		var _p3 = _p2;
-		return {
-			ctor: '_Tuple2',
-			_0: f(_p3._0),
-			_1: _p3._1
-		};
-	});
-var _debois$elm_parts$Parts$update$ = F3(
-	function (fwd, _p4, c) {
-		var _p5 = _p4;
-		return A2(
-			_debois$elm_parts$Parts$map2nd,
-			_elm_lang$core$Platform_Cmd$map(fwd),
-			_p5._0(c));
-	});
-var _debois$elm_parts$Parts$update = F3(
-	function (fwd, _p6, c) {
-		var _p7 = _p6;
-		return A2(
-			_debois$elm_parts$Parts$map2nd,
-			_elm_lang$core$Platform_Cmd$map(fwd),
-			A2(
-				_debois$elm_parts$Parts$map1st,
-				_elm_lang$core$Maybe$withDefault(c),
-				_p7._0(c)));
-	});
-var _debois$elm_parts$Parts$indexed = F3(
-	function (get, set, model0) {
-		return {
-			ctor: '_Tuple2',
-			_0: F2(
-				function (idx, c) {
-					return A2(
-						_elm_lang$core$Maybe$withDefault,
-						model0,
-						A2(
-							_elm_lang$core$Dict$get,
-							idx,
-							get(c)));
-				}),
-			_1: F3(
-				function (idx, model, c) {
-					return A2(
-						set,
-						A3(
-							_elm_lang$core$Dict$insert,
-							idx,
-							model,
-							get(c)),
-						c);
-				})
-		};
-	});
-var _debois$elm_parts$Parts$accessors = F4(
-	function (get0, set0, model0, idx) {
-		var _p8 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
-		var get = _p8._0;
-		var set = _p8._1;
-		return {
-			get: get(idx),
-			set: set(idx),
-			map: F2(
-				function (f, c) {
-					return A3(
-						_elm_lang$core$Basics$flip,
-						set(idx),
-						c,
-						f(
-							A2(get, idx, c)));
-				}),
-			reset: function (c) {
-				return function (m) {
-					return A2(set0, m, c);
-				}(
-					A2(
-						_elm_lang$core$Dict$remove,
-						idx,
-						get0(c)));
-			}
-		};
-	});
-var _debois$elm_parts$Parts$embedUpdate$ = F5(
-	function (get, set, update, msg, c) {
-		return A2(
-			_debois$elm_parts$Parts$map1st,
-			_elm_lang$core$Maybe$map(
-				function (x) {
-					return A2(set, x, c);
-				}),
-			A2(
-				update,
-				msg,
-				get(c)));
-	});
-var _debois$elm_parts$Parts$embedUpdate = F5(
-	function (get, set, update, msg, c) {
-		return A2(
-			_debois$elm_parts$Parts$map1st,
-			A2(_elm_lang$core$Basics$flip, set, c),
-			A2(
-				update,
-				msg,
-				get(c)));
-	});
-var _debois$elm_parts$Parts$embedView = F2(
-	function (get, view) {
-		return function (_p9) {
-			return view(
-				get(_p9));
-		};
-	});
-var _debois$elm_parts$Parts$Accessors = F4(
-	function (a, b, c, d) {
-		return {get: a, set: b, map: c, reset: d};
-	});
-var _debois$elm_parts$Parts$Msg = function (a) {
-	return {ctor: 'Msg', _0: a};
-};
-var _debois$elm_parts$Parts$pack = F2(
-	function (upd, msg) {
-		return _debois$elm_parts$Parts$Msg(
-			function (c) {
-				return A2(
-					_debois$elm_parts$Parts$map2nd,
-					_elm_lang$core$Platform_Cmd$map(
-						_debois$elm_parts$Parts$pack(upd)),
-					A2(
-						_debois$elm_parts$Parts$map1st,
-						_elm_lang$core$Maybe$Just,
-						A2(upd, msg, c)));
-			});
-	});
-var _debois$elm_parts$Parts$create = F5(
-	function (view, update, get0, set0, model0) {
-		var _p10 = A3(_debois$elm_parts$Parts$indexed, get0, set0, model0);
-		var get = _p10._0;
-		var set = _p10._1;
-		var embeddedUpdate = function (idx) {
-			return A3(
-				_debois$elm_parts$Parts$embedUpdate,
-				get(idx),
-				set(idx),
-				update);
-		};
-		return F3(
-			function (f, idx, c) {
-				return A2(
-					view,
-					function (_p11) {
-						return f(
-							A2(
-								_debois$elm_parts$Parts$pack,
-								embeddedUpdate(idx),
-								_p11));
-					},
-					A2(get, idx, c));
-			});
-	});
-var _debois$elm_parts$Parts$create1 = F4(
-	function (view, update, get, set) {
-		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate, get, set, update);
-		return function (f) {
-			return A2(
-				_debois$elm_parts$Parts$embedView,
-				get,
-				view(
-					function (_p12) {
-						return f(
-							A2(_debois$elm_parts$Parts$pack, embeddedUpdate, _p12));
-					}));
-		};
-	});
-var _debois$elm_parts$Parts$pack$ = F2(
-	function (upd, msg) {
-		return _debois$elm_parts$Parts$Msg(
-			function (c) {
-				return A2(
-					_debois$elm_parts$Parts$map2nd,
-					_elm_lang$core$Platform_Cmd$map(
-						_debois$elm_parts$Parts$pack$(upd)),
-					A2(upd, msg, c));
-			});
-	});
-var _debois$elm_parts$Parts$create1$ = F4(
-	function (view, upd$, get, set) {
-		var embeddedUpdate = A3(_debois$elm_parts$Parts$embedUpdate$, get, set, upd$);
-		return function (f) {
-			return A2(
-				_debois$elm_parts$Parts$embedView,
-				get,
-				view(
-					function (_p13) {
-						return f(
-							A2(_debois$elm_parts$Parts$pack$, embeddedUpdate, _p13));
-					}));
-		};
-	});
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
@@ -8493,6 +8456,43 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
+var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
+var _elm_lang$html$Html_App$program = function (app) {
+	return _elm_lang$html$Html_App$programWithFlags(
+		_elm_lang$core$Native_Utils.update(
+			app,
+			{
+				init: function (_p0) {
+					return app.init;
+				}
+			}));
+};
+var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
+	var _p2 = _p1;
+	return _elm_lang$html$Html_App$programWithFlags(
+		{
+			init: function (_p3) {
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_p2.model,
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			},
+			update: F2(
+				function (msg, model) {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						A2(_p2.update, msg, model),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				}),
+			view: _p2.view,
+			subscriptions: function (_p4) {
+				return _elm_lang$core$Platform_Sub$none;
+			}
+		});
+};
+var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _debois$elm_mdl$Material_Options_Internal$None = {ctor: 'None'};
 var _debois$elm_mdl$Material_Options_Internal$Set = function (a) {
 	return {ctor: 'Set', _0: a};
@@ -11957,47 +11957,416 @@ var _debois$elm_mdl$Material$Model = F7(
 	function (a, b, c, d, e, f, g) {
 		return {button: a, textfield: b, menu: c, snackbar: d, layout: e, toggles: f, tooltip: g};
 	});
-var _debois$elm_mdl$Slugs_Models$Model = F2(
-	function (a, b) {
-		return {slug: a, name: b};
-	});
-var _debois$elm_mdl$NDCVideos_Models$initialModel = {
-	videoInfo: {
-		name: '',
-		lastUpdated: '',
-		videos: _elm_lang$core$Native_List.fromArray(
-			[]),
-		slugs: _elm_lang$core$Native_List.fromArray(
-			[]),
-		speakers: _elm_lang$core$Native_List.fromArray(
-			[])
-	},
-	filteredVideos: _elm_lang$core$Native_List.fromArray(
-		[]),
-	currentFilterInfo: 'Showing all videos',
-	currentFilterType: 'None',
-	toggleSlugsFilter: true,
-	toggleSpeakersFilter: false,
-	mdl: _debois$elm_mdl$Material$model
+var _debois$elm_mdl$Material_Color$text = function (_p0) {
+	var _p1 = _p0;
+	return _debois$elm_mdl$Material_Options$cs(
+		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color-text--', _p1._0));
 };
-var _debois$elm_mdl$NDCVideos_Models$VideoModel = F8(
-	function (a, b, c, d, e, f, g, h) {
-		return {title: a, url: b, description: c, plays: d, likes: e, slugs: f, speakers: g, showDescription: h};
+var _debois$elm_mdl$Material_Color$background = function (_p2) {
+	var _p3 = _p2;
+	return _debois$elm_mdl$Material_Options$cs(
+		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color--', _p3._0));
+};
+var _debois$elm_mdl$Material_Color$shadeName = function (shade) {
+	var _p4 = shade;
+	switch (_p4.ctor) {
+		case 'S50':
+			return '50';
+		case 'S100':
+			return '100';
+		case 'S200':
+			return '200';
+		case 'S300':
+			return '300';
+		case 'S400':
+			return '400';
+		case 'S500':
+			return '500';
+		case 'S600':
+			return '600';
+		case 'S700':
+			return '700';
+		case 'S800':
+			return '800';
+		case 'S900':
+			return '900';
+		case 'A100':
+			return 'A100';
+		case 'A200':
+			return 'A200';
+		case 'A400':
+			return 'A400';
+		default:
+			return 'A700';
+	}
+};
+var _debois$elm_mdl$Material_Color$hueName = function (color) {
+	var _p5 = color;
+	switch (_p5.ctor) {
+		case 'Indigo':
+			return 'indigo';
+		case 'Blue':
+			return 'blue';
+		case 'LightBlue':
+			return 'light-blue';
+		case 'Cyan':
+			return 'cyan';
+		case 'Teal':
+			return 'teal';
+		case 'Green':
+			return 'green';
+		case 'LightGreen':
+			return 'light-green';
+		case 'Lime':
+			return 'lime';
+		case 'Yellow':
+			return 'yellow';
+		case 'Amber':
+			return 'amber';
+		case 'Orange':
+			return 'orange';
+		case 'Brown':
+			return 'brown';
+		case 'BlueGrey':
+			return 'blue-grey';
+		case 'Grey':
+			return 'grey';
+		case 'DeepOrange':
+			return 'deep-orange';
+		case 'Red':
+			return 'red';
+		case 'Pink':
+			return 'pink';
+		case 'Purple':
+			return 'purple';
+		default:
+			return 'deep-purple';
+	}
+};
+var _debois$elm_mdl$Material_Color$scheme = F2(
+	function (primary, accent) {
+		var q = _elm_lang$core$String$map(
+			function (x) {
+				return _elm_lang$core$Native_Utils.eq(
+					x,
+					_elm_lang$core$Native_Utils.chr('-')) ? _elm_lang$core$Native_Utils.chr('_') : x;
+			});
+		var cssFile = function () {
+			var _p6 = accent;
+			switch (_p6.ctor) {
+				case 'Grey':
+					return '';
+				case 'Brown':
+					return '';
+				case 'BlueGrey':
+					return '';
+				default:
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						'.',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							q(
+								_debois$elm_mdl$Material_Color$hueName(primary)),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'-',
+								q(
+									_debois$elm_mdl$Material_Color$hueName(accent)))));
+			}
+		}();
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'material',
+			A2(_elm_lang$core$Basics_ops['++'], cssFile, '.min.css'));
 	});
-var _debois$elm_mdl$NDCVideos_Models$NDCVideoInfo = F5(
-	function (a, b, c, d, e) {
-		return {name: a, lastUpdated: b, videos: c, slugs: d, speakers: e};
+var _debois$elm_mdl$Material_Color$DeepPurple = {ctor: 'DeepPurple'};
+var _debois$elm_mdl$Material_Color$Purple = {ctor: 'Purple'};
+var _debois$elm_mdl$Material_Color$Pink = {ctor: 'Pink'};
+var _debois$elm_mdl$Material_Color$Red = {ctor: 'Red'};
+var _debois$elm_mdl$Material_Color$DeepOrange = {ctor: 'DeepOrange'};
+var _debois$elm_mdl$Material_Color$Grey = {ctor: 'Grey'};
+var _debois$elm_mdl$Material_Color$BlueGrey = {ctor: 'BlueGrey'};
+var _debois$elm_mdl$Material_Color$Brown = {ctor: 'Brown'};
+var _debois$elm_mdl$Material_Color$Orange = {ctor: 'Orange'};
+var _debois$elm_mdl$Material_Color$Amber = {ctor: 'Amber'};
+var _debois$elm_mdl$Material_Color$Yellow = {ctor: 'Yellow'};
+var _debois$elm_mdl$Material_Color$Lime = {ctor: 'Lime'};
+var _debois$elm_mdl$Material_Color$LightGreen = {ctor: 'LightGreen'};
+var _debois$elm_mdl$Material_Color$Green = {ctor: 'Green'};
+var _debois$elm_mdl$Material_Color$Teal = {ctor: 'Teal'};
+var _debois$elm_mdl$Material_Color$Cyan = {ctor: 'Cyan'};
+var _debois$elm_mdl$Material_Color$LightBlue = {ctor: 'LightBlue'};
+var _debois$elm_mdl$Material_Color$Blue = {ctor: 'Blue'};
+var _debois$elm_mdl$Material_Color$Indigo = {ctor: 'Indigo'};
+var _debois$elm_mdl$Material_Color$hues = _elm_lang$core$Array$fromList(
+	_elm_lang$core$Native_List.fromArray(
+		[_debois$elm_mdl$Material_Color$Indigo, _debois$elm_mdl$Material_Color$Blue, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$Cyan, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$LightGreen, _debois$elm_mdl$Material_Color$Lime, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$Orange, _debois$elm_mdl$Material_Color$Brown, _debois$elm_mdl$Material_Color$BlueGrey, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$DeepOrange, _debois$elm_mdl$Material_Color$Red, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$Purple, _debois$elm_mdl$Material_Color$DeepPurple]));
+var _debois$elm_mdl$Material_Color$accentHues = _elm_lang$core$Array$fromList(
+	_elm_lang$core$Native_List.fromArray(
+		[_debois$elm_mdl$Material_Color$Indigo, _debois$elm_mdl$Material_Color$Blue, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$Cyan, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$LightGreen, _debois$elm_mdl$Material_Color$Lime, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$Orange, _debois$elm_mdl$Material_Color$DeepOrange, _debois$elm_mdl$Material_Color$Red, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$Purple, _debois$elm_mdl$Material_Color$DeepPurple]));
+var _debois$elm_mdl$Material_Color$A700 = {ctor: 'A700'};
+var _debois$elm_mdl$Material_Color$A400 = {ctor: 'A400'};
+var _debois$elm_mdl$Material_Color$A200 = {ctor: 'A200'};
+var _debois$elm_mdl$Material_Color$A100 = {ctor: 'A100'};
+var _debois$elm_mdl$Material_Color$S900 = {ctor: 'S900'};
+var _debois$elm_mdl$Material_Color$S800 = {ctor: 'S800'};
+var _debois$elm_mdl$Material_Color$S700 = {ctor: 'S700'};
+var _debois$elm_mdl$Material_Color$S600 = {ctor: 'S600'};
+var _debois$elm_mdl$Material_Color$S500 = {ctor: 'S500'};
+var _debois$elm_mdl$Material_Color$S400 = {ctor: 'S400'};
+var _debois$elm_mdl$Material_Color$S300 = {ctor: 'S300'};
+var _debois$elm_mdl$Material_Color$S200 = {ctor: 'S200'};
+var _debois$elm_mdl$Material_Color$S100 = {ctor: 'S100'};
+var _debois$elm_mdl$Material_Color$S50 = {ctor: 'S50'};
+var _debois$elm_mdl$Material_Color$shades = _elm_lang$core$Array$fromList(
+	_elm_lang$core$Native_List.fromArray(
+		[_debois$elm_mdl$Material_Color$S50, _debois$elm_mdl$Material_Color$S100, _debois$elm_mdl$Material_Color$S200, _debois$elm_mdl$Material_Color$S300, _debois$elm_mdl$Material_Color$S400, _debois$elm_mdl$Material_Color$S500, _debois$elm_mdl$Material_Color$S600, _debois$elm_mdl$Material_Color$S700, _debois$elm_mdl$Material_Color$S800, _debois$elm_mdl$Material_Color$S900, _debois$elm_mdl$Material_Color$A100, _debois$elm_mdl$Material_Color$A200, _debois$elm_mdl$Material_Color$A400, _debois$elm_mdl$Material_Color$A700]));
+var _debois$elm_mdl$Material_Color$C = function (a) {
+	return {ctor: 'C', _0: a};
+};
+var _debois$elm_mdl$Material_Color$color = F2(
+	function (hue, shade) {
+		return _debois$elm_mdl$Material_Color$C(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_debois$elm_mdl$Material_Color$hueName(hue),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'-',
+					_debois$elm_mdl$Material_Color$shadeName(shade))));
 	});
-var _debois$elm_mdl$NDCVideos_Models$Model = F7(
-	function (a, b, c, d, e, f, g) {
-		return {videoInfo: a, filteredVideos: b, currentFilterInfo: c, currentFilterType: d, toggleSlugsFilter: e, toggleSpeakersFilter: f, mdl: g};
+var _debois$elm_mdl$Material_Color$white = _debois$elm_mdl$Material_Color$C('white');
+var _debois$elm_mdl$Material_Color$black = _debois$elm_mdl$Material_Color$C('black');
+var _debois$elm_mdl$Material_Color$primary = _debois$elm_mdl$Material_Color$C('primary');
+var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$C('primary-dark');
+var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
+var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
+var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
+var _debois$elm_mdl$Material_Scheme$scheme = F2(
+	function (primary, accent) {
+		return A2(
+			_elm_lang$core$String$join,
+			'\n',
+			A2(
+				_elm_lang$core$List$map,
+				function (url) {
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						'@import url(',
+						A2(_elm_lang$core$Basics_ops['++'], url, ');'));
+				},
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$core$Basics_ops['++'],
+						'https://code.getmdl.io/1.1.3/',
+						A2(_debois$elm_mdl$Material_Color$scheme, primary, accent)),
+						'https://fonts.googleapis.com/icon?family=Material+Icons',
+						'https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext'
+					])));
 	});
-var _debois$elm_mdl$NDCVideos_Models$LikesColumn = {ctor: 'LikesColumn'};
-var _debois$elm_mdl$NDCVideos_Models$PlaysColumn = {ctor: 'PlaysColumn'};
-var _debois$elm_mdl$Models$Model = F3(
+var _debois$elm_mdl$Material_Scheme$topWithScheme = F3(
+	function (primary, accent, content) {
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A3(
+					_elm_lang$html$Html$node,
+					'style',
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$type$('text/css')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							A2(_debois$elm_mdl$Material_Scheme$scheme, primary, accent))
+						])),
+					content
+				]));
+	});
+var _debois$elm_mdl$Material_Scheme$top = function (content) {
+	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
+};
+var _debois$elm_mdl$Material_Table$defaultCell = {numeric: false};
+var _debois$elm_mdl$Material_Table$td = F2(
+	function (options, html) {
+		var _p0 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultCell, options);
+		var summary = _p0;
+		var config = _p0.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$td,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$onClick = function (x) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (options) {
+			return _elm_lang$core$Native_Utils.update(
+				options,
+				{
+					onClick: _elm_lang$core$Maybe$Just(
+						_elm_lang$html$Html_Events$onClick(x))
+				});
+		});
+};
+var _debois$elm_mdl$Material_Table$sorted = function (order) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (self) {
+			return _elm_lang$core$Native_Utils.update(
+				self,
+				{
+					sorted: _elm_lang$core$Maybe$Just(order)
+				});
+		});
+};
+var _debois$elm_mdl$Material_Table$numeric = _debois$elm_mdl$Material_Options$set(
+	function (self) {
+		return _elm_lang$core$Native_Utils.update(
+			self,
+			{numeric: true});
+	});
+var _debois$elm_mdl$Material_Table$defaultHeader = {numeric: false, sorted: _elm_lang$core$Maybe$Nothing, onClick: _elm_lang$core$Maybe$Nothing};
+var _debois$elm_mdl$Material_Table$th = F2(
+	function (options, html) {
+		var _p1 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultHeader, options);
+		var summary = _p1;
+		var config = _p1.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$th,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric'),
+					function () {
+					var _p2 = config.sorted;
+					if (_p2.ctor === 'Just') {
+						if (_p2._0.ctor === 'Ascending') {
+							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-ascending');
+						} else {
+							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-descending');
+						}
+					} else {
+						return _debois$elm_mdl$Material_Options$nop;
+					}
+				}()
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[config.onClick]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
+var _debois$elm_mdl$Material_Table$tr = F2(
+	function (options, html) {
+		var _p3 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultRow, options);
+		var summary = _p3;
+		var config = _p3.config;
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tr,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					config.selected ? _debois$elm_mdl$Material_Options$cs('is-selected') : _debois$elm_mdl$Material_Options$nop
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tfoot = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tfoot,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tbody = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$tbody,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$thead = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$thead,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			html);
+	});
+var _debois$elm_mdl$Material_Table$table = F2(
+	function (options, nodes) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options$apply,
+			summary,
+			_elm_lang$html$Html$table,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_debois$elm_mdl$Material_Options$cs('mdl-data-table'),
+					_debois$elm_mdl$Material_Options$cs('mdl-js-data-table'),
+					_debois$elm_mdl$Material_Options$cs('is-upgraded')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			nodes);
+	});
+var _debois$elm_mdl$Material_Table$Row = function (a) {
+	return {selected: a};
+};
+var _debois$elm_mdl$Material_Table$Header = F3(
 	function (a, b, c) {
-		return {videoListModel: a, mdl: b, transparentHeader: c};
+		return {numeric: a, sorted: b, onClick: c};
 	});
+var _debois$elm_mdl$Material_Table$Cell = function (a) {
+	return {numeric: a};
+};
+var _debois$elm_mdl$Material_Table$Descending = {ctor: 'Descending'};
+var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending);
+var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
+var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
 //import Dict, List, Maybe, Native.Scheduler //
 
 var _evancz$elm_http$Native_Http = function() {
@@ -12354,45 +12723,86 @@ var _evancz$elm_http$Http$post = F3(
 			decoder,
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
-var _debois$elm_mdl$NDCVideos_Messages$MDL = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$Slugs_Models$Model = F2(
+	function (a, b) {
+		return {slug: a, name: b};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$initialModel = {
+	videoInfo: {
+		name: '',
+		lastUpdated: '',
+		videos: _elm_lang$core$Native_List.fromArray(
+			[]),
+		slugs: _elm_lang$core$Native_List.fromArray(
+			[]),
+		speakers: _elm_lang$core$Native_List.fromArray(
+			[])
+	},
+	filteredVideos: _elm_lang$core$Native_List.fromArray(
+		[]),
+	currentFilterInfo: 'Showing all videos',
+	currentFilterType: 'None',
+	toggleSlugsFilter: true,
+	toggleSpeakersFilter: false,
+	mdl: _debois$elm_mdl$Material$model
+};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$VideoModel = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {title: a, url: b, description: c, plays: d, likes: e, slugs: f, speakers: g, showDescription: h};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$NDCVideoInfo = F5(
+	function (a, b, c, d, e) {
+		return {name: a, lastUpdated: b, videos: c, slugs: d, speakers: e};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {videoInfo: a, filteredVideos: b, currentFilterInfo: c, currentFilterType: d, toggleSlugsFilter: e, toggleSpeakersFilter: f, mdl: g};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$LikesColumn = {ctor: 'LikesColumn'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$PlaysColumn = {ctor: 'PlaysColumn'};
+var _hakonrossebo$ndc_oslo2016_video_listing$Models$Model = F3(
+	function (a, b, c) {
+		return {videoListModel: a, mdl: b, transparentHeader: c};
+	});
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL = function (a) {
 	return {ctor: 'MDL', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$FetchFail = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchFail = function (a) {
 	return {ctor: 'FetchFail', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$FetchSucceed = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchSucceed = function (a) {
 	return {ctor: 'FetchSucceed', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$Fetch = {ctor: 'Fetch'};
-var _debois$elm_mdl$NDCVideos_Messages$ShowDescription = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$Fetch = {ctor: 'Fetch'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ShowDescription = function (a) {
 	return {ctor: 'ShowDescription', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$ToggleSlugs = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSlugs = function (a) {
 	return {ctor: 'ToggleSlugs', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$ToggleSpeakers = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSpeakers = function (a) {
 	return {ctor: 'ToggleSpeakers', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$SpeakerFilter = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SpeakerFilter = function (a) {
 	return {ctor: 'SpeakerFilter', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$SlugFilter = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SlugFilter = function (a) {
 	return {ctor: 'SlugFilter', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$SortItems = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SortItems = function (a) {
 	return {ctor: 'SortItems', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Messages$ClearFilters = {ctor: 'ClearFilters'};
-var _debois$elm_mdl$NDCVideos_Messages$NoOp = {ctor: 'NoOp'};
-var _debois$elm_mdl$Messages$MDL = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ClearFilters = {ctor: 'ClearFilters'};
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$NoOp = {ctor: 'NoOp'};
+var _hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL = function (a) {
 	return {ctor: 'MDL', _0: a};
 };
-var _debois$elm_mdl$Messages$NDCVideoListMsg = function (a) {
+var _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg = function (a) {
 	return {ctor: 'NDCVideoListMsg', _0: a};
 };
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoData = A9(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoData = A9(
 	_elm_lang$core$Json_Decode$object8,
-	_debois$elm_mdl$NDCVideos_Models$VideoModel,
+	_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$VideoModel,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'description', _elm_lang$core$Json_Decode$string),
@@ -12406,38 +12816,38 @@ var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoData = A9(
 				A2(_elm_lang$core$Json_Decode_ops[':='], 'showDescription', _elm_lang$core$Json_Decode$bool),
 				_elm_lang$core$Json_Decode$succeed(false)
 			])));
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugData = A3(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugData = A3(
 	_elm_lang$core$Json_Decode$object2,
-	_debois$elm_mdl$Slugs_Models$Model,
+	_hakonrossebo$ndc_oslo2016_video_listing$Slugs_Models$Model,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'slug', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string));
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSpeakers = _elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string);
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugs = _elm_lang$core$Json_Decode$list(_debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugData);
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoList = _elm_lang$core$Json_Decode$list(_debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoData);
-var _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoFetch = A6(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSpeakers = _elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugs = _elm_lang$core$Json_Decode$list(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugData);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoList = _elm_lang$core$Json_Decode$list(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoData);
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoFetch = A6(
 	_elm_lang$core$Json_Decode$object5,
-	_debois$elm_mdl$NDCVideos_Models$NDCVideoInfo,
+	_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$NDCVideoInfo,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'desc', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'lastUpdated', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideos', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoList),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideoslugs', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSlugs),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideospeakers', _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoSpeakers));
-var _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos = function () {
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideos', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoList),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideoslugs', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSlugs),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'ndcvideospeakers', _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoSpeakers));
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos = function () {
 	var url = 'NDCVideos.json';
 	return A3(
 		_elm_lang$core$Task$perform,
-		_debois$elm_mdl$NDCVideos_Messages$FetchFail,
-		_debois$elm_mdl$NDCVideos_Messages$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _debois$elm_mdl$NDCVideos_Commands$decodeNDCVideoFetch, url));
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchFail,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$decodeNDCVideoFetch, url));
 }();
-var _debois$elm_mdl$NDCVideos_Update$stringHasItem = F3(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem = F3(
 	function (stringWithItems, filter, split) {
 		return A2(
 			_elm_lang$core$List$member,
 			filter,
 			A2(_elm_lang$core$String$split, split, stringWithItems));
 	});
-var _debois$elm_mdl$NDCVideos_Update$update = F2(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
@@ -12469,7 +12879,7 @@ var _debois$elm_mdl$NDCVideos_Update$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos};
+				return {ctor: '_Tuple2', _0: model, _1: _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos};
 			case 'FetchSucceed':
 				var _p2 = _p0._0;
 				return {
@@ -12492,7 +12902,7 @@ var _debois$elm_mdl$NDCVideos_Update$update = F2(
 				var flt = A2(
 					_elm_lang$core$List$filter,
 					function (vid) {
-						return A3(_debois$elm_mdl$NDCVideos_Update$stringHasItem, vid.slugs, _p3, ',');
+						return A3(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem, vid.slugs, _p3, ',');
 					},
 					model.videoInfo.videos);
 				return {
@@ -12511,7 +12921,7 @@ var _debois$elm_mdl$NDCVideos_Update$update = F2(
 				var flt = A2(
 					_elm_lang$core$List$filter,
 					function (vid) {
-						return A3(_debois$elm_mdl$NDCVideos_Update$stringHasItem, vid.speakers, _p4, ';');
+						return A3(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$stringHasItem, vid.speakers, _p4, ';');
 					},
 					model.videoInfo.videos);
 				return {
@@ -12573,14 +12983,14 @@ var _debois$elm_mdl$NDCVideos_Update$update = F2(
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				}
 			default:
-				return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$NDCVideos_Messages$MDL, _p0._0, model);
+				return A3(_debois$elm_mdl$Material$update, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL, _p0._0, model);
 		}
 	});
-var _debois$elm_mdl$Update$update = F2(
+var _hakonrossebo$ndc_oslo2016_video_listing$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		if (_p0.ctor === 'NDCVideoListMsg') {
-			var _p1 = A2(_debois$elm_mdl$NDCVideos_Update$update, _p0._0, model.videoListModel);
+			var _p1 = A2(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update, _p0._0, model.videoListModel);
 			var updatedModel = _p1._0;
 			var cmd = _p1._1;
 			return {
@@ -12588,248 +12998,13 @@ var _debois$elm_mdl$Update$update = F2(
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
 					{videoListModel: updatedModel}),
-				_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Messages$NDCVideoListMsg, cmd)
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg, cmd)
 			};
 		} else {
-			return A3(_debois$elm_mdl$Material$update, _debois$elm_mdl$Messages$MDL, _p0._0, model);
+			return A3(_debois$elm_mdl$Material$update, _hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL, _p0._0, model);
 		}
 	});
-var _debois$elm_mdl$Material_Color$text = function (_p0) {
-	var _p1 = _p0;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color-text--', _p1._0));
-};
-var _debois$elm_mdl$Material_Color$background = function (_p2) {
-	var _p3 = _p2;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color--', _p3._0));
-};
-var _debois$elm_mdl$Material_Color$shadeName = function (shade) {
-	var _p4 = shade;
-	switch (_p4.ctor) {
-		case 'S50':
-			return '50';
-		case 'S100':
-			return '100';
-		case 'S200':
-			return '200';
-		case 'S300':
-			return '300';
-		case 'S400':
-			return '400';
-		case 'S500':
-			return '500';
-		case 'S600':
-			return '600';
-		case 'S700':
-			return '700';
-		case 'S800':
-			return '800';
-		case 'S900':
-			return '900';
-		case 'A100':
-			return 'A100';
-		case 'A200':
-			return 'A200';
-		case 'A400':
-			return 'A400';
-		default:
-			return 'A700';
-	}
-};
-var _debois$elm_mdl$Material_Color$hueName = function (color) {
-	var _p5 = color;
-	switch (_p5.ctor) {
-		case 'Indigo':
-			return 'indigo';
-		case 'Blue':
-			return 'blue';
-		case 'LightBlue':
-			return 'light-blue';
-		case 'Cyan':
-			return 'cyan';
-		case 'Teal':
-			return 'teal';
-		case 'Green':
-			return 'green';
-		case 'LightGreen':
-			return 'light-green';
-		case 'Lime':
-			return 'lime';
-		case 'Yellow':
-			return 'yellow';
-		case 'Amber':
-			return 'amber';
-		case 'Orange':
-			return 'orange';
-		case 'Brown':
-			return 'brown';
-		case 'BlueGrey':
-			return 'blue-grey';
-		case 'Grey':
-			return 'grey';
-		case 'DeepOrange':
-			return 'deep-orange';
-		case 'Red':
-			return 'red';
-		case 'Pink':
-			return 'pink';
-		case 'Purple':
-			return 'purple';
-		default:
-			return 'deep-purple';
-	}
-};
-var _debois$elm_mdl$Material_Color$scheme = F2(
-	function (primary, accent) {
-		var q = _elm_lang$core$String$map(
-			function (x) {
-				return _elm_lang$core$Native_Utils.eq(
-					x,
-					_elm_lang$core$Native_Utils.chr('-')) ? _elm_lang$core$Native_Utils.chr('_') : x;
-			});
-		var cssFile = function () {
-			var _p6 = accent;
-			switch (_p6.ctor) {
-				case 'Grey':
-					return '';
-				case 'Brown':
-					return '';
-				case 'BlueGrey':
-					return '';
-				default:
-					return A2(
-						_elm_lang$core$Basics_ops['++'],
-						'.',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							q(
-								_debois$elm_mdl$Material_Color$hueName(primary)),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'-',
-								q(
-									_debois$elm_mdl$Material_Color$hueName(accent)))));
-			}
-		}();
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'material',
-			A2(_elm_lang$core$Basics_ops['++'], cssFile, '.min.css'));
-	});
-var _debois$elm_mdl$Material_Color$DeepPurple = {ctor: 'DeepPurple'};
-var _debois$elm_mdl$Material_Color$Purple = {ctor: 'Purple'};
-var _debois$elm_mdl$Material_Color$Pink = {ctor: 'Pink'};
-var _debois$elm_mdl$Material_Color$Red = {ctor: 'Red'};
-var _debois$elm_mdl$Material_Color$DeepOrange = {ctor: 'DeepOrange'};
-var _debois$elm_mdl$Material_Color$Grey = {ctor: 'Grey'};
-var _debois$elm_mdl$Material_Color$BlueGrey = {ctor: 'BlueGrey'};
-var _debois$elm_mdl$Material_Color$Brown = {ctor: 'Brown'};
-var _debois$elm_mdl$Material_Color$Orange = {ctor: 'Orange'};
-var _debois$elm_mdl$Material_Color$Amber = {ctor: 'Amber'};
-var _debois$elm_mdl$Material_Color$Yellow = {ctor: 'Yellow'};
-var _debois$elm_mdl$Material_Color$Lime = {ctor: 'Lime'};
-var _debois$elm_mdl$Material_Color$LightGreen = {ctor: 'LightGreen'};
-var _debois$elm_mdl$Material_Color$Green = {ctor: 'Green'};
-var _debois$elm_mdl$Material_Color$Teal = {ctor: 'Teal'};
-var _debois$elm_mdl$Material_Color$Cyan = {ctor: 'Cyan'};
-var _debois$elm_mdl$Material_Color$LightBlue = {ctor: 'LightBlue'};
-var _debois$elm_mdl$Material_Color$Blue = {ctor: 'Blue'};
-var _debois$elm_mdl$Material_Color$Indigo = {ctor: 'Indigo'};
-var _debois$elm_mdl$Material_Color$hues = _elm_lang$core$Array$fromList(
-	_elm_lang$core$Native_List.fromArray(
-		[_debois$elm_mdl$Material_Color$Indigo, _debois$elm_mdl$Material_Color$Blue, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$Cyan, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$LightGreen, _debois$elm_mdl$Material_Color$Lime, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$Orange, _debois$elm_mdl$Material_Color$Brown, _debois$elm_mdl$Material_Color$BlueGrey, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$DeepOrange, _debois$elm_mdl$Material_Color$Red, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$Purple, _debois$elm_mdl$Material_Color$DeepPurple]));
-var _debois$elm_mdl$Material_Color$accentHues = _elm_lang$core$Array$fromList(
-	_elm_lang$core$Native_List.fromArray(
-		[_debois$elm_mdl$Material_Color$Indigo, _debois$elm_mdl$Material_Color$Blue, _debois$elm_mdl$Material_Color$LightBlue, _debois$elm_mdl$Material_Color$Cyan, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$Green, _debois$elm_mdl$Material_Color$LightGreen, _debois$elm_mdl$Material_Color$Lime, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$Amber, _debois$elm_mdl$Material_Color$Orange, _debois$elm_mdl$Material_Color$DeepOrange, _debois$elm_mdl$Material_Color$Red, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$Purple, _debois$elm_mdl$Material_Color$DeepPurple]));
-var _debois$elm_mdl$Material_Color$A700 = {ctor: 'A700'};
-var _debois$elm_mdl$Material_Color$A400 = {ctor: 'A400'};
-var _debois$elm_mdl$Material_Color$A200 = {ctor: 'A200'};
-var _debois$elm_mdl$Material_Color$A100 = {ctor: 'A100'};
-var _debois$elm_mdl$Material_Color$S900 = {ctor: 'S900'};
-var _debois$elm_mdl$Material_Color$S800 = {ctor: 'S800'};
-var _debois$elm_mdl$Material_Color$S700 = {ctor: 'S700'};
-var _debois$elm_mdl$Material_Color$S600 = {ctor: 'S600'};
-var _debois$elm_mdl$Material_Color$S500 = {ctor: 'S500'};
-var _debois$elm_mdl$Material_Color$S400 = {ctor: 'S400'};
-var _debois$elm_mdl$Material_Color$S300 = {ctor: 'S300'};
-var _debois$elm_mdl$Material_Color$S200 = {ctor: 'S200'};
-var _debois$elm_mdl$Material_Color$S100 = {ctor: 'S100'};
-var _debois$elm_mdl$Material_Color$S50 = {ctor: 'S50'};
-var _debois$elm_mdl$Material_Color$shades = _elm_lang$core$Array$fromList(
-	_elm_lang$core$Native_List.fromArray(
-		[_debois$elm_mdl$Material_Color$S50, _debois$elm_mdl$Material_Color$S100, _debois$elm_mdl$Material_Color$S200, _debois$elm_mdl$Material_Color$S300, _debois$elm_mdl$Material_Color$S400, _debois$elm_mdl$Material_Color$S500, _debois$elm_mdl$Material_Color$S600, _debois$elm_mdl$Material_Color$S700, _debois$elm_mdl$Material_Color$S800, _debois$elm_mdl$Material_Color$S900, _debois$elm_mdl$Material_Color$A100, _debois$elm_mdl$Material_Color$A200, _debois$elm_mdl$Material_Color$A400, _debois$elm_mdl$Material_Color$A700]));
-var _debois$elm_mdl$Material_Color$C = function (a) {
-	return {ctor: 'C', _0: a};
-};
-var _debois$elm_mdl$Material_Color$color = F2(
-	function (hue, shade) {
-		return _debois$elm_mdl$Material_Color$C(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_debois$elm_mdl$Material_Color$hueName(hue),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'-',
-					_debois$elm_mdl$Material_Color$shadeName(shade))));
-	});
-var _debois$elm_mdl$Material_Color$white = _debois$elm_mdl$Material_Color$C('white');
-var _debois$elm_mdl$Material_Color$black = _debois$elm_mdl$Material_Color$C('black');
-var _debois$elm_mdl$Material_Color$primary = _debois$elm_mdl$Material_Color$C('primary');
-var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$C('primary-dark');
-var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
-var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
-var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
-var _debois$elm_mdl$Material_Scheme$scheme = F2(
-	function (primary, accent) {
-		return A2(
-			_elm_lang$core$String$join,
-			'\n',
-			A2(
-				_elm_lang$core$List$map,
-				function (url) {
-					return A2(
-						_elm_lang$core$Basics_ops['++'],
-						'@import url(',
-						A2(_elm_lang$core$Basics_ops['++'], url, ');'));
-				},
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$core$Basics_ops['++'],
-						'https://code.getmdl.io/1.1.3/',
-						A2(_debois$elm_mdl$Material_Color$scheme, primary, accent)),
-						'https://fonts.googleapis.com/icon?family=Material+Icons',
-						'https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext'
-					])));
-	});
-var _debois$elm_mdl$Material_Scheme$topWithScheme = F3(
-	function (primary, accent, content) {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A3(
-					_elm_lang$html$Html$node,
-					'style',
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$type$('text/css')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text(
-							A2(_debois$elm_mdl$Material_Scheme$scheme, primary, accent))
-						])),
-					content
-				]));
-	});
-var _debois$elm_mdl$Material_Scheme$top = function (content) {
-	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
-};
-var _debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSlugFilters$renderSlugFilters = function (model) {
 	return model.toggleSlugsFilter ? A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -12863,7 +13038,7 @@ var _debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters = function (mode
 										[
 											_elm_lang$html$Html_Attributes$href('#'),
 											_elm_lang$html$Html_Events$onClick(
-											_debois$elm_mdl$NDCVideos_Messages$SlugFilter(slug.slug))
+											_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SlugFilter(slug.slug))
 										]),
 									_elm_lang$core$Native_List.fromArray(
 										[
@@ -12887,7 +13062,7 @@ var _debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters = function (mode
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters = function (model) {
 	return model.toggleSpeakersFilter ? A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -12921,7 +13096,7 @@ var _debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters = function
 										[
 											_elm_lang$html$Html_Attributes$href('#'),
 											_elm_lang$html$Html_Events$onClick(
-											_debois$elm_mdl$NDCVideos_Messages$SpeakerFilter(speaker))
+											_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SpeakerFilter(speaker))
 										]),
 									_elm_lang$core$Native_List.fromArray(
 										[
@@ -12945,188 +13120,13 @@ var _debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters = function
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _debois$elm_mdl$Material_Table$defaultCell = {numeric: false};
-var _debois$elm_mdl$Material_Table$td = F2(
-	function (options, html) {
-		var _p0 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultCell, options);
-		var summary = _p0;
-		var config = _p0.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$td,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$onClick = function (x) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (options) {
-			return _elm_lang$core$Native_Utils.update(
-				options,
-				{
-					onClick: _elm_lang$core$Maybe$Just(
-						_elm_lang$html$Html_Events$onClick(x))
-				});
-		});
-};
-var _debois$elm_mdl$Material_Table$sorted = function (order) {
-	return _debois$elm_mdl$Material_Options$set(
-		function (self) {
-			return _elm_lang$core$Native_Utils.update(
-				self,
-				{
-					sorted: _elm_lang$core$Maybe$Just(order)
-				});
-		});
-};
-var _debois$elm_mdl$Material_Table$numeric = _debois$elm_mdl$Material_Options$set(
-	function (self) {
-		return _elm_lang$core$Native_Utils.update(
-			self,
-			{numeric: true});
-	});
-var _debois$elm_mdl$Material_Table$defaultHeader = {numeric: false, sorted: _elm_lang$core$Maybe$Nothing, onClick: _elm_lang$core$Maybe$Nothing};
-var _debois$elm_mdl$Material_Table$th = F2(
-	function (options, html) {
-		var _p1 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultHeader, options);
-		var summary = _p1;
-		var config = _p1.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$th,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.numeric ? _debois$elm_mdl$Material_Options$nop : _debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric'),
-					function () {
-					var _p2 = config.sorted;
-					if (_p2.ctor === 'Just') {
-						if (_p2._0.ctor === 'Ascending') {
-							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-ascending');
-						} else {
-							return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-descending');
-						}
-					} else {
-						return _debois$elm_mdl$Material_Options$nop;
-					}
-				}()
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[config.onClick]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
-var _debois$elm_mdl$Material_Table$tr = F2(
-	function (options, html) {
-		var _p3 = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Table$defaultRow, options);
-		var summary = _p3;
-		var config = _p3.config;
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tr,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					config.selected ? _debois$elm_mdl$Material_Options$cs('is-selected') : _debois$elm_mdl$Material_Options$nop
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$tfoot = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tfoot,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$tbody = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$tbody,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$thead = F2(
-	function (options, html) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$thead,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			html);
-	});
-var _debois$elm_mdl$Material_Table$table = F2(
-	function (options, nodes) {
-		var summary = A2(
-			_debois$elm_mdl$Material_Options$collect,
-			{},
-			options);
-		return A5(
-			_debois$elm_mdl$Material_Options$apply,
-			summary,
-			_elm_lang$html$Html$table,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_debois$elm_mdl$Material_Options$cs('mdl-data-table'),
-					_debois$elm_mdl$Material_Options$cs('mdl-js-data-table'),
-					_debois$elm_mdl$Material_Options$cs('is-upgraded')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			nodes);
-	});
-var _debois$elm_mdl$Material_Table$Row = function (a) {
-	return {selected: a};
-};
-var _debois$elm_mdl$Material_Table$Header = F3(
-	function (a, b, c) {
-		return {numeric: a, sorted: b, onClick: c};
-	});
-var _debois$elm_mdl$Material_Table$Cell = function (a) {
-	return {numeric: a};
-};
-var _debois$elm_mdl$Material_Table$Descending = {ctor: 'Descending'};
-var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending);
-var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
-var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
-var _debois$elm_mdl$NDCVideos_ViewItem$vimeoUrl = function (relativePath) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$vimeoUrl = function (relativePath) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'https://vimeo.com',
 		A2(_elm_lang$core$String$dropLeft, 7, relativePath));
 };
-var _debois$elm_mdl$NDCVideos_ViewItem$viewVideo = F2(
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
 	function (model, outerMdl) {
 		return A2(
 			_debois$elm_mdl$Material_Table$tr,
@@ -13145,7 +13145,7 @@ var _debois$elm_mdl$NDCVideos_ViewItem$viewVideo = F2(
 							_elm_lang$core$Native_List.fromArray(
 								[
 									_elm_lang$html$Html_Attributes$href(
-									_debois$elm_mdl$NDCVideos_ViewItem$vimeoUrl(model.url)),
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$vimeoUrl(model.url)),
 									_elm_lang$html$Html_Attributes$target('_blank')
 								]),
 							_elm_lang$core$Native_List.fromArray(
@@ -13213,16 +13213,16 @@ var _debois$elm_mdl$NDCVideos_ViewItem$viewVideo = F2(
 							_elm_lang$core$Native_List.fromArray(
 								[
 									_debois$elm_mdl$Material_Icon$onClick(
-									_debois$elm_mdl$NDCVideos_Messages$ShowDescription(model.url)),
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ShowDescription(model.url)),
 									A2(
 									_debois$elm_mdl$Material_Tooltip$attach,
-									_debois$elm_mdl$NDCVideos_Messages$MDL,
+									_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
 									_elm_lang$core$Native_List.fromArray(
 										[0]))
 								])),
 							A5(
 							_debois$elm_mdl$Material_Tooltip$render,
-							_debois$elm_mdl$NDCVideos_Messages$MDL,
+							_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
 							_elm_lang$core$Native_List.fromArray(
 								[0]),
 							outerMdl,
@@ -13235,7 +13235,7 @@ var _debois$elm_mdl$NDCVideos_ViewItem$viewVideo = F2(
 						]))
 				]));
 	});
-var _debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Table$table,
 		_elm_lang$core$Native_List.fromArray(
@@ -13287,7 +13287,7 @@ var _debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos = function (model) {
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
-										_debois$elm_mdl$NDCVideos_Messages$SortItems(_debois$elm_mdl$NDCVideos_Models$PlaysColumn))
+										_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SortItems(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$PlaysColumn))
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
@@ -13300,7 +13300,7 @@ var _debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos = function (model) {
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
-										_debois$elm_mdl$NDCVideos_Messages$SortItems(_debois$elm_mdl$NDCVideos_Models$LikesColumn))
+										_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$SortItems(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$LikesColumn))
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
@@ -13323,22 +13323,22 @@ var _debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos = function (model) {
 				A2(
 					_elm_lang$core$List$map,
 					function (item) {
-						return A2(_debois$elm_mdl$NDCVideos_ViewItem$viewVideo, item, model.mdl);
+						return A2(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo, item, model.mdl);
 					},
 					model.filteredVideos))
 			]));
 };
-var _debois$elm_mdl$NDCVideos_View$renderSpeakersToggle = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSpeakersToggle = function (model) {
 	return A5(
 		_debois$elm_mdl$Material_Toggles$switch,
-		_debois$elm_mdl$NDCVideos_Messages$MDL,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
 		_elm_lang$core$Native_List.fromArray(
 			[0]),
 		model.mdl,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_debois$elm_mdl$Material_Toggles$onClick(
-				_debois$elm_mdl$NDCVideos_Messages$ToggleSpeakers(0)),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSpeakers(0)),
 				_debois$elm_mdl$Material_Toggles$value(model.toggleSpeakersFilter)
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -13346,17 +13346,17 @@ var _debois$elm_mdl$NDCVideos_View$renderSpeakersToggle = function (model) {
 				_elm_lang$html$Html$text('Show speaker filters')
 			]));
 };
-var _debois$elm_mdl$NDCVideos_View$renderSlugsToggle = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSlugsToggle = function (model) {
 	return A5(
 		_debois$elm_mdl$Material_Toggles$switch,
-		_debois$elm_mdl$NDCVideos_Messages$MDL,
+		_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
 		_elm_lang$core$Native_List.fromArray(
 			[0]),
 		model.mdl,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_debois$elm_mdl$Material_Toggles$onClick(
-				_debois$elm_mdl$NDCVideos_Messages$ToggleSlugs(0)),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ToggleSlugs(0)),
 				_debois$elm_mdl$Material_Toggles$value(model.toggleSlugsFilter)
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -13364,7 +13364,7 @@ var _debois$elm_mdl$NDCVideos_View$renderSlugsToggle = function (model) {
 				_elm_lang$html$Html$text('Show topic filters')
 			]));
 };
-var _debois$elm_mdl$NDCVideos_View$view = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -13388,13 +13388,13 @@ var _debois$elm_mdl$NDCVideos_View$view = function (model) {
 						_elm_lang$html$Html$text(
 						A2(_elm_lang$core$Basics_ops['++'], 'Vimeo data last updated: ', model.videoInfo.lastUpdated))
 					])),
-				_debois$elm_mdl$NDCVideos_View$renderSlugsToggle(model),
-				_debois$elm_mdl$NDCVideos_View$renderSpeakersToggle(model),
-				_debois$elm_mdl$NDCVideos_ViewSlugFilters$renderSlugFilters(model),
-				_debois$elm_mdl$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSlugsToggle(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$renderSpeakersToggle(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSlugFilters$renderSlugFilters(model),
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewSpeakerFilters$renderSpeakerFilters(model),
 				(!_elm_lang$core$Native_Utils.eq(model.currentFilterType, 'None')) ? A5(
 				_debois$elm_mdl$Material_Button$render,
-				_debois$elm_mdl$NDCVideos_Messages$MDL,
+				_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$MDL,
 				_elm_lang$core$Native_List.fromArray(
 					[0]),
 				model.mdl,
@@ -13402,7 +13402,7 @@ var _debois$elm_mdl$NDCVideos_View$view = function (model) {
 					[
 						_debois$elm_mdl$Material_Button$raised,
 						_debois$elm_mdl$Material_Button$colored,
-						_debois$elm_mdl$Material_Button$onClick(_debois$elm_mdl$NDCVideos_Messages$ClearFilters)
+						_debois$elm_mdl$Material_Button$onClick(_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Messages$ClearFilters)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -13427,12 +13427,12 @@ var _debois$elm_mdl$NDCVideos_View$view = function (model) {
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_debois$elm_mdl$NDCVideos_ViewList$renderNDCVideos(model)
+						_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos(model)
 					]))
 			]));
 };
-var _debois$elm_mdl$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
-var _debois$elm_mdl$View$contentview = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$contentview = function (model) {
 	return _debois$elm_mdl$Material_Scheme$top(
 		A2(
 			_elm_lang$html$Html$div,
@@ -13444,11 +13444,11 @@ var _debois$elm_mdl$View$contentview = function (model) {
 				[
 					A2(
 					_elm_lang$html$Html_App$map,
-					_debois$elm_mdl$Messages$NDCVideoListMsg,
-					_debois$elm_mdl$NDCVideos_View$view(model.videoListModel))
+					_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
+					_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
 				])));
 };
-var _debois$elm_mdl$View$header = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$View$header = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -13495,18 +13495,18 @@ var _debois$elm_mdl$View$header = function (model) {
 				]))
 		]);
 };
-var _debois$elm_mdl$View$drawer = _elm_lang$core$Native_List.fromArray(
+var _hakonrossebo$ndc_oslo2016_video_listing$View$drawer = _elm_lang$core$Native_List.fromArray(
 	[]);
-var _debois$elm_mdl$View$view = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$View$view = function (model) {
 	return A4(
 		_debois$elm_mdl$Material_Layout$render,
-		_debois$elm_mdl$Messages$MDL,
+		_hakonrossebo$ndc_oslo2016_video_listing$Messages$MDL,
 		model.mdl,
 		_elm_lang$core$Native_List.fromArray(
 			[_debois$elm_mdl$Material_Layout$fixedHeader]),
 		{
-			header: _debois$elm_mdl$View$header(model),
-			drawer: _debois$elm_mdl$View$drawer,
+			header: _hakonrossebo$ndc_oslo2016_video_listing$View$header(model),
+			drawer: _hakonrossebo$ndc_oslo2016_video_listing$View$drawer,
 			tabs: {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_List.fromArray(
@@ -13516,27 +13516,27 @@ var _debois$elm_mdl$View$view = function (model) {
 			},
 			main: _elm_lang$core$Native_List.fromArray(
 				[
-					_debois$elm_mdl$View$stylesheet,
-					_debois$elm_mdl$View$contentview(model)
+					_hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet,
+					_hakonrossebo$ndc_oslo2016_video_listing$View$contentview(model)
 				])
 		});
 };
-var _debois$elm_mdl$Main$subscriptions = function (model) {
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _debois$elm_mdl$Main$initialmodel = {videoListModel: _debois$elm_mdl$NDCVideos_Models$initialModel, mdl: _debois$elm_mdl$Material$model, transparentHeader: true};
-var _debois$elm_mdl$Main$init = {
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$initialmodel = {videoListModel: _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Models$initialModel, mdl: _debois$elm_mdl$Material$model, transparentHeader: true};
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$init = {
 	ctor: '_Tuple2',
-	_0: _debois$elm_mdl$Main$initialmodel,
-	_1: A2(_elm_lang$core$Platform_Cmd$map, _debois$elm_mdl$Messages$NDCVideoListMsg, _debois$elm_mdl$NDCVideos_Commands$fetchNDCVideos)
+	_0: _hakonrossebo$ndc_oslo2016_video_listing$Main$initialmodel,
+	_1: A2(_elm_lang$core$Platform_Cmd$map, _hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg, _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Commands$fetchNDCVideos)
 };
-var _debois$elm_mdl$Main$main = {
+var _hakonrossebo$ndc_oslo2016_video_listing$Main$main = {
 	main: _elm_lang$html$Html_App$program(
-		{init: _debois$elm_mdl$Main$init, view: _debois$elm_mdl$View$view, update: _debois$elm_mdl$Update$update, subscriptions: _debois$elm_mdl$Main$subscriptions})
+		{init: _hakonrossebo$ndc_oslo2016_video_listing$Main$init, view: _hakonrossebo$ndc_oslo2016_video_listing$View$view, update: _hakonrossebo$ndc_oslo2016_video_listing$Update$update, subscriptions: _hakonrossebo$ndc_oslo2016_video_listing$Main$subscriptions})
 };
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
-_elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _debois$elm_mdl$Main$main === 'undefined' ? null : _debois$elm_mdl$Main$main);
+_elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _hakonrossebo$ndc_oslo2016_video_listing$Main$main === 'undefined' ? null : _hakonrossebo$ndc_oslo2016_video_listing$Main$main);
 
 if (typeof define === "function" && define['amd'])
 {
