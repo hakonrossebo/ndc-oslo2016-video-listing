@@ -9,10 +9,10 @@ import NDCVideos.Models exposing (..)
 import NDCVideos.Messages exposing (..)
 import NDCVideos.Commands exposing (..)
 
-stringHasItem : String -> String -> Bool
-stringHasItem stringWithItems filter =
+stringHasItem : String -> String -> String -> Bool
+stringHasItem stringWithItems filter split =
   stringWithItems
-  |> String.split ","
+  |> String.split split
   |> List.member filter
 
 
@@ -45,11 +45,11 @@ update msg model =
     ClearFilters ->
       ({ model | filteredVideos = model.videoInfo.videos, currentFilterInfo = "", currentFilterType = "None"}, Cmd.none)
     SlugFilter slugfilter ->
-      let flt = List.filter (\vid -> stringHasItem vid.slugs slugfilter) model.videoInfo.videos
+      let flt = List.filter (\vid -> stringHasItem vid.slugs slugfilter ",") model.videoInfo.videos
       in
       ({ model | filteredVideos = flt,currentFilterInfo = "Filtered by topic: " ++ slugfilter, currentFilterType = "Topic"}, Cmd.none)
     SpeakerFilter speakerfilter ->
-      let flt = List.filter (\vid -> stringHasItem vid.speakers speakerfilter) model.videoInfo.videos
+      let flt = List.filter (\vid -> stringHasItem vid.speakers speakerfilter ";") model.videoInfo.videos
       in
       ({ model | filteredVideos = flt,currentFilterInfo = "Filtered by speaker: " ++ speakerfilter, currentFilterType = "Speaker"}, Cmd.none)
     ToggleSpeakers val ->
