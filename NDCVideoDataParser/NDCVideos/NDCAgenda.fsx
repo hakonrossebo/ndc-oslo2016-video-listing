@@ -11,33 +11,34 @@ module NDCAgenda =
 
     open System
     open FSharp.Data
-    
-    let NDCAgendaDocument = 
+
+
+    let NDCAgendaDocument =
         // let path = "http://ndcoslo.com/agenda/"
         let path = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"data", "NDCVideosAgenda.html")
         HtmlDocument.Load(path)
 
-    let titles = 
+    let titles =
         NDCAgendaDocument.CssSelect("div.grid-item.msnry-item > a > div > h2")
         |> List.map(fun a -> a.InnerText())
 
-    let links = 
+    let links =
         NDCAgendaDocument.CssSelect("div.grid-item.msnry-item > a")
         |> List.map(fun a -> a.AttributeValue("href"))
 
-    let slugs = 
+    let slugs =
         NDCAgendaDocument.CssSelect("div.grid-item.msnry-item > a")
         |> List.map(fun a -> a.AttributeValue("data-slugs"))
 
-    let speakers = 
+    let speakers =
         NDCAgendaDocument.CssSelect("div.grid-item.msnry-item > a > p ")
         |> List.map(fun a -> a.DirectInnerText())
         |> List.map(fun x -> x.Replace("\r\n", ";"))
 
-    let slugList = 
+    let slugList =
         NDCAgendaDocument.CssSelect("section.tags.boxed-small-list > a")
         |> List.map(fun a -> a.AttributeValue("data-slug"), a.DirectInnerText())
-        |> List.sortBy(fun x -> snd x)
+        |> List.sortBy(snd)
         |> List.rev
         |> List.append ["--no match--","Not in agenda"; "","Missing topic"]
         |> List.rev
@@ -55,25 +56,25 @@ module NDCAgenda =
 
     let uniqueSpeakers =
         speakers
-        |> List.map (fun x -> Seq.toList(split [|';'|] x))
+        |> List.map (split [|';'|] >> Seq.toList )
         |> List.concat
         |> List.map (fun x -> x.Trim())
         |> List.distinct
-        |> List.sortBy (fun x -> x)
+        |> List.sortBy (id)
         |> List.toArray
- 
+
     let findByNameInList list name  =
         if name = "" then
             None
         else
             List.tryFind (fun item -> nameEqual name item) list
 
-    
+
     let findByName name =
         let correctedName = NDCAgendaNameFix.fixNameMismatch name
         findByNameInList listAgenda correctedName
 
-    
+
 // findByName "Sequential, Concurrent and Parallel Programming" listAgenda;;
 // NDCAgenda.uniqueSpeakers;;
 // NDCAgenda.speakers;;

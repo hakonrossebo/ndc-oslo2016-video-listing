@@ -22,7 +22,7 @@ let combinedNDCVideoData parsedVideos findByName =
     parsedVideos
     |> Seq.map (fun x -> match findByName (NDCVimeoVideoParser.nameColumn x)  with
                             | Some i -> (NDCVimeoVideoParser.nameColumn x, NDCVimeoVideoParser.uriColumn x, NDCVimeoVideoParser.descriptionColumn x, NDCVimeoVideoParser.playsColumn x, NDCVimeoVideoParser.likesColumn x, NDCAgenda.agendaSlugsColumn i, NDCAgenda.agendaSpeakersColumn i)
-                            | None -> (NDCVimeoVideoParser.nameColumn x, NDCVimeoVideoParser.uriColumn x, NDCVimeoVideoParser.descriptionColumn x, NDCVimeoVideoParser.playsColumn x, NDCVimeoVideoParser.likesColumn x, "--no match--", "--no match--")) 
+                            | None -> (NDCVimeoVideoParser.nameColumn x, NDCVimeoVideoParser.uriColumn x, NDCVimeoVideoParser.descriptionColumn x, NDCVimeoVideoParser.playsColumn x, NDCVimeoVideoParser.likesColumn x, "--no match--", "--no match--"))
 
 let jsonMovieData parsedVideos findByName=
     combinedNDCVideoData parsedVideos findByName
