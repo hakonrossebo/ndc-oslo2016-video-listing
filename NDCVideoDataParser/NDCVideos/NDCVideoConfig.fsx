@@ -4,7 +4,7 @@ module NDCVideoConfig
   let vimeoChannelUri = "https://api.vimeo.com/channels/ndcoslo2016/videos"
   let outputJsonName = "NDCVideos.json"
   [<Literal>]
-  let ndcJsonSchema = 
+  let NdcJsonSchema =
       """
       {
           "desc": "desc123",

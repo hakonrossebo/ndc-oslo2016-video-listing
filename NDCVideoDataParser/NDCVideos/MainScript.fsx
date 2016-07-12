@@ -8,7 +8,7 @@ open NDCVideoConfig
 open FSharp.Data
 open System.IO
 
-type ndcVideos = JsonProvider<NDCVideoConfig.ndcJsonSchema, RootName="ndc">
+type NdcVideos = JsonProvider<NDCVideoConfig.NdcJsonSchema, RootName="ndc">
 
 let combinedNameColumn (x,_,_,_,_,_,_) = x
 let combinedUriColumn (_,x,_,_,_,_,_) = x
@@ -26,16 +26,16 @@ let combinedNDCVideoData parsedVideos findByName =
 
 let jsonMovieData parsedVideos findByName=
     combinedNDCVideoData parsedVideos findByName
-    |> Seq.map (fun x -> ndcVideos.Ndcvideo(combinedNameColumn x, combinedUriColumn x, combinedDescriptionColumn x, combinedPlaysColumn x, combinedLikesColumn x, combindedAgendaSlugsColumn x, combinedAgendaSpeakersColumn x))
+    |> Seq.map (fun x -> NdcVideos.Ndcvideo(combinedNameColumn x, combinedUriColumn x, combinedDescriptionColumn x, combinedPlaysColumn x, combinedLikesColumn x, combindedAgendaSlugsColumn x, combinedAgendaSpeakersColumn x))
     |> Seq.toArray
 
 let jsonMovieSlugData slugList =
     slugList
-    |> Seq.map (fun x -> ndcVideos.Ndcvideoslug(fst x, snd x))
+    |> Seq.map (fun x -> NdcVideos.Ndcvideoslug(fst x, snd x))
     |> Seq.toArray
 
 let newNDCVideos parsedVideos findByName slugList uniqueSpeakers=
-    ndcVideos.Ndc (desc= "NDCOslo2016 Videos", lastUpdated = System.DateTime.Now.ToShortDateString(), ndcvideos=jsonMovieData parsedVideos findByName, ndcvideoslugs=jsonMovieSlugData slugList, ndcvideospeakers=uniqueSpeakers )
+    NdcVideos.Ndc (desc= "NDCOslo2016 Videos", lastUpdated = System.DateTime.Now.ToShortDateString(), ndcvideos=jsonMovieData parsedVideos findByName, ndcvideoslugs=jsonMovieSlugData slugList, ndcvideospeakers=uniqueSpeakers )
 
 let path file = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"data", file)
 
