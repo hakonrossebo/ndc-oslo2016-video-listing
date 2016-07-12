@@ -12143,6 +12143,158 @@ var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$
 var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
 var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
 var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
+var _debois$elm_mdl$Material_Grid$clip = F3(
+	function (lower, upper, k) {
+		return A2(
+			_elm_lang$core$Basics$max,
+			lower,
+			A2(_elm_lang$core$Basics$min, k, upper));
+	});
+var _debois$elm_mdl$Material_Grid$align = function (a) {
+	var _p0 = a;
+	switch (_p0.ctor) {
+		case 'Top':
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--top');
+		case 'Middle':
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--middle');
+		default:
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--bottom');
+	}
+};
+var _debois$elm_mdl$Material_Grid$suffix = function (device) {
+	var _p1 = device;
+	switch (_p1.ctor) {
+		case 'All':
+			return '';
+		case 'Desktop':
+			return '-desktop';
+		case 'Tablet':
+			return '-tablet';
+		default:
+			return '-phone';
+	}
+};
+var _debois$elm_mdl$Material_Grid$size = F2(
+	function (device, k) {
+		var c = function () {
+			var _p2 = device;
+			switch (_p2.ctor) {
+				case 'All':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, k);
+				case 'Desktop':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, k);
+				case 'Tablet':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 8, k);
+				default:
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 4, k);
+			}
+		}();
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(c),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'-col',
+						_debois$elm_mdl$Material_Grid$suffix(device)))));
+	});
+var _debois$elm_mdl$Material_Grid$offset = F2(
+	function (device, k) {
+		var c = function () {
+			var _p3 = device;
+			switch (_p3.ctor) {
+				case 'All':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 11, k);
+				case 'Desktop':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 11, k);
+				case 'Tablet':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 7, k);
+				default:
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 3, k);
+			}
+		}();
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(c),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'-offset',
+						_debois$elm_mdl$Material_Grid$suffix(device)))));
+	});
+var _debois$elm_mdl$Material_Grid$hide = function (device) {
+	return _debois$elm_mdl$Material_Options$cs(
+		function () {
+			var _p4 = device;
+			if (_p4.ctor === 'All') {
+				return '';
+			} else {
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'mdl-cell--hide-',
+					_debois$elm_mdl$Material_Grid$suffix(device));
+			}
+		}());
+};
+var _debois$elm_mdl$Material_Grid$order = F2(
+	function (device, n) {
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--order-',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(
+						A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, n)),
+					_debois$elm_mdl$Material_Grid$suffix(device))));
+	});
+var _debois$elm_mdl$Material_Grid$grid = F2(
+	function (styling, cells) {
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			A2(
+				_elm_lang$core$List_ops['::'],
+				_debois$elm_mdl$Material_Options$cs('mdl-grid'),
+				styling),
+			A2(
+				_elm_lang$core$List$map,
+				function (_p5) {
+					var _p6 = _p5;
+					return _p6._0;
+				},
+				cells));
+	});
+var _debois$elm_mdl$Material_Grid$maxWidth = function (w) {
+	return A2(_debois$elm_mdl$Material_Options$css, 'max-width', w);
+};
+var _debois$elm_mdl$Material_Grid$noSpacing = _debois$elm_mdl$Material_Options$cs('mdl-grid--no-spacing');
+var _debois$elm_mdl$Material_Grid$Phone = {ctor: 'Phone'};
+var _debois$elm_mdl$Material_Grid$Tablet = {ctor: 'Tablet'};
+var _debois$elm_mdl$Material_Grid$Desktop = {ctor: 'Desktop'};
+var _debois$elm_mdl$Material_Grid$All = {ctor: 'All'};
+var _debois$elm_mdl$Material_Grid$Cell = function (a) {
+	return {ctor: 'Cell', _0: a};
+};
+var _debois$elm_mdl$Material_Grid$cell = F2(
+	function (styling, elms) {
+		return _debois$elm_mdl$Material_Grid$Cell(
+			A2(
+				_debois$elm_mdl$Material_Options$div,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-cell'),
+					styling),
+				elms));
+	});
+var _debois$elm_mdl$Material_Grid$Bottom = {ctor: 'Bottom'};
+var _debois$elm_mdl$Material_Grid$Middle = {ctor: 'Middle'};
+var _debois$elm_mdl$Material_Grid$Top = {ctor: 'Top'};
 var _debois$elm_mdl$Material_Scheme$scheme = F2(
 	function (primary, accent) {
 		return A2(
@@ -12966,7 +13118,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update = F2(
 								function (video) {
 									return _elm_lang$core$Native_Utils.eq(video.url, _p0._0) ? _elm_lang$core$Native_Utils.update(
 										video,
-										{showDescription: true, description: 'Not implemented yet due to issue with css. Unable to wrap text.'}) : video;
+										{showDescription: true, description: video.description}) : video;
 								},
 								model.filteredVideos)
 						}),
@@ -13137,7 +13289,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
 					A2(
 					_debois$elm_mdl$Material_Table$td,
 					_elm_lang$core$Native_List.fromArray(
-						[]),
+						[
+							_debois$elm_mdl$Material_Options$cs('wrapword')
+						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
@@ -13178,7 +13332,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
 					A2(
 					_debois$elm_mdl$Material_Table$td,
 					_elm_lang$core$Native_List.fromArray(
-						[]),
+						[
+							_debois$elm_mdl$Material_Options$cs('wrapword')
+						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_elm_lang$html$Html$text(model.speakers)
@@ -13240,7 +13396,8 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 		_debois$elm_mdl$Material_Table$table,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_debois$elm_mdl$Material_Options$cs('full-width')
+				A2(_debois$elm_mdl$Material_Options$css, 'table-layout', 'fixed'),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -13259,7 +13416,10 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '40%'),
+										A2(_debois$elm_mdl$Material_Options$css, 'max-width', '200px')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Title')
@@ -13267,7 +13427,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '20%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Slugs')
@@ -13275,7 +13437,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Speakers')
@@ -13284,6 +13448,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
 									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%'),
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
@@ -13297,6 +13462,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
 									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%'),
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
@@ -13309,7 +13475,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('More info')
@@ -13431,22 +13599,75 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view = function (mod
 					]))
 			]));
 };
-var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.myTable {\n    width: 100%;\n    table-layout: fixed;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n.wrapword{\nwhite-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */\nwhite-space: -webkit-pre-wrap; /*Chrome & Safari */ \nwhite-space: -pre-wrap;      /* Opera 4-6 */\nwhite-space: -o-pre-wrap;    /* Opera 7 */\nwhite-space: pre-wrap;       /* css-3 */\nword-wrap: break-word;       /* Internet Explorer 5.5+ */\nwhite-space: normal;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$background = A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$S50);
+var _hakonrossebo$ndc_oslo2016_video_listing$View$boxed = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(_debois$elm_mdl$Material_Options$css, 'margin', 'auto'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-top', '8px'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '4%'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-right', '4%')
+	]);
+var _hakonrossebo$ndc_oslo2016_video_listing$View$body$ = function (contents) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_hakonrossebo$ndc_oslo2016_video_listing$View$boxed,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$grid,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Grid$noSpacing]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[contents])),
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
+								A2(_debois$elm_mdl$Material_Grid$offset, _debois$elm_mdl$Material_Grid$Desktop, 1),
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+								_debois$elm_mdl$Material_Grid$align(_debois$elm_mdl$Material_Grid$Top),
+								A2(_debois$elm_mdl$Material_Options$css, 'position', 'relative')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin-bottom', '48px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]));
+};
 var _hakonrossebo$ndc_oslo2016_video_listing$View$contentview = function (model) {
-	return _debois$elm_mdl$Material_Scheme$top(
-		A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('elm-app')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html_App$map,
-					_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
-					_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
-				])));
+	return _hakonrossebo$ndc_oslo2016_video_listing$View$body$(
+		_debois$elm_mdl$Material_Scheme$top(
+			A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('elm-app')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html_App$map,
+						_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
+						_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
+					]))));
 };
 var _hakonrossebo$ndc_oslo2016_video_listing$View$header = function (model) {
 	return _elm_lang$core$Native_List.fromArray(

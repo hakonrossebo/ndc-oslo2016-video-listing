@@ -1,19 +1,72 @@
-var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.full-width {\n    width: 100%;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$stylesheet = _debois$elm_mdl$Material_Options$stylesheet('\n  /* The following line is better done in html. We keep it here for\n     compatibility with elm-reactor.\n    @import url(\"assets/styles/github-gist.css\");\n   */\n.myTable {\n    width: 100%;\n    table-layout: fixed;\n}\n.q-width {\n    width: 25%;\n}\n.videoDesc {\n    float: left;\n    display: inline-block;\n    width: 300px;\n    max-width: 300px;\n    word-wrap: break-word;\n    word-break: break-all;\n}\n.wrapword{\nwhite-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */\nwhite-space: -webkit-pre-wrap; /*Chrome & Safari */ \nwhite-space: -pre-wrap;      /* Opera 4-6 */\nwhite-space: -o-pre-wrap;    /* Opera 7 */\nwhite-space: pre-wrap;       /* css-3 */\nword-wrap: break-word;       /* Internet Explorer 5.5+ */\nwhite-space: normal;\n}\n\n');
+var _hakonrossebo$ndc_oslo2016_video_listing$View$background = A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Yellow, _debois$elm_mdl$Material_Color$S50);
+var _hakonrossebo$ndc_oslo2016_video_listing$View$boxed = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(_debois$elm_mdl$Material_Options$css, 'margin', 'auto'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-top', '8px'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-left', '4%'),
+		A2(_debois$elm_mdl$Material_Options$css, 'padding-right', '4%')
+	]);
+var _hakonrossebo$ndc_oslo2016_video_listing$View$body$ = function (contents) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_hakonrossebo$ndc_oslo2016_video_listing$View$boxed,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$grid,
+				_elm_lang$core$Native_List.fromArray(
+					[_debois$elm_mdl$Material_Grid$noSpacing]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[contents])),
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 5),
+								A2(_debois$elm_mdl$Material_Grid$offset, _debois$elm_mdl$Material_Grid$Desktop, 1),
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$Phone, 4),
+								_debois$elm_mdl$Material_Grid$align(_debois$elm_mdl$Material_Grid$Top),
+								A2(_debois$elm_mdl$Material_Options$css, 'position', 'relative')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'margin-bottom', '48px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]));
+};
 var _hakonrossebo$ndc_oslo2016_video_listing$View$contentview = function (model) {
-	return _debois$elm_mdl$Material_Scheme$top(
-		A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('elm-app')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html_App$map,
-					_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
-					_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
-				])));
+	return _hakonrossebo$ndc_oslo2016_video_listing$View$body$(
+		_debois$elm_mdl$Material_Scheme$top(
+			A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('elm-app')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html_App$map,
+						_hakonrossebo$ndc_oslo2016_video_listing$Messages$NDCVideoListMsg,
+						_hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_View$view(model.videoListModel))
+					]))));
 };
 var _hakonrossebo$ndc_oslo2016_video_listing$View$header = function (model) {
 	return _elm_lang$core$Native_List.fromArray(

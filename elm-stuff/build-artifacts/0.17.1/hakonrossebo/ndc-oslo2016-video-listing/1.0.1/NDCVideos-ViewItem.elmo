@@ -15,7 +15,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
 					A2(
 					_debois$elm_mdl$Material_Table$td,
 					_elm_lang$core$Native_List.fromArray(
-						[]),
+						[
+							_debois$elm_mdl$Material_Options$cs('wrapword')
+						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
@@ -56,7 +58,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewItem$viewVideo = F2(
 					A2(
 					_debois$elm_mdl$Material_Table$td,
 					_elm_lang$core$Native_List.fromArray(
-						[]),
+						[
+							_debois$elm_mdl$Material_Options$cs('wrapword')
+						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_elm_lang$html$Html$text(model.speakers)

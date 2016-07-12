@@ -3,7 +3,8 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 		_debois$elm_mdl$Material_Table$table,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_debois$elm_mdl$Material_Options$cs('full-width')
+				A2(_debois$elm_mdl$Material_Options$css, 'table-layout', 'fixed'),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -22,7 +23,10 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '40%'),
+										A2(_debois$elm_mdl$Material_Options$css, 'max-width', '200px')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Title')
@@ -30,7 +34,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '20%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Slugs')
@@ -38,7 +44,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('Speakers')
@@ -47,6 +55,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
 									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%'),
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
@@ -60,6 +69,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
 									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%'),
 										_debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending),
 										_debois$elm_mdl$Material_Table$numeric,
 										_debois$elm_mdl$Material_Table$onClick(
@@ -72,7 +82,9 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_ViewList$renderNDCVideos 
 								A2(
 								_debois$elm_mdl$Material_Table$th,
 								_elm_lang$core$Native_List.fromArray(
-									[]),
+									[
+										A2(_debois$elm_mdl$Material_Options$css, 'width', '10%')
+									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html$text('More info')

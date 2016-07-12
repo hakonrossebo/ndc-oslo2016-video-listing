@@ -124,7 +124,7 @@ var _hakonrossebo$ndc_oslo2016_video_listing$NDCVideos_Update$update = F2(
 								function (video) {
 									return _elm_lang$core$Native_Utils.eq(video.url, _p0._0) ? _elm_lang$core$Native_Utils.update(
 										video,
-										{showDescription: true, description: 'Not implemented yet due to issue with css. Unable to wrap text.'}) : video;
+										{showDescription: true, description: video.description}) : video;
 								},
 								model.filteredVideos)
 						}),
