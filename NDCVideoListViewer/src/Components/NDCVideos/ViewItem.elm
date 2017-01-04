@@ -11,7 +11,9 @@ import Material
 import Material.Table as Table
 import Material.Tooltip as Tooltip
 import Material.Icon as Icon
-  
+import Material.Options as Options exposing (cs, css, Style)
+
+
 vimeoUrl : String -> String
 vimeoUrl relativePath =
   "https://vimeo.com" ++  String.dropLeft 7 relativePath
@@ -21,10 +23,10 @@ viewVideo model outerMdl =
   Table.tr  
   [ ]
     [ 
-        Table.td [] [ a [ href (vimeoUrl model.url), Html.Attributes.target "_blank" ][ text model.title ]
+        Table.td [cs "wrapword"] [ a [ href (vimeoUrl model.url), Html.Attributes.target "_blank" ][ text model.title ]
         , if model.showDescription then p [][text model.description] else span [][]]
       , Table.td [] [ text (String.left 20 model.slugs) ]
-      , Table.td [] [ text model.speakers ]
+      , Table.td [cs "wrapword"] [ text model.speakers ]
       , Table.td [  Table.numeric] [ text (toString model.plays) ]
       , Table.td [ Table.numeric] [ text (toString model.likes) ]
       , Table.td [] [ Icon.view "more" [ Icon.onClick (ShowDescription model.url), Tooltip.attach MDL [0] ], Tooltip.render MDL [0] outerMdl [Tooltip.large] [text "Show more info"]]

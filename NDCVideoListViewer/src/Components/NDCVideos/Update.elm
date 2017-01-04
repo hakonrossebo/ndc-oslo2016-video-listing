@@ -57,7 +57,7 @@ update msg model =
       model.filteredVideos
       |> List.map (\video ->
         if video.url == videoUri then 
-          {video | showDescription = True, description = "Not implemented yet due to issue with css. Unable to wrap text."}  
+          {video | showDescription = True, description = video.description}  
         else
           video )
       }, Cmd.none)
