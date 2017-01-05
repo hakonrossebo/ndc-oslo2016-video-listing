@@ -11,27 +11,27 @@ import Material.Options as Options exposing (cs, css, Style, onClick)
 
 renderNDCVideos : Model -> Html Msg
 renderNDCVideos model =
-    Table.table [ cs "full-width" ]
+    Table.table [css "table-layout" "fixed", css "width" "100%"]
         [ Table.thead
             []
             [ Table.tr []
                 [ Table.th
-                    []
+                    [ css "width" "40%", css "max-width" "200px" ]
                     [ text "Title"
                     ]
-                , Table.th []
+                , Table.th [css "width" "20%"]
                     [ text "Slugs"
                     ]
-                , Table.th []
+                , Table.th [css "width" "10%"]
                     [ text "Speakers"
                     ]
-                , Table.th [ Table.sorted Table.Descending, Table.numeric, Options.onClick (SortItems PlaysColumn) ]
+                , Table.th [css "width" "10%", Table.sorted Table.Descending, Table.numeric, Options.onClick (SortItems PlaysColumn)]
                     [ text "Plays"
                     ]
-                , Table.th [ Table.sorted Table.Descending, Table.numeric, Options.onClick (SortItems LikesColumn) ]
+                , Table.th [css "width" "10%", Table.sorted Table.Descending, Table.numeric, Options.onClick (SortItems LikesColumn) ]
                     [ text "Likes"
                     ]
-                , Table.th []
+                , Table.th [css "width" "10%" ]
                     [ text "More info"
                     ]
                 ]

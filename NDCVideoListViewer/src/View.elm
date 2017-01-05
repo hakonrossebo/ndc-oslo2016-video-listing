@@ -7,6 +7,8 @@ import Material.Scheme
 import Material.Options as Options exposing (css, when)
 import Material.Layout as Layout
 import Material.Scheme as Scheme
+import Material.Grid exposing (..)
+import Material.Color as Color
 import Messages exposing (Msg)
 import Models exposing (Model)
 import NDCVideos.View
@@ -38,7 +40,36 @@ header model =
 
 
 -- VIEW
+boxed : List (Options.Property a b)
+boxed = 
+  [ css "margin" "auto" 
+  , css "padding-top" "8px" 
+  , css "padding-left" "4%" 
+  , css "padding-right" "4%" 
+  ]
 
+
+background : Color.Color
+background =
+  Color.color Color.Yellow Color.S50 
+
+
+body_ : Html a -> Html a 
+body_ contents = 
+  Options.div
+    boxed
+    [ grid [ noSpacing ]
+       [ cell [ size All 12, size Phone 4 ] [ contents ]
+       , cell 
+           [ size All 5, offset Desktop 1, size Phone 4, align Top 
+           , css "position" "relative" 
+           ] 
+           []
+       ]
+    , Options.div 
+      [ css "margin-bottom" "48px"
+      ][]
+    ]
 
 view : Model -> Html Msg
 view model =
@@ -61,7 +92,8 @@ contentview : Model -> Html Msg
 contentview model =
     div [ class "elm-app" ]
         [ Html.map Messages.NDCVideoListMsg (NDCVideos.View.view model.videoListModel) ]
-        |> Material.Scheme.top
+            |> Material.Scheme.top
+        |> body_
 
 
 stylesheet : Html a
@@ -71,8 +103,9 @@ stylesheet =
      compatibility with elm-reactor.
     @import url("assets/styles/github-gist.css");
    */
-.full-width {
+.myTable {
     width: 100%;
+    table-layout: fixed;
 }
 .q-width {
     width: 25%;
@@ -85,5 +118,14 @@ stylesheet =
     word-wrap: break-word;
     word-break: break-all;
 }
-
+.wrapword{
+text-align: left !important;
+white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+white-space: -webkit-pre-wrap; /*Chrome & Safari */ 
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+white-space: pre-wrap;       /* css-3 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+white-space: normal;
+}
 """
